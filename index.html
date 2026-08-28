@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Relatório Executivo de Legalização e Modelagem - SEPE-PE</title>
+    <title>Relatório Legalização - SEPE-PE</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Lucide Icons -->
@@ -60,14 +60,14 @@
                     <span class="text-xs text-blue-200">SEPE-PE • Secretaria de Projetos</span>
                 </div>
                 <h1 class="text-2xl md:text-3xl font-bold tracking-tight mt-2 flex items-center gap-3">
-                    Relatório de Legalização SEPE - SAÚDE
+                    RELATÓRIO EXECUTIVO - LEGALIZAÇÃO
                 </h1>
                 <p class="text-blue-200 text-sm mt-1">
                     Acompanhamento Estratégico 
                 </p>
                 <p class="text-blue-300/90 text-xs mt-1.5 flex items-center gap-1.5 font-medium">
                     <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
-                    <span>Data: 31 de agosto de 2026</span>
+                    <span>Data: 28 de agosto de 2026</span>
                 </p>
             </div>
             
@@ -86,8 +86,8 @@
         <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
             <div class="bg-white rounded-xl p-5 border border-slate-200 shadow-sm border-l-4 border-l-blue-900 flex justify-between items-center print-card">
                 <div>
-                    <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Total de Equipamentos</p>
-                    <p class="text-3xl font-extrabold text-navy-900 mt-1">7</p>
+                    <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Total de Equipamentos / Processos</p>
+                    <p class="text-3xl font-extrabold text-navy-900 mt-1">9</p>
                     <p class="text-xs text-slate-500 mt-1">Recife & Fernando de Noronha</p>
                 </div>
                 <div class="p-3 bg-blue-50 rounded-lg text-navy-800">
@@ -98,8 +98,8 @@
             <div class="bg-white rounded-xl p-5 border border-slate-200 shadow-sm border-l-4 border-l-amber-500 flex justify-between items-center print-card">
                 <div>
                     <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Com Exigências / Em Análise</p>
-                    <p class="text-3xl font-extrabold text-amber-600 mt-1">2</p>
-                    <p class="text-xs text-amber-700 mt-1">HBL (Reingresso) & HR (PCR)</p>
+                    <p class="text-3xl font-extrabold text-amber-600 mt-1">4</p>
+                    <p class="text-xs text-amber-700 mt-1">HBL, HR, HPMPE e Licenças PCR</p>
                 </div>
                 <div class="p-3 bg-amber-50 rounded-lg text-amber-600">
                     <i data-lucide="alert-circle" class="w-6 h-6"></i>
@@ -134,7 +134,7 @@
             <div class="flex flex-wrap items-center gap-3 w-full lg:w-auto">
                 <span class="text-xs font-bold text-slate-500 uppercase tracking-wider whitespace-nowrap">Filtrar Categoria:</span>
                 <div class="flex flex-wrap gap-2">
-                    <button onclick="filterStatus('all')" id="btn-all" class="filter-btn active text-xs font-medium px-3 py-1.5 rounded-lg bg-navy-900 text-white transition">Todos (7)</button>
+                    <button onclick="filterStatus('all')" id="btn-all" class="filter-btn active text-xs font-medium px-3 py-1.5 rounded-lg bg-navy-900 text-white transition">Todos (9)</button>
                     <button onclick="filterStatus('exigencia')" id="btn-exigencia" class="filter-btn text-xs font-medium px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 hover:bg-slate-200 transition">Com Exigências / Análise</button>
                     <button onclick="filterStatus('elaboracao')" id="btn-elaboracao" class="filter-btn text-xs font-medium px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 hover:bg-slate-200 transition">Em Elaboração</button>
                     <button onclick="filterStatus('gestao')" id="btn-gestao" class="filter-btn text-xs font-medium px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 hover:bg-slate-200 transition">Aguardando Gestão</button>
@@ -190,7 +190,7 @@
                     </thead>
                     <tbody class="divide-y divide-slate-200 text-slate-700">
                         
-                        <!-- REGISTRO 1: BARÃO DE LUCENA -->
+                        <!-- REGISTRO 1: BARÃO DE LUCENA (PROJETO DE LEGALIZAÇÃO / REFORMA) -->
                         <tr class="data-row hover:bg-slate-50 transition page-break" data-category="exigencia">
                             <td class="py-4 px-3 align-top font-bold text-navy-950">
                                 HOSPITAL
@@ -202,15 +202,15 @@
                                 <div class="font-semibold text-blue-900">HOPITAL RECIFE (BARÃO DE LUCENA HBL)</div>
                             </td>
                             <td class="py-4 px-3 align-top text-slate-600 font-mono text-[11px]">
-                                AV. CAXANGA, 1866 IPUTINGA, RECIFE PE
+                                AV CAXANGA, 1860 IPUTINGA, RECIFE PE
                             </td>
                             <td class="py-4 px-3 align-top">
                                 <span class="inline-block bg-blue-100 text-blue-900 font-semibold px-2 py-1 rounded border border-blue-200 text-[10px]">
-                                    PROJETO DE LEGALIZAÇÃO/REFORMA
+                                    PROJETO DE LEGALIZAÇÃO REFORMA
                                 </span>
                             </td>
                             <td class="py-4 px-3 align-top leading-relaxed">
-                                Elaborando projetos para cumprimento de exigências
+                                Elaborando projetos para cumprimento de exigencias
                             </td>
                             <td class="py-4 px-3 align-top">
                                 <div class="bg-amber-50/90 border border-amber-200 rounded-lg p-2.5 text-amber-950 text-[11px] leading-relaxed">
@@ -220,17 +220,17 @@
                                     </div>
                                     <ul class="list-disc list-inside space-y-1 text-slate-800">
                                         <li>Apresentar LP</li>
-                                        <li>Apesentar planta com o traçado geométrico das áreas alagadas com a marcação das área não edificáveis de 20m e com os afastamentos para as edificações</li>
-                                        <li>Apresentar planta de situação conforme Le 18.33517/</li>
+                                        <li>Apesentar planta com o traçado geométrico das áreas alagadas com a marcação das áreas não edificáveis de 20m e com os afastamentos para as edificações</li>
+                                        <li>Apresentar planta de situação conforme Lei 18.335/17</li>
                                         <li>Apresentar todos os afastamentos em linhas perpendiculares as linhas limites do lote</li>
-                                        <li>Apresentar certidão atualizada do Rúi</li>
+                                        <li>Apresentar certidão atualizada do RGI</li>
                                     </ul>
                                 </div>
                             </td>
                             <td class="py-4 px-3 align-top">
                                 <div class="bg-blue-50 border border-blue-200 text-blue-950 rounded-lg p-2 font-bold text-center text-[11px]">
                                     <i data-lucide="calendar" class="w-3.5 h-3.5 text-blue-700 mx-auto mb-1"></i>
-                                    REINGRESSO ATÉ 04.09.2026
+                                    REINGRESSO ATE 04.09.2026
                                 </div>
                             </td>
                             <td class="py-4 px-3 align-top">
@@ -243,7 +243,11 @@
                                 <div class="flex flex-col gap-1.5">
                                     <span class="inline-flex items-center gap-1 bg-emerald-100 text-emerald-900 font-bold px-2 py-1 rounded border border-emerald-300 text-[11px]">
                                         <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
-                                        Viabilidade de Água e Esgoto
+                                        RGI
+                                    </span>
+                                    <span class="inline-flex items-center gap-1 bg-emerald-100 text-emerald-900 font-bold px-2 py-1 rounded border border-emerald-300 text-[11px]">
+                                        <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
+                                        Viabilidades de Água e Esgoto
                                     </span>
                                     <span class="inline-flex items-center gap-1 bg-emerald-100 text-emerald-900 font-bold px-2 py-1 rounded border border-emerald-300 text-[11px]">
                                         <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
@@ -258,6 +262,52 @@
                                         Projeto/LP
                                     </span>
                                 </div>
+                            </td>
+                        </tr>
+
+                        <!-- REGISTRO 1B: BARÃO DE LUCENA (LICENÇA PRÉVIA AMBIENTAL) -->
+                        <tr class="data-row hover:bg-slate-50 transition page-break bg-slate-50/50" data-category="exigencia">
+                            <td class="py-4 px-3 align-top font-bold text-navy-950">
+                                HOSPITAL
+                            </td>
+                            <td class="py-4 px-3 align-top font-medium text-slate-800">
+                                RECIFE
+                            </td>
+                            <td class="py-4 px-3 align-top">
+                                <div class="font-semibold text-blue-900">HOPITAL RECIFE (BARÃO DE LUCENA HBL)</div>
+                            </td>
+                            <td class="py-4 px-3 align-top text-slate-600 font-mono text-[11px]">
+                                AV CAXANGA, 1865 IPUTINGA, RECIFE PE
+                            </td>
+                            <td class="py-4 px-3 align-top">
+                                <span class="inline-block bg-blue-50 text-blue-900 font-semibold px-2 py-1 rounded border border-blue-200 text-[10px]">
+                                    LICENÇA PRÉVIA AMBIENTAL
+                                </span>
+                            </td>
+                            <td class="py-4 px-3 align-top leading-relaxed">
+                                Aguardando análise das documentações pela Prefeitura do Recife
+                            </td>
+                            <td class="py-4 px-3 align-top">
+                                <div class="bg-blue-50 border border-blue-200 rounded-lg p-2.5 text-blue-950 text-[11px] leading-relaxed font-semibold">
+                                    <i data-lucide="info" class="w-3.5 h-3.5 text-blue-600 inline mr-1"></i>
+                                    EM ANALISE PELA PREFEITURA DO RECIFE
+                                </div>
+                            </td>
+                            <td class="py-4 px-3 align-top">
+                                <span class="inline-block bg-slate-100 text-slate-500 font-bold px-2 py-1 rounded text-center border border-slate-200 w-full text-[11px]">
+                                    SEM PREVISÃO
+                                </span>
+                            </td>
+                            <td class="py-4 px-3 align-top">
+                                <span class="inline-flex items-center gap-1.5 bg-slate-100 text-slate-600 font-medium px-2.5 py-1.5 rounded border border-slate-200 text-[11px]">
+                                    <i data-lucide="minus-circle" class="w-3.5 h-3.5 text-slate-400"></i>
+                                    NÃO SE APLICA
+                                </span>
+                            </td>
+                            <td class="py-4 px-3 align-top">
+                                <span class="inline-flex items-center gap-1 bg-slate-100 text-slate-600 text-[11px] font-medium px-2 py-1 rounded border border-slate-200">
+                                    <i data-lucide="minus-circle" class="w-3 h-3"></i> N/A
+                                </span>
                             </td>
                         </tr>
 
@@ -498,7 +548,59 @@
                             </td>
                         </tr>
 
-                        <!-- REGISTRO 6: NOVO GETÚLIO VARGAS -->
+                        <!-- REGISTRO 6: HOSPITAL DA POLÍCIA MILITAR (HPMPE) - EM ANÁLISE PROJETUAL / JÁ LICITADO -->
+                        <tr class="data-row bg-emerald-50/80 hover:bg-emerald-100/80 border-l-4 border-l-emerald-600 transition page-break" data-category="exigencia">
+                            <td class="py-4 px-3 align-top font-bold text-emerald-950">
+                                HOSPITAL
+                            </td>
+                            <td class="py-4 px-3 align-top font-medium text-emerald-950">
+                                RECIFE
+                            </td>
+                            <td class="py-4 px-3 align-top">
+                                <div class="font-bold text-emerald-950">HOSPITAL RECIFE (POLICIA MILITAR- HPMPE)</div>
+                                <span class="inline-block mt-1 bg-emerald-700 text-white font-bold text-[10px] px-2 py-0.5 rounded uppercase tracking-wider shadow-sm">
+                                    Obra Já Licitada • Em Análise
+                                </span>
+                            </td>
+                            <td class="py-4 px-3 align-top text-emerald-900 font-mono text-[11px]">
+                                PRAÇA DO DERBY, SN-DERBY, RECIFE PE
+                            </td>
+                            <td class="py-4 px-3 align-top">
+                                <span class="inline-block bg-emerald-100 text-emerald-900 font-bold px-2 py-1 rounded border border-emerald-300 text-[10px]">
+                                    LEGALIZAÇÃO COM ACRESCIMO DE AREA
+                                </span>
+                            </td>
+                            <td class="py-4 px-3 align-top leading-relaxed text-emerald-950 font-medium">
+                                Aguardando análise das documentações pela Prefeitura do Recife
+                            </td>
+                            <td class="py-4 px-3 align-top">
+                                <div class="bg-emerald-100 border border-emerald-300 rounded-lg p-2.5 text-emerald-950 text-[11px] leading-relaxed font-bold shadow-sm">
+                                    <i data-lucide="clock" class="w-3.5 h-3.5 text-emerald-700 inline mr-1"></i>
+                                    EM ANALISE PELA PREFEITURA DO RECIFE
+                                </div>
+                            </td>
+                            <td class="py-4 px-3 align-top">
+                                <span class="inline-block bg-emerald-100 text-emerald-900 font-bold px-2 py-1 rounded text-center border border-emerald-300 w-full text-[11px]">
+                                    SEM PREVISÃO
+                                </span>
+                            </td>
+                            <td class="py-4 px-3 align-top">
+                                <span class="inline-flex items-start gap-1.5 bg-emerald-100/90 text-emerald-950 font-medium px-2 py-1.5 rounded border border-emerald-300 text-[11px]">
+                                    <i data-lucide="layers" class="w-3.5 h-3.5 text-emerald-700 shrink-0 mt-0.5"></i>
+                                    <span>PROJETO EM REVIT, POREM O PROJETO E ANTERIOR A ELABORAÇÃO DO MODELO BIM LEGA</span>
+                                </span>
+                            </td>
+                            <td class="py-4 px-3 align-top">
+                                <div class="flex flex-col gap-1.5">
+                                    <span class="inline-flex items-center gap-1 bg-emerald-600 text-white font-extrabold px-2.5 py-1.5 rounded border border-emerald-700 shadow text-[11px]">
+                                        <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-white shrink-0"></i>
+                                        Obra ja licitada
+                                    </span>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- REGISTRO 7: NOVO GETÚLIO VARGAS -->
                         <tr class="data-row hover:bg-slate-50 transition page-break" data-category="gestao">
                             <td class="py-4 px-3 align-top font-bold text-navy-950">
                                 HOSPITAL
@@ -649,7 +751,7 @@
             <div class="bg-navy-50 px-6 py-4 border-t border-slate-200 text-slate-600 text-xs flex flex-col md:flex-row justify-between items-center gap-2">
                 <div class="flex items-center gap-2">
                     <i data-lucide="info" class="w-4 h-4 text-navy-700"></i>
-                    <span><strong>Nota Técnica:</strong> Documento compilado para alinhamento gerencial com a Secretária Executiva da SEPES, incluindo status de legalização, BIM e instrução licitatória.</span>
+                    <span><strong>Nota Técnica:</strong> Documento compilado para alinhamento gerencial com a Secretária Executiva da SEPES-PE, incluindo status de legalização, BIM e instrução licitatória.</span>
                 </div>
                 <div class="text-slate-500 text-[11px]">
                     Governo do Estado de Pernambuco • SEPE-PE
