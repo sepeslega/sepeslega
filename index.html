@@ -1,895 +1,1165 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="h-full bg-slate-50">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RELATÓRIO EXECUTIVO - Legalização</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SEPES-PE — Controles de Legalização</title>
+<style>
+  :root {
+    --azul-escuro: #1a3a5c;
+    --azul-medio: #1e5f9e;
+    --azul-claro: #2d82cc;
+    --azul-bg: #e8f2fb;
+    --azul-borda: #a4c2f4;
+    --azul-header: #6fa8dc;
+    --verde: #2e7d32;
+    --verde-bg: #e8f5e9;
+    --vermelho: #c62828;
+    --vermelho-bg: #ffebee;
+    --amarelo: #f9a825;
+    --amarelo-bg: #fff8e1;
+    --cinza: #546e7a;
+    --branco: #ffffff;
+    --sombra: 0 2px 8px rgba(26,58,92,0.13);
+  }
 
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        sepe: {
-                            50: '#f0f7ff',
-                            100: '#e0effe',
-                            200: '#bae0fd',
-                            300: '#7cc8fb',
-                            400: '#36aef7',
-                            500: '#0c92e7',
-                            600: '#0074c7',
-                            700: '#015da3',
-                            800: '#064f86',
-                            900: '#0b426f',
-                            950: '#072a4a',
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        @media print {
-            .no-print { display: none !important; }
-            .print-only { display: block !important; }
-            body { background: white !important; font-size: 11px; }
-            .shadow-xl, .shadow-md, .shadow-sm { box-shadow: none !important; }
-            .break-inside-avoid { page-break-inside: avoid; }
-            .max-w-\[98\%\] { max-width: 100% !important; }
-        }
-        .custom-scrollbar::-webkit-scrollbar {
-            height: 6px;
-            width: 6px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: #f1f5f9;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
-            border-radius: 4px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-            background: #94a3b8;
-        }
-    </style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #dce8f5;
+    color: #1a3a5c;
+    min-height: 100vh;
+  }
+
+  /* ── TOPO ── */
+  header {
+    background: linear-gradient(135deg, var(--azul-escuro) 0%, var(--azul-medio) 100%);
+    color: var(--branco);
+    padding: 18px 32px 14px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.25);
+  }
+  .logo-circle {
+    width: 52px; height: 52px;
+    background: var(--branco);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .logo-circle svg { width: 34px; height: 34px; }
+  header h1 { font-size: 1.35rem; font-weight: 700; letter-spacing: .5px; line-height: 1.25; }
+  header p  { font-size: .82rem; opacity: .85; margin-top: 2px; }
+  .badge-data {
+    margin-left: auto;
+    background: rgba(255,255,255,.15);
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 20px;
+    padding: 6px 16px;
+    font-size: .78rem;
+    white-space: nowrap;
+  }
+
+  /* ── ABAS ── */
+  .tabs-wrap {
+    background: var(--azul-escuro);
+    display: flex;
+    gap: 4px;
+    padding: 0 28px;
+    overflow-x: auto;
+  }
+  .tab-btn {
+    background: transparent;
+    border: none;
+    color: rgba(255,255,255,.65);
+    font-size: .88rem;
+    font-weight: 600;
+    padding: 13px 22px 11px;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: all .2s;
+    white-space: nowrap;
+    letter-spacing: .3px;
+  }
+  .tab-btn:hover { color: var(--branco); border-bottom-color: rgba(255,255,255,.4); }
+  .tab-btn.active {
+    color: var(--branco);
+    border-bottom-color: #5bc8f5;
+    background: rgba(255,255,255,.08);
+  }
+  .tab-count {
+    display: inline-block;
+    background: rgba(255,255,255,.2);
+    border-radius: 12px;
+    font-size: .72rem;
+    padding: 1px 8px;
+    margin-left: 6px;
+    font-weight: 700;
+  }
+
+  /* ── CONTEÚDO ── */
+  .tab-content { display: none; padding: 24px 28px 40px; }
+  .tab-content.active { display: block; }
+
+  /* ── FILTROS ── */
+  .filter-bar {
+    background: var(--branco);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+    box-shadow: var(--sombra);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    align-items: flex-end;
+  }
+  .filter-group { display: flex; flex-direction: column; gap: 5px; min-width: 160px; }
+  .filter-group label { font-size: .72rem; font-weight: 700; color: var(--azul-medio); text-transform: uppercase; letter-spacing: .5px; }
+  .filter-group select, .filter-group input {
+    border: 1.5px solid var(--azul-borda);
+    border-radius: 6px;
+    padding: 7px 10px;
+    font-size: .85rem;
+    color: var(--azul-escuro);
+    background: var(--azul-bg);
+    outline: none;
+    transition: border-color .2s;
+  }
+  .filter-group select:focus, .filter-group input:focus { border-color: var(--azul-medio); }
+  .btn-limpar {
+    background: var(--azul-bg);
+    border: 1.5px solid var(--azul-borda);
+    border-radius: 6px;
+    padding: 7px 16px;
+    font-size: .83rem;
+    color: var(--azul-medio);
+    cursor: pointer;
+    font-weight: 600;
+    transition: all .2s;
+    align-self: flex-end;
+  }
+  .btn-limpar:hover { background: var(--azul-medio); color: var(--branco); }
+
+  /* ── CARDS PROJETOS ── */
+  .projetos-grid { display: flex; flex-direction: column; gap: 18px; }
+  .card-projeto {
+    background: var(--branco);
+    border-radius: 12px;
+    box-shadow: var(--sombra);
+    overflow: hidden;
+    border-left: 5px solid var(--azul-claro);
+    transition: box-shadow .2s;
+  }
+  .card-projeto:hover { box-shadow: 0 4px 18px rgba(26,58,92,.18); }
+  .card-projeto.prazo-urgente { border-left-color: var(--amarelo); }
+
+  .card-header {
+    background: linear-gradient(135deg, var(--azul-bg) 0%, #d6e8f8 100%);
+    padding: 14px 20px 12px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .card-header:hover { background: #cde2f5; }
+  .equip-badge {
+    background: var(--azul-medio);
+    color: var(--branco);
+    border-radius: 8px;
+    padding: 5px 12px;
+    font-size: .72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .card-titulo { flex: 1; }
+  .card-titulo h3 { font-size: .95rem; font-weight: 700; color: var(--azul-escuro); line-height: 1.3; }
+  .card-titulo .municipio { font-size: .78rem; color: var(--cinza); margin-top: 2px; }
+  .card-titulo .endereco { font-size: .75rem; color: var(--cinza); margin-top: 1px; font-style: italic; }
+  .card-arrow {
+    margin-left: auto;
+    color: var(--azul-medio);
+    font-size: 1.1rem;
+    transition: transform .3s;
+    flex-shrink: 0;
+    align-self: center;
+  }
+  .card-arrow.open { transform: rotate(180deg); }
+
+  .card-body {
+    padding: 0 20px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .35s ease, padding .3s;
+  }
+  .card-body.open { max-height: 900px; padding: 16px 20px 20px; }
+
+  /* ── GRID INFO ── */
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+  .info-item { background: var(--azul-bg); border-radius: 8px; padding: 10px 14px; }
+  .info-item .label { font-size: .68rem; text-transform: uppercase; letter-spacing: .5px; color: var(--azul-medio); font-weight: 700; margin-bottom: 3px; }
+  .info-item .value { font-size: .85rem; color: var(--azul-escuro); font-weight: 600; line-height: 1.35; }
+  .info-item.urgente { background: var(--amarelo-bg); border: 1px solid #ffe082; }
+  .info-item.urgente .label { color: #a06800; }
+  .info-item.urgente .value { color: #7c4f00; }
+
+  /* ── FLUXO PARA LICITAR ── */
+  .fluxo-section { margin-top: 4px; }
+  .fluxo-section h4 {
+    font-size: .78rem;
+    text-transform: uppercase;
+    letter-spacing: .6px;
+    color: var(--azul-medio);
+    font-weight: 700;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .fluxo-section h4::after {
+    content: '';
+    flex: 1;
+    height: 1.5px;
+    background: var(--azul-borda);
+  }
+
+  .canvas-fluxo-wrap {
+    overflow-x: auto;
+    padding-bottom: 6px;
+  }
+  canvas.fluxo-canvas {
+    display: block;
+    border-radius: 8px;
+    max-width: 100%;
+  }
+
+  /* ── LEGENDA ── */
+  .legenda {
+    display: flex;
+    gap: 20px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+  }
+  .legenda-item { display: flex; align-items: center; gap: 6px; font-size: .76rem; color: var(--cinza); }
+  .dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+  .dot.verde   { background: #2e7d32; }
+  .dot.vermelho{ background: #c62828; }
+  .dot.parcial { background: linear-gradient(135deg,#2e7d32 50%,#c62828 50%); }
+
+  /* ── PROCESSOS APROVADOS ── */
+  .aprovados-table-wrap {
+    background: var(--branco);
+    border-radius: 12px;
+    box-shadow: var(--sombra);
+    overflow: hidden;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: .83rem; }
+  thead tr { background: linear-gradient(135deg, var(--azul-medio), var(--azul-header)); color: var(--branco); }
+  thead th { padding: 13px 14px; text-align: left; font-weight: 700; font-size: .75rem; text-transform: uppercase; letter-spacing: .4px; white-space: nowrap; }
+  tbody tr { border-bottom: 1px solid #e3eef8; transition: background .15s; }
+  tbody tr:hover { background: var(--azul-bg); }
+  tbody tr.aprovado-row td { background: #f0faf0; }
+  tbody td { padding: 11px 14px; color: var(--azul-escuro); vertical-align: top; line-height: 1.4; }
+  .badge-status {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: .72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .3px;
+  }
+  .badge-status.obra       { background: #e3f2fd; color: #0d47a1; }
+  .badge-status.deferido   { background: var(--verde-bg); color: var(--verde); }
+  .badge-status.dev        { background: var(--amarelo-bg); color: #7c4f00; }
+  .badge-processo          { background: #e8eaf6; color: #283593; border-radius: 4px; padding: 2px 8px; font-size: .74rem; font-weight: 600; }
+  .validade-chip           { font-size: .78rem; font-weight: 600; }
+  .validade-chip.ok        { color: var(--verde); }
+  .validade-chip.sem-info  { color: var(--cinza); font-style: italic; }
+
+  /* ── RESUMO CANVAS ── */
+  .resumo-wrap { margin-bottom: 22px; }
+  canvas.resumo-canvas { display: block; border-radius: 10px; box-shadow: var(--sombra); }
+
+  /* ── SEM RESULTADO ── */
+  .sem-resultado { text-align: center; padding: 48px 20px; color: var(--cinza); font-size: .9rem; }
+  .sem-resultado span { font-size: 2.5rem; display: block; margin-bottom: 10px; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    header { flex-wrap: wrap; padding: 14px 16px; }
+    .tabs-wrap { padding: 0 10px; }
+    .tab-content { padding: 16px 12px 30px; }
+    .filter-bar { gap: 10px; }
+  }
+</style>
 </head>
-<body class="h-full text-slate-800 font-sans flex flex-col antialiased bg-slate-100">
+<body>
 
-    <!-- HEADER INSTITUCIONAL -->
-    <header class="bg-gradient-to-r from-sepe-950 via-sepe-900 to-sepe-800 text-white shadow-lg border-b-4 border-sepe-500 relative no-print">
-        <div class="max-w-[98%] mx-auto px-2 sm:px-4 lg:px-6 py-5">
-            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                
-                <!-- Logo e Títulos -->
-                <div class="flex items-center space-x-4">
-                    <div class="bg-white/10 backdrop-blur-md p-3 rounded-xl border border-white/20 shadow-inner flex items-center justify-center">
-                        <i data-lucide="building-2" class="w-9 h-9 text-sepe-300"></i>
-                    </div>
-                    <div>
-                        <div class="flex items-center gap-2">
-                            <span class="text-xs font-bold tracking-widest text-sepe-300 uppercase bg-sepe-950/60 px-2.5 py-0.5 rounded border border-sepe-700/50">
-                                SEPE • SECRETARIA EXECUTIVA DE PROJETOS ESPECIAIS
-                            </span>
-                        </div>
-                        <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-white mt-1">
-                            RELATÓRIO EXECUTIVO - Legalização
-                        </h1>
-                        <!-- Data de Geração da planilha -->
-                        <div class="mt-1 flex items-center text-sm text-sepe-200 font-medium">
-                            <i data-lucide="calendar" class="w-4 h-4 mr-1.5 text-sepe-300"></i>
-                            <span>Data de geração da planilha: <strong class="text-white font-semibold" id="dataGeracaoTexto">04 de Setembro de 2026</strong></span>
-                        </div>
-                    </div>
-                </div>
+<!-- TOPO -->
+<header>
+  <div class="logo-circle">
+    <svg viewBox="0 0 36 36" fill="none">
+      <circle cx="18" cy="18" r="17" fill="#1e5f9e"/>
+      <path d="M10 26 L18 10 L26 26" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <path d="M13.5 21 L22.5 21" stroke="white" stroke-width="2" stroke-linecap="round"/>
+      <rect x="16" y="23" width="4" height="4" rx="1" fill="white"/>
+    </svg>
+  </div>
+  <div>
+    <h1>SEPES-PE — Núcleo de Legalização</h1>
+    <p>Secretaria Executiva de Projetos para Equipamentos de Saúde · Controles de Acompanhamento</p>
+  </div>
+  <div class="badge-data" id="badgeData"></div>
+</header>
 
-                <!-- Botões de Ação Executiva -->
-                <div class="flex items-center gap-3">
-                    <button onclick="window.print()" class="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white px-4 py-2.5 rounded-lg text-sm font-semibold transition border border-white/20 shadow-sm backdrop-blur-sm">
-                        <i data-lucide="printer" class="w-4 h-4"></i>
-                        <span>Imprimir / PDF</span>
-                    </button>
-                    <button onclick="exportToCSV()" class="inline-flex items-center gap-2 bg-sepe-500 hover:bg-sepe-400 text-white px-4 py-2.5 rounded-lg text-sm font-semibold transition shadow-md">
-                        <i data-lucide="download" class="w-4 h-4"></i>
-                        <span>Exportar CSV</span>
-                    </button>
-                </div>
+<!-- ABAS -->
+<div class="tabs-wrap">
+  <button class="tab-btn active" onclick="showTab('desenvolvimento')">
+    Projetos em Desenvolvimento <span class="tab-count" id="cnt-dev">10</span>
+  </button>
+  <button class="tab-btn" onclick="showTab('aprovados')">
+    Processos Já Aprovados <span class="tab-count" id="cnt-apr">4</span>
+  </button>
+  <button class="tab-btn" onclick="showTab('resumo')">
+    Painel Geral
+  </button>
+</div>
 
-            </div>
-        </div>
-    </header>
+<!-- ════ ABA 1 – DESENVOLVIMENTO ════ -->
+<div class="tab-content active" id="tab-desenvolvimento">
 
-    <!-- BANNER PARA IMPRESSÃO (Aparece somente ao imprimir) -->
-    <div class="hidden print-only p-6 border-b border-slate-300">
-        <h1 class="text-2xl font-bold text-slate-900">SECRETARIA EXECUTIVA DE PROJETOS ESPECIAIS - SEPE</h1>
-        <h2 class="text-lg font-semibold text-sepe-800">Relatório de Acompanhamento de Legalização de Projetos</h2>
-        <p class="text-sm text-slate-600 mt-1">Data de geração da planilha: 04 de Setembro de 2026</p>
+  <div class="filter-bar">
+    <div class="filter-group">
+      <label>Equipamento</label>
+      <select id="f-equip" onchange="filtrar()">
+        <option value="">Todos</option>
+        <option>HOSPITAL</option>
+        <option>HEMOPE</option>
+        <option>FARMÁCIA</option>
+      </select>
     </div>
-
-    <!-- MAIN CONTENT -->
-    <main class="flex-1 max-w-[98%] w-full mx-auto px-2 sm:px-4 lg:px-6 py-6 space-y-6">
-
-        <!-- PAINEL DE RESUMO E CARDS DE INDICADORES (KPIs) -->
-        <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 no-print">
-            <!-- Card 1: Total -->
-            <div class="bg-white rounded-xl p-4 border border-slate-200/80 shadow-sm hover:shadow-md transition flex items-center justify-between">
-                <div>
-                    <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Total Empreendimentos</p>
-                    <h3 class="text-2xl font-black text-slate-800 mt-1" id="kpiTotal">11</h3>
-                    <p class="text-xs text-slate-500 mt-1">Recife & Fernando de Noronha</p>
-                </div>
-                <div class="p-3 bg-sepe-50 text-sepe-700 rounded-xl">
-                    <i data-lucide="files" class="w-6 h-6"></i>
-                </div>
-            </div>
-
-            <!-- Card 2: Em Desenvolvimento -->
-            <div class="bg-white rounded-xl p-4 border border-slate-200/80 shadow-sm hover:shadow-md transition flex items-center justify-between">
-                <div>
-                    <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Em Desenvolvimento</p>
-                    <h3 class="text-2xl font-black text-sepe-700 mt-1" id="kpiDev">8</h3>
-                    <p class="text-xs text-amber-600 font-medium mt-1">Aguardando Exigências / Protocolos</p>
-                </div>
-                <div class="p-3 bg-amber-50 text-amber-600 rounded-xl">
-                    <i data-lucide="clock" class="w-6 h-6"></i>
-                </div>
-            </div>
-
-            <!-- Card 3: Já Aprovados -->
-            <div class="bg-white rounded-xl p-4 border border-emerald-200 shadow-sm hover:shadow-md transition flex items-center justify-between bg-emerald-50/30">
-                <div>
-                    <p class="text-xs font-semibold text-emerald-800 uppercase tracking-wider">Processos Já Aprovados</p>
-                    <h3 class="text-2xl font-black text-emerald-700 mt-1" id="kpiAprovados">3</h3>
-                    <p class="text-xs text-emerald-600 font-medium mt-1">Prontos para Licitação</p>
-                </div>
-                <div class="p-3 bg-emerald-100 text-emerald-700 rounded-xl">
-                    <i data-lucide="check-circle-2" class="w-6 h-6"></i>
-                </div>
-            </div>
-
-            <!-- Card 4: Legenda Rápida -->
-            <div class="bg-white rounded-xl p-4 border border-slate-200/80 shadow-sm flex flex-col justify-center space-y-1.5">
-                <span class="text-xs font-bold text-slate-700 uppercase tracking-wider mb-0.5">Legenda dos Requisitos:</span>
-                <div class="flex items-center gap-2 text-xs">
-                    <span class="w-3 h-3 rounded-full bg-emerald-500 shrink-0"></span>
-                    <span class="text-slate-700 font-medium">Item Providenciado</span>
-                </div>
-                <div class="flex items-center gap-2 text-xs">
-                    <span class="w-3 h-3 rounded-full bg-slate-300 border border-slate-400 shrink-0"></span>
-                    <span class="text-slate-600">Em Solicitação / Pendente</span>
-                </div>
-                <div class="flex items-center gap-2 text-xs pt-1 border-t border-slate-100">
-                    <span class="w-3 h-3 rounded bg-emerald-100 border border-emerald-400 shrink-0"></span>
-                    <span class="text-emerald-800 font-semibold">Linha Verde: Pronto p/ Licitação</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- CONTROLES DE NAVEGAÇÃO E NAVEGAÇÃO POR ABAS -->
-        <div class="bg-white rounded-xl border border-slate-200/90 shadow-sm p-4 space-y-4 no-print">
-            
-            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-100 pb-4">
-                
-                <!-- NAVEGAÇÃO DE ABAS SOLICITADA -->
-                <nav class="flex space-x-1 sm:space-x-2 bg-slate-100 p-1 rounded-xl" aria-label="Abas">
-                    <button id="tab-dev" onclick="switchTab('dev')" class="tab-btn px-4 py-2.5 rounded-lg text-xs sm:text-sm font-bold transition flex items-center gap-2 bg-sepe-800 text-white shadow-sm">
-                        <i data-lucide="hammer" class="w-4 h-4"></i>
-                        <span>Projetos em Desenvolvimento</span>
-                        <span class="ml-1 bg-sepe-950 text-white text-xs px-2 py-0.5 rounded-full" id="countBadgeDev">8</span>
-                    </button>
-
-                    <button id="tab-aprovados" onclick="switchTab('aprovados')" class="tab-btn px-4 py-2.5 rounded-lg text-xs sm:text-sm font-medium text-slate-600 hover:text-sepe-800 hover:bg-slate-200/60 transition flex items-center gap-2">
-                        <i data-lucide="check-check" class="w-4 h-4 text-emerald-600"></i>
-                        <span>Processos Já Aprovados</span>
-                        <span class="ml-1 bg-emerald-100 text-emerald-800 font-bold text-xs px-2 py-0.5 rounded-full" id="countBadgeAprovados">3</span>
-                    </button>
-
-                    <button id="tab-todos" onclick="switchTab('todos')" class="tab-btn px-4 py-2.5 rounded-lg text-xs sm:text-sm font-medium text-slate-600 hover:text-sepe-800 hover:bg-slate-200/60 transition flex items-center gap-2">
-                        <i data-lucide="layers" class="w-4 h-4"></i>
-                        <span>Visão Consolidada</span>
-                    </button>
-                </nav>
-
-                <!-- Campo de busca rápida -->
-                <div class="relative min-w-[280px]">
-                    <i data-lucide="search" class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
-                    <input type="text" id="searchInput" onkeyup="filterData()" placeholder="Buscar por equipamento, município, endereço..." class="w-full pl-9 pr-4 py-2 text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sepe-500 focus:bg-white transition">
-                </div>
-
-            </div>
-
-            <!-- Filtros Avançados -->
-            <div class="flex flex-wrap items-center gap-3 text-xs">
-                <span class="font-bold text-slate-500 uppercase tracking-wider flex items-center gap-1">
-                    <i data-lucide="filter" class="w-3.5 h-3.5"></i> Filtros:
-                </span>
-
-                <select id="filterEquipamento" onchange="filterData()" class="bg-slate-50 border border-slate-200 text-slate-700 rounded-lg px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-sepe-500">
-                    <option value="">Todos os Equipamentos</option>
-                    <option value="HOSPITAL">HOSPITAL</option>
-                    <option value="HEMOPE">HEMOPE</option>
-                    <option value="FARMÁCIA">FARMÁCIA</option>
-                </select>
-
-                <select id="filterMunicipio" onchange="filterData()" class="bg-slate-50 border border-slate-200 text-slate-700 rounded-lg px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-sepe-500">
-                    <option value="">Todos os Municípios</option>
-                    <option value="RECIFE">RECIFE</option>
-                    <option value="FERNANDO DE NORONHA">FERNANDO DE NORONHA</option>
-                </select>
-
-                <button onclick="resetFilters()" class="text-sepe-700 hover:text-sepe-900 font-medium underline underline-offset-2 ml-auto">
-                    Limpar Filtros
-                </button>
-            </div>
-
-        </div>
-
-        <!-- CONTEÚDO PRINCIPAL: TABELAS DE PROJETOS -->
-
-        <!-- SEÇÃO 1: PROJETOS EM DESENVOLVIMENTO -->
-        <section id="section-dev" class="space-y-4">
-            <div class="flex items-center justify-between">
-                <div>
-                    <h2 class="text-lg font-bold text-sepe-950 flex items-center gap-2">
-                        <i data-lucide="hammer" class="w-5 h-5 text-sepe-600"></i>
-                        PROJETOS EM DESENVOLVIMENTO
-                    </h2>
-                    <p class="text-xs text-slate-500">Projetos em etapa de elaboração, exigências pendentes ou aguardando análise prévia.</p>
-                </div>
-            </div>
-
-            <div class="bg-white rounded-xl border border-slate-200/90 shadow-sm overflow-hidden">
-                <div class="overflow-x-auto custom-scrollbar">
-                    <table class="w-full text-left border-collapse text-xs sm:text-sm">
-                        <thead>
-                            <tr class="bg-sepe-900 text-white uppercase text-[11px] font-bold tracking-wider divide-x divide-sepe-800">
-                                <th class="p-3.5 min-w-[120px]">EQUIPAMENTO / MUNICÍPIO</th>
-                                <th class="p-3.5 min-w-[200px]">IDENTIFICADOR & ENDEREÇO</th>
-                                <th class="p-3.5 min-w-[160px]">PROCESSOS</th>
-                                <th class="p-3.5 min-w-[220px]">ETAPA DE ELABORAÇÃO</th>
-                                <th class="p-3.5 min-w-[200px]">EXIGÊNCIAS DO INGRESSO</th>
-                                <th class="p-3.5 min-w-[150px]">PRAZO PARA CONCLUSÃO</th>
-                                <th class="p-3.5 min-w-[180px]">INFORMAÇÕES BIM</th>
-                                <th class="p-3.5 min-w-[260px]">FLUXO DE REQUISITOS (VERDE = PROVIDENCIADO)</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tbody-dev" class="divide-y divide-slate-100 font-medium text-slate-700">
-                            <!-- Inserido via JS mantendo 100% integridade da planilha -->
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </section>
-
-
-        <!-- SEÇÃO 2: PROCESSOS JÁ APROVADOS (Linha Inteira em tom de verde para Licitação) -->
-        <section id="section-aprovados" class="space-y-4">
-            <div class="flex items-center justify-between">
-                <div>
-                    <h2 class="text-lg font-bold text-emerald-900 flex items-center gap-2">
-                        <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-600"></i>
-                        PROCESSOS JÁ APROVADOS (PRONTOS PARA LICITAÇÃO)
-                    </h2>
-                    <p class="text-xs text-emerald-700 font-medium">Projetos que já possuem todos os itens necessários para o processo licitatório.</p>
-                </div>
-                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-300 shadow-sm">
-                    <i data-lucide="check" class="w-3.5 h-3.5"></i> Todos os itens garantidos para licitação
-                </span>
-            </div>
-
-            <div class="bg-white rounded-xl border border-emerald-300 shadow-sm overflow-hidden">
-                <div class="overflow-x-auto custom-scrollbar">
-                    <table class="w-full text-left border-collapse text-xs sm:text-sm">
-                        <thead>
-                            <tr class="bg-emerald-900 text-white uppercase text-[11px] font-bold tracking-wider divide-x divide-emerald-800">
-                                <th class="p-3.5 min-w-[120px]">EQUIPAMENTO / MUNICÍPIO</th>
-                                <th class="p-3.5 min-w-[220px]">IDENTIFICADOR & ENDEREÇO</th>
-                                <th class="p-3.5 min-w-[160px]">PROCESSOS</th>
-                                <th class="p-3.5 min-w-[200px]">PROTOCOLO DE APROVAÇÃO DO PROCESSO</th>
-                                <th class="p-3.5 min-w-[160px]">RESPONSÁVEL</th>
-                                <th class="p-3.5 min-w-[110px]">VALIDADE</th>
-                                <th class="p-3.5 min-w-[220px]">INFORMAÇÕES BIM</th>
-                                <th class="p-3.5 min-w-[160px]">STATUS DO EMPREENDIMENTO</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tbody-aprovados" class="divide-y divide-emerald-200/80 font-medium text-slate-800">
-                            <!-- Inserido via JS com background verde -->
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- MODAL DE DETALHES COMPLETO -->
-    <div id="modalDetalhes" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden no-print">
-        <div class="bg-white rounded-2xl max-w-2xl w-full shadow-2xl border border-slate-200 overflow-hidden transform transition-all">
-            <div class="bg-sepe-900 text-white p-5 flex items-center justify-between">
-                <div class="flex items-center gap-3">
-                    <div class="p-2 bg-white/10 rounded-lg">
-                        <i data-lucide="file-text" class="w-5 h-5 text-sepe-300"></i>
-                    </div>
-                    <div>
-                        <h3 class="font-bold text-base" id="modalTitle">Detalhes do Empreendimento</h3>
-                        <p class="text-xs text-sepe-200" id="modalSub">SEPE Legalização</p>
-                    </div>
-                </div>
-                <button onclick="closeModal()" class="text-white/80 hover:text-white p-1 rounded-lg hover:bg-white/10 transition">
-                    <i data-lucide="x" class="w-6 h-6"></i>
-                </button>
-            </div>
-            
-            <div class="p-6 space-y-4 max-h-[80vh] overflow-y-auto custom-scrollbar text-sm" id="modalBody">
-                <!-- Conteúdo preenchido dinamicamente -->
-            </div>
-
-            <div class="bg-slate-50 p-4 border-t border-slate-100 flex justify-end">
-                <button onclick="closeModal()" class="px-4 py-2 bg-slate-800 hover:bg-slate-900 text-white rounded-lg text-xs font-semibold transition">
-                    Fechar Visualização
-                </button>
-            </div>
-        </div>
+    <div class="filter-group">
+      <label>Município</label>
+      <select id="f-mun" onchange="filtrar()">
+        <option value="">Todos</option>
+        <option>RECIFE</option>
+        <option>FERNANDO DE NORONHA</option>
+      </select>
     </div>
+    <div class="filter-group">
+      <label>Status Licitação</label>
+      <select id="f-status" onchange="filtrar()">
+        <option value="">Todos</option>
+        <option value="completo">Completo (todos providenciados)</option>
+        <option value="parcial">Parcial (em andamento)</option>
+        <option value="inicial">Iniciando (poucos providenciados)</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <label>Prazo</label>
+      <select id="f-prazo" onchange="filtrar()">
+        <option value="">Todos</option>
+        <option value="urgente">Com prazo urgente ⚠</option>
+        <option value="sem">Sem previsão</option>
+      </select>
+    </div>
+    <button class="btn-limpar" onclick="limparFiltros()">✕ Limpar</button>
+  </div>
 
-    <!-- FOOTER INSTITUCIONAL -->
-    <footer class="bg-slate-900 text-slate-400 text-xs py-6 mt-auto border-t border-slate-800 no-print">
-        <div class="max-w-[98%] mx-auto px-2 sm:px-4 lg:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div class="flex items-center gap-2">
-                <span class="font-bold text-slate-200">SEPE • Legalização</span>
-                <span>— Modelo de Apresentação Oficial</span>
-            </div>
-            <p>Gerado e atualizado conforme diretrizes de planejamento executivo da SEPE.</p>
+  <div class="projetos-grid" id="projetosGrid"></div>
+  <div class="sem-resultado" id="semResultadoDev" style="display:none">
+    <span>🔍</span>Nenhum projeto encontrado com os filtros selecionados.
+  </div>
+</div>
+
+<!-- ════ ABA 2 – APROVADOS ════ -->
+<div class="tab-content" id="tab-aprovados">
+  <div class="filter-bar">
+    <div class="filter-group">
+      <label>Equipamento</label>
+      <select id="fa-equip" onchange="filtrarAprovados()">
+        <option value="">Todos</option>
+        <option>HOSPITAL</option>
+        <option>HEMOPE</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <label>Município</label>
+      <select id="fa-mun" onchange="filtrarAprovados()">
+        <option value="">Todos</option>
+        <option>RECIFE</option>
+        <option>CARUARU</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <label>Status</label>
+      <select id="fa-sts" onchange="filtrarAprovados()">
+        <option value="">Todos</option>
+        <option>EM OBRA</option>
+        <option>PROJETOS EM DESENVOLVIMENTO</option>
+      </select>
+    </div>
+    <button class="btn-limpar" onclick="limparFiltrosApr()">✕ Limpar</button>
+  </div>
+
+  <div class="aprovados-table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Equipamento</th>
+          <th>Identificador / Município</th>
+          <th>Endereço</th>
+          <th>Processo</th>
+          <th>Protocolo</th>
+          <th>Responsável</th>
+          <th>Validade</th>
+          <th>BIM</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody id="aprovadosTbody"></tbody>
+    </table>
+    <div class="sem-resultado" id="semResultadoApr" style="display:none">
+      <span>🔍</span>Nenhum processo encontrado.
+    </div>
+  </div>
+</div>
+
+<!-- ════ ABA 3 – PAINEL GERAL ════ -->
+<div class="tab-content" id="tab-resumo">
+  <div class="resumo-wrap">
+    <canvas class="resumo-canvas" id="canvasResumo" height="280"></canvas>
+  </div>
+  <div class="resumo-wrap">
+    <canvas class="resumo-canvas" id="canvasFluxoGeral" height="220"></canvas>
+  </div>
+  <div class="resumo-wrap">
+    <canvas class="resumo-canvas" id="canvasMunicipios" height="200"></canvas>
+  </div>
+</div>
+
+<!-- ════ DADOS ════ -->
+<script>
+const PROJETOS = [
+  {
+    equip: "HOSPITAL", mun: "RECIFE",
+    id: "HOSPITAL - RECIFE (BARÃO DE LUCENA - HBL)",
+    end: "AV. CAXANGÁ, 3860 - IPUTINGA, RECIFE-PE",
+    proc: "PROJETO DE LEGALIZAÇÃO/REFORMA",
+    etapa: "EM STAND BY",
+    exig: "SEM EXIGÊNCIA",
+    prazo: "PROJETO INDEFERIDO, AGUARDANDO LIBERAÇÃO DA LP",
+    prazoUrgente: false,
+    bim: "PROJETO ELABORADO EM CAD",
+    fluxo: [
+      {item:"RGI", status:"providenciado"},
+      {item:"Viabilidades de Água e Esgoto", status:"providenciado"},
+      {item:"Protocolo Bombeiros", status:"providenciado"},
+      {item:"ETA", status:"providenciado"},
+      {item:"MD/RRT", status:"providenciado"},
+      {item:"Projeto", status:"pendente"},
+      {item:"Inventário Florestal", status:"providenciado"}
+    ]
+  },
+  {
+    equip: "HOSPITAL", mun: "RECIFE",
+    id: "HOPITAL - RECIFE (BARÃO DE LUCENA - HBL)",
+    end: "AV. CAXANGÁ, 3860 - IPUTINGA, RECIFE-PE",
+    proc: "LICENÇA PRÉVIA AMBIENTAL",
+    etapa: "Aguardando análise das documentações pela Prefeitura do Recife",
+    exig: "EM ANÁLISE PELA PREFEITURA DO RECIFE",
+    prazo: "SEM PREVISÃO (INGRESSO EM 04.09.26)",
+    prazoUrgente: false,
+    bim: "NÃO SE APLICA",
+    fluxo: [
+      {item:"LP", status:"pendente"}
+    ]
+  },
+  {
+    equip: "HEMOPE", mun: "RECIFE",
+    id: "GLEBA TOTAL - RECIFE",
+    end: "R. JOAQUIM NABUCO, 171 - GRAÇAS - RECIFE-PE",
+    proc: "REFORMA COM ACRÉSCIMO DE ÁREA",
+    etapa: "Elaborando projetos para ingresso",
+    exig: "AINDA NÃO FOI INGRESSADO",
+    prazo: "CONCLUSÃO PREVISTA PARA ATÉ 20/10/2026",
+    prazoUrgente: true,
+    bim: "MODELO BIMLEGA JÁ IMPLANTADO NO CURSO DO PROJETO",
+    fluxo: [
+      {item:"RGI", status:"providenciado"},
+      {item:"Viabilidades de Água e Esgoto", status:"providenciado"},
+      {item:"Protocolo Bombeiros", status:"providenciado"},
+      {item:"ETA", status:"providenciado"},
+      {item:"MD/RRT/Projeto", status:"pendente"},
+      {item:"Inventário Florestal", status:"providenciado"},
+      {item:"LP", status:"providenciado"}
+    ]
+  },
+  {
+    equip: "HEMOPE", mun: "RECIFE",
+    id: "BLOCO A - RECIFE",
+    end: "R. JOAQUIM NABUCO, 171 - GRAÇAS - RECIFE-PE",
+    proc: "APEVISA",
+    etapa: "Enviado para análise em 19/10/2026",
+    exig: "EM ANÁLISE PELA APEVISA",
+    prazo: "SEM PREVISÃO",
+    prazoUrgente: false,
+    bim: "MODELO BIMLEGA JÁ IMPLANTADO NO CURSO DO PROJETO",
+    fluxo: [
+      {item:"RGI", status:"providenciado"},
+      {item:"Viabilidades de Água e Esgoto", status:"providenciado"},
+      {item:"Protocolo Bombeiros", status:"providenciado"},
+      {item:"ETA", status:"providenciado"},
+      {item:"MD/RRT/Projeto", status:"providenciado"},
+      {item:"Inventário Florestal", status:"providenciado"},
+      {item:"LP", status:"providenciado"}
+    ]
+  },
+  {
+    equip: "FARMÁCIA", mun: "RECIFE",
+    id: "FARMÁCIA POPULAR DO ESTADO - RECIFE (IMBIRIBEIRA)",
+    end: "AV. MARECHAL MASCARENHAS DE MORAES, IMBIRIBEIRA, RECIFE-PE",
+    proc: "REFORMA COM ACRÉSCIMO DE ÁREA",
+    etapa: "Preparando plantas de implantação após a definição da poligonal pela SEDUH",
+    exig: "AINDA NÃO FOI INGRESSADO",
+    prazo: "CONCLUSÃO PREVISTA PARA ATÉ 20/10/2026",
+    prazoUrgente: true,
+    bim: "MODELO BIMLEGA NÃO FOI IMPLANTADO NO CURSO DO PROJETO, O MODELO CENTRAL PRECISARÁ DE AJUSTES AGORA PARA IMPLANTAÇÃO",
+    fluxo: [
+      {item:"RGI", status:"providenciado"},
+      {item:"Viabilidades de Água e Esgoto", status:"providenciado"},
+      {item:"Protocolo Bombeiros", status:"providenciado"},
+      {item:"ETA", status:"providenciado"},
+      {item:"MD/RRT", status:"providenciado"},
+      {item:"Projeto", status:"pendente"},
+      {item:"Inventário Florestal", status:"providenciado"},
+      {item:"LP", status:"pendente"}
+    ]
+  },
+  {
+    equip: "FARMÁCIA", mun: "RECIFE",
+    id: "FARMÁCIA POPULAR DO ESTADO - RECIFE (IMBIRIBEIRA)",
+    end: "AV. MARECHAL MASCARENHAS DE MORAES, IMBIRIBEIRA, RECIFE-PE",
+    proc: "LICENÇA PRÉVIA AMBIENTAL",
+    etapa: "Preparando plantas de implantação após a definição da poligonal pela SEDUH",
+    exig: "AINDA NÃO FOI INGRESSADO",
+    prazo: "CONCLUSÃO PREVISTA PARA ATÉ 19/10/2026",
+    prazoUrgente: true,
+    bim: "MODELO BIMLEGA NÃO FOI IMPLANTADO NO CURSO DO PROJETO, O MODELO CENTRAL PRECISARÁ DE AJUSTES AGORA PARA IMPLANTAÇÃO",
+    fluxo: [
+      {item:"RGI", status:"providenciado"},
+      {item:"Viabilidades de Água e Esgoto", status:"providenciado"},
+      {item:"Protocolo Bombeiros", status:"providenciado"},
+      {item:"ETA", status:"pendente"},
+      {item:"MD/RRT", status:"pendente"},
+      {item:"Projeto/Inventário Florestal", status:"pendente"},
+      {item:"LP", status:"pendente"}
+    ]
+  },
+  {
+    equip: "HOSPITAL", mun: "FERNANDO DE NORONHA",
+    id: "HOSPITAL - FERNANDO DE NORONHA (SÃO LUCAS)",
+    end: "AV. MARECHAL MASCARENHAS DE MORAES, IMBIRIBEIRA, RECIFE-PE",
+    proc: "REFORMA COM ACRÉSCIMO DE ÁREA OU LEGALIZAÇÃO COM ACRÉSCIMO DE ÁREA",
+    etapa: "Aguardando conclusão do projeto pela equipe",
+    exig: "AINDA NÃO FOI INGRESSADO",
+    prazo: "10 DIAS ÚTEIS APÓS O RECEBIMENTO",
+    prazoUrgente: false,
+    bim: "MODELO BIMLEGA NÃO FOI IMPLANTADO NO CURSO DO PROJETO, O MODELO CENTRAL PRECISARÁ DE AJUSTES",
+    fluxo: [
+      {item:"Doc. Propriedade", status:"providenciado"},
+      {item:"Viabilidades de Água e Esgoto", status:"providenciado"},
+      {item:"Protocolo Bombeiros", status:"providenciado"},
+      {item:"ETA", status:"pendente"},
+      {item:"MD/RRT/Projeto", status:"pendente"},
+      {item:"Inventário Florestal", status:"pendente"},
+      {item:"ICMBio", status:"pendente"},
+      {item:"LP", status:"pendente"}
+    ]
+  },
+  {
+    equip: "HOSPITAL", mun: "RECIFE",
+    id: "HOSPITAL - RECIFE (RESTAURAÇÃO - HR)",
+    end: "AV. GOVERNADOR AGAMENON MAGALHÃES, SN - DERBY, RECIFE-PE",
+    proc: "REFORMA COM ACRÉSCIMO DE ÁREA",
+    etapa: "Aguardando análise do EIV pela Prefeitura do Recife",
+    exig: "EM ANÁLISE PELA PREFEITURA DO RECIFE",
+    prazo: "PREVISÃO PARA 1ª QUINZENA DE NOVEMBRO",
+    prazoUrgente: false,
+    bim: "NÃO SE APLICA NESSA ETAPA. PORÉM MODELO BIMLEGA NÃO FOI IMPLANTADO NO CURSO DO PROJETO, O MODELO CENTRAL PRECISARÁ DE AJUSTES FUTURAMENTE",
+    fluxo: [
+      {item:"RGI", status:"providenciado"},
+      {item:"Viabilidades de Água e Esgoto", status:"providenciado"},
+      {item:"Protocolo Bombeiros", status:"providenciado"},
+      {item:"ETA", status:"providenciado"},
+      {item:"MD/RRT/Projeto/Inventário Florestal", status:"providenciado"},
+      {item:"LP", status:"providenciado"},
+      {item:"EIV + Aprovação de Projetos", status:"pendente"}
+    ]
+  },
+  {
+    equip: "HOSPITAL", mun: "RECIFE",
+    id: "HOSPITAL - RECIFE (NOVO GETÚLIO VARGAS - HGV - IMBIRIBEIRA)",
+    end: "AV. MARECHAL MASCARENHAS DE MORAES, IMBIRIBEIRA, RECIFE-PE",
+    proc: "REFORMA COM ACRÉSCIMO DE ÁREA",
+    etapa: "Aguardando definições da gestão",
+    exig: "AINDA NÃO FOI INGRESSADO",
+    prazo: "SEM PREVISÃO",
+    prazoUrgente: false,
+    bim: "PROJETO AINDA NÃO ELABORADO",
+    fluxo: [
+      {item:"RGI", status:"providenciado"},
+      {item:"Viabilidades de Água e Esgoto", status:"pendente"},
+      {item:"Protocolo Bombeiros", status:"pendente"},
+      {item:"ETA", status:"pendente"},
+      {item:"MD/RRT/Projeto/Inventário Florestal", status:"pendente"},
+      {item:"LP", status:"pendente"},
+      {item:"EIV + Aprovação de Projetos", status:"pendente"}
+    ]
+  },
+  {
+    equip: "HOSPITAL", mun: "RECIFE",
+    id: "HOSPITAL - RECIFE (GETÚLIO VARGAS - HGV - CORDEIRO)",
+    end: "AV. GENERAL SAN MARTIN, CORDEIRO, RECIFE-PE",
+    proc: "REFORMA COM ACRÉSCIMO DE ÁREA OU LEGALIZAÇÃO COM ACRÉSCIMO DE ÁREA",
+    etapa: "Plantas digitalizadas já fornecidas pela Prefeitura do Recife e implantadas no DOCS / Aguardando definições da gestão",
+    exig: "AINDA NÃO FOI INGRESSADO",
+    prazo: "SEM PREVISÃO",
+    prazoUrgente: false,
+    bim: "PROJETO AINDA NÃO ELABORADO",
+    fluxo: [
+      {item:"RGI", status:"pendente"},
+      {item:"Viabilidades de Água e Esgoto", status:"pendente"},
+      {item:"Protocolo Bombeiros", status:"pendente"},
+      {item:"ETA", status:"pendente"},
+      {item:"MD/RRT", status:"pendente"},
+      {item:"Projeto/Inventário Florestal", status:"pendente"},
+      {item:"LP", status:"pendente"}
+    ]
+  }
+];
+
+const APROVADOS = [
+  {
+    equip:"HOSPITAL", mun:"RECIFE",
+    id:"HOPITAL - RECIFE (CISAM)",
+    end:"R. CASTRO ALVES, N 225, ENCRUZILHADA, RECIFE-PE",
+    proc:"PROJETO DE LEGALIZAÇÃO COM REFORMA",
+    prot:"DEFERIDO SOB O Nº 8061697225",
+    resp:"SEPES - NÚCLEO DE LEGALIZAÇÃO",
+    val:"09/02/2027",
+    bim:"PROJETO ELABORADO EM CAD",
+    sts:"EM OBRA"
+  },
+  {
+    equip:"HOSPITAL", mun:"RECIFE",
+    id:"HOSPITAL - RECIFE (POLÍCIA MILITAR - HPMPE)",
+    end:"PRAÇA DO DERBY, SN - DERBY, RECIFE-PE",
+    proc:"LEGALIZAÇÃO COM ACRÉSCIMO DE ÁREA",
+    prot:"DEFERIDO SOB O Nº 8007094026",
+    resp:"SEPES - NUCLEO DE LEGALIZAÇÃO",
+    val:"02/09/2028",
+    bim:"PROJETO EM REVIT, PORÉM O PROJETO É ANTERIOR À ELABORAÇÃO DO MODELO BIM LEGA",
+    sts:"EM OBRA"
+  },
+  {
+    equip:"HOSPITAL", mun:"CARUARU",
+    id:"HOSPITAL SÃO SEBASTIÃO - CARUARU",
+    end:"AV. AGAMENOM MAGALHÃES, S/N - MAURÍCIO DE NASSAU - CARUARU - PE",
+    proc:"REURB",
+    prot:"DEFERIDO",
+    resp:"SEPE - NÚCLEO DE LEGALIZAÇÃO | CEHAB",
+    val:"SEM INFORMAÇÃO",
+    bim:"PROJETO ELABORADO EM CAD",
+    sts:"EM OBRA"
+  },
+  {
+    equip:"HEMOPE", mun:"RECIFE",
+    id:"HEMOPE - RECIFE (HEMOPE)",
+    end:"R. JOAQUIM NABUCO, 171 - GRAÇAS - RECIFE-PE",
+    proc:"LICENÇA PRÉVIA",
+    prot:"DEFERIDO SOB O Nº 8025826926",
+    resp:"SEPE- VIABILIDADES",
+    val:"14/07/2028",
+    bim:"PROJETO ELABORADO EM CAD + MODELO BIMLEGA JÁ IMPLANTADO NO CURSO DO PROJETO",
+    sts:"PROJETOS EM DESENVOLVIMENTO"
+  }
+];
+
+function statusCount(p) {
+  const total = p.fluxo.length;
+  const ok    = p.fluxo.filter(f=>f.status==='providenciado').length;
+  return {ok, total, pct: total ? Math.round(ok/total*100) : 0};
+}
+
+function classifyLicitacao(p) {
+  const {ok,total} = statusCount(p);
+  if (ok===total) return 'completo';
+  if (ok===0)     return 'inicial';
+  const pct = ok/total;
+  return pct < 0.4 ? 'inicial' : 'parcial';
+}
+
+(function(){
+  const d = new Date();
+  const opts = {day:'2-digit', month:'long', year:'numeric'};
+  document.getElementById('badgeData').textContent = '📅 ' + d.toLocaleDateString('pt-BR', opts);
+})();
+
+function showTab(id) {
+  document.querySelectorAll('.tab-content').forEach(el=>el.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(el=>el.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  const btns = document.querySelectorAll('.tab-btn');
+  const tabMap = {desenvolvimento:0, aprovados:1, resumo:2};
+  btns[tabMap[id]].classList.add('active');
+  if (id==='resumo') setTimeout(desenharResumo, 50);
+}
+
+function drawFluxo(canvasId, fluxo) {
+  const canvas = document.getElementById(canvasId);
+  if (!canvas) return;
+  const PILL_W = 130, PILL_H = 38, GAP = 8, ARROW = 18, RADIUS = 10;
+  const cols = Math.min(fluxo.length, 5);
+  const rows = Math.ceil(fluxo.length / cols);
+  const W = cols * (PILL_W + GAP + ARROW) + 20;
+  const H = rows * (PILL_H + 16) + 30;
+  canvas.width  = W;
+  canvas.height = H;
+  const ctx = canvas.getContext('2d');
+  ctx.clearRect(0,0,W,H);
+
+  ctx.fillStyle = '#f0f6fc';
+  ctx.beginPath();
+  if (ctx.roundRect) {
+    ctx.roundRect(0,0,W,H,8);
+  } else {
+    ctx.rect(0,0,W,H);
+  }
+  ctx.fill();
+
+  fluxo.forEach((f, i) => {
+    const col  = i % cols;
+    const row  = Math.floor(i / cols);
+    const x    = 10 + col * (PILL_W + GAP + ARROW);
+    const y    = 14 + row * (PILL_H + 16);
+
+    const prov = f.status === 'providenciado';
+    const bgC  = prov ? '#2e7d32' : '#c62828';
+    const bdC  = prov ? '#1b5e20' : '#b71c1c';
+    const txtC = '#ffffff';
+
+    ctx.fillStyle = bgC;
+    ctx.beginPath();
+    if (ctx.roundRect) {
+      ctx.roundRect(x, y, PILL_W, PILL_H, RADIUS);
+    } else {
+      ctx.rect(x, y, PILL_W, PILL_H);
+    }
+    ctx.fill();
+    ctx.strokeStyle = bdC;
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+
+    ctx.font = '14px Segoe UI, Arial, sans-serif';
+    ctx.fillStyle = txtC;
+    ctx.textAlign = 'left';
+    ctx.fillText(prov ? '✓' : '○', x+9, y+PILL_H/2+5);
+
+    ctx.font = 'bold 10px Segoe UI, Arial, sans-serif';
+    ctx.fillStyle = txtC;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    const label = f.item.length > 18 ? f.item.substring(0,17)+'…' : f.item;
+    ctx.fillText(label, x + PILL_W/2 + 10, y + PILL_H/2);
+
+    if (col < cols - 1 && i < fluxo.length - 1) {
+      const ax = x + PILL_W + 2;
+      const ay = y + PILL_H/2;
+      ctx.strokeStyle = '#90a4ae';
+      ctx.lineWidth = 1.8;
+      ctx.beginPath();
+      ctx.moveTo(ax, ay);
+      ctx.lineTo(ax + ARROW - 4, ay);
+      ctx.stroke();
+      ctx.fillStyle = '#90a4ae';
+      ctx.beginPath();
+      ctx.moveTo(ax + ARROW - 2, ay);
+      ctx.lineTo(ax + ARROW - 8, ay - 4);
+      ctx.lineTo(ax + ARROW - 8, ay + 4);
+      ctx.fill();
+    }
+  });
+}
+
+let projetosFiltrados = [...PROJETOS];
+
+function renderProjetos(lista) {
+  const grid = document.getElementById('projetosGrid');
+  const sem  = document.getElementById('semResultadoDev');
+  grid.innerHTML = '';
+  if (!lista.length) { sem.style.display='block'; return; }
+  sem.style.display = 'none';
+
+  lista.forEach((p, i) => {
+    const {ok, total, pct} = statusCount(p);
+    const canvasId = 'fluxo-'+i+'-'+Date.now();
+    const isHemopeGleba = p.id.includes('GLEBA TOTAL - RECIFE');
+    const cardEl = document.createElement('div');
+    cardEl.className = 'card-projeto' + (p.prazoUrgente ? ' prazo-urgente' : '');
+    cardEl.innerHTML = `
+      <div class="card-header" onclick="toggleCard('body-${i}','arrow-${i}')">
+        <span class="equip-badge">${p.equip}</span>
+        <div class="card-titulo">
+          <h3>${p.id}</h3>
+          <div class="municipio">📍 ${p.mun}</div>
+          <div class="endereco">${p.end}</div>
         </div>
-    </footer>
+        <div style="text-align:right;flex-shrink:0;margin-left:12px">
+          <div style="font-size:.72rem;color:var(--azul-medio);font-weight:700;margin-bottom:4px">PARA LICITAR</div>
+          <div style="display:flex;align-items:center;gap:8px">
+            <div style="background:#e3eef8;border-radius:20px;width:80px;height:8px;overflow:hidden">
+              <div style="background:${pct>=80?'#2e7d32':pct>=40?'#f9a825':'#c62828'};width:${pct}%;height:100%;border-radius:20px;transition:width .5s"></div>
+            </div>
+            <span style="font-size:.8rem;font-weight:700;color:${pct>=80?'#2e7d32':pct>=40?'#a06800':'#c62828'}">${ok}/${total}</span>
+          </div>
+        </div>
+        <div class="card-arrow ${isHemopeGleba ? 'open' : ''}" id="arrow-${i}">▼</div>
+      </div>
+      <div class="card-body ${isHemopeGleba ? 'open' : ''}" id="body-${i}">
+        <div class="info-grid">
+          <div class="info-item">
+            <div class="label">Processo</div>
+            <div class="value">${p.proc}</div>
+          </div>
+          <div class="info-item">
+            <div class="label">Etapa de Elaboração</div>
+            <div class="value">${p.etapa}</div>
+          </div>
+          <div class="info-item">
+            <div class="label">Exigências do Ingresso</div>
+            <div class="value">${p.exig}</div>
+          </div>
+          <div class="info-item ${p.prazoUrgente ? 'urgente' : ''}">
+            <div class="label">${p.prazoUrgente ? '⚠ ' : ''}Prazo para Conclusão</div>
+            <div class="value">${p.prazo}</div>
+          </div>
+          <div class="info-item" style="grid-column:1/-1">
+            <div class="label">Informações BIM</div>
+            <div class="value">${p.bim}</div>
+          </div>
+        </div>
 
-    <script>
-        
-        // DADOS REAIS EXTRAÍDOS FIELMENTE DA ÚLTIMA PLANILHA/PDF ENVIADO (PDF 3)
-        
-        const projetosDev = [
-            {
-                id: "DEV-1",
-                equipamento: "HOSPITAL",
-                municipio: "RECIFE",
-                identificador: "HOSPITAL RECIFE (BARÃO DE LUCENA - HBL)",
-                endereco: "AV CAXANGA, 3860 IPUTINGA, RECIFE PE",
-                processos: "PROJETO DE LEGALIZAÇÃO REFORMA",
-                etapaElaboracao: "Elaborando projetos para cumprimento de exigencias",
-                exigenciasIngresso: [
-                    "EM ANALISE PELA PREFEITURA DO RECIFE"
-                ],
-                prazoConclusao: "SEM PREVISÃO (REINGRESSO EM 04.09.2026)",
-                informacoesBim: "PROJETO ELABORADO EM CAD",
-                fluxoItens: [
-                    { nome: "Protocolo Bombeiros", providenciado: true },
-                    { nome: "ETA", providenciado: false },
-                    { nome: "MD/RRT", providenciado: false },
-                    { nome: "Projeto", providenciado: false }
-                ]
-            },
-            {
-                id: "DEV-2",
-                equipamento: "HOSPITAL",
-                municipio: "RECIFE",
-                identificador: "HOPITAL RECIFE (BARÃO DE LUCENA - HBL)",
-                endereco: "AV CAXANGA, 3860 IPUTINGA, RECIFE-PE",
-                processos: "LICENÇA PREVIA AMBIENTAL",
-                etapaElaboracao: "Aguardando análise das documentações pela Prefeitura do Recife",
-                exigenciasIngresso: ["EM ANALISE PELA PREFEITURA DO RECIFE"],
-                prazoConclusao: "SEM PREVISÃO (INGRESSO EM 04.09.2026)",
-                informacoesBim: "NÃO SE APLICA",
-                fluxoItens: [
-                    { nome: "RGI", providenciado: true },
-                    { nome: "Viabilidades de Água e Esgoto", providenciado: true },
-                    { nome: "ETA", providenciado: true },
-                    { nome: "Inventário Florestal", providenciado: true },
-                    { nome: "LP", providenciado: false }
-                ]
-            },
-            {
-                id: "DEV-3",
-                equipamento: "HEMOPE",
-                municipio: "RECIFE",
-                identificador: "HEMOPE RECIFE (HEMOPE)",
-                endereco: "R. JOAQUIM NABUCO, GRAÇAS RECIFE PE",
-                processos: "REFORMA COM ACRESCIMO DE AREA",
-                etapaElaboracao: "Base do Projeto Legal pronta, aguardando definição da manutenção ou não, e possiveis alterações na subestação",
-                exigenciasIngresso: ["AINDA NÃO FOI INGRESSADO"],
-                prazoConclusao: "APÓS O RECEBIMENTO DO AJUSTE DA SUBESTAÇÃO, 02 DIAS ÚTEIS PARA CONCLUSÃO DO PROJETO",
-                informacoesBim: "MODELO BIMLEGA JA IMPLANTADO NO CURSO DO PROJETO",
-                fluxoItens: [
-                    { nome: "Protocolo Bombeiros", providenciado: true },
-                    { nome: "ETA", providenciado: false },
-                    { nome: "MD/RRT/Projeto", providenciado: false }
-                ]
-            },
-            {
-                id: "DEV-4",
-                equipamento: "FARMÁCIA",
-                municipio: "RECIFE",
-                identificador: "FARMACIA POPULAR DO ESTADO RECIFE (IMBIRIBEIRA)",
-                endereco: "AVENIDA MARECHAL MASCARENHAS DE MORAES, IMBIRIBEIRA, RECIFE PE",
-                processos: "REFORMA COM ACRESCIMO DE AREA",
-                etapaElaboracao: "Aguardando conclusão da planta de demolição e ajustes na implantação para iniciar o processo de elaboração do projeto legal",
-                exigenciasIngresso: ["AINDA NÃO FOI INGRESSADO"],
-                prazoConclusao: "INICIADO EM 03/09/2026 - CONCLUSÃO ATE 15 DIAS CORRIDOS",
-                informacoesBim: "MODELO BIMLEGA NÃO FOI IMPLANTADO NO CURSO DO PROJETO, MODELO CENTRAL PRECISARA DE AJUSTES AGORA PARA IMPLANTAÇÃO",
-                fluxoItens: [
-                    { nome: "RGI", providenciado: true },
-                    { nome: "Doc. Propriedade", providenciado: true },
-                    { nome: "Protocolo Bombeiros", providenciado: true },
-                    { nome: "ETA", providenciado: false },
-                    { nome: "MD/RRT", providenciado: false },
-                    { nome: "Projeto/Inventario Florestal", providenciado: false },
-                    { nome: "LP", providenciado: false }
-                ]
-            },
-            {
-                id: "DEV-5",
-                equipamento: "HOSPITAL",
-                municipio: "FERNANDO DE NORONHA",
-                identificador: "HOSPITAL FERNANDO DE NORONHA (SÃO LUCAS)",
-                endereco: "AV. MARECHAL MASCARENHAS DE MORAES, IMBIRIBEIRA, RECIFE PE",
-                processos: "REFORMA COM ACRESCIMO DE AREA OU LEGALIZAÇÃO COM ACRESIMO DE AREA",
-                etapaElaboracao: "Aguardando conclusão do projeto pela equipe",
-                exigenciasIngresso: ["AINDA NÃO FOI INGRESSADO"],
-                prazoConclusao: "15 DIAS ÚTEIS APÓS O RECEBIMENTO",
-                informacoesBim: "MODELO BIMLEGA NÃO FOI IMPLANTADO NO CURSO DO PROJETO, MODELO CENTRAL PRECISARA DE AJUSTES",
-                fluxoItens: [
-                    { nome: "Viabilidades de Agua e Esgoto", providenciado: true },
-                    { nome: "ETA", providenciado: false },
-                    { nome: "MD/RRT/Projeto", providenciado: false },
-                    { nome: "Inventario Florestal", providenciado: false },
-                    { nome: "ICMBio", providenciado: false },
-                    { nome: "LP", providenciado: false }
-                ]
-            },
-            {
-                id: "DEV-6",
-                equipamento: "HOSPITAL",
-                municipio: "RECIFE",
-                identificador: "HOSPITAL RECIFE (RESTAURAÇÃO HR)",
-                endereco: "AV GOVERNADOR AGAMENON MAGALHÃES, SN - DERBY, RECIFE PE",
-                processos: "REFORMA COM ACRESCIMO DE AREA",
-                etapaElaboracao: "Aguardando análise do EIV pela Prefeitura do Recife",
-                exigenciasIngresso: ["EM ANÁLISE PELA PREFEITURA DO RECIFE"],
-                prazoConclusao: "SEM PREVISÃO",
-                informacoesBim: "NAO SE APLICA NESSA ETAPA. POREM MODELO BIMLEGA NÃO FOI IMPLANTADO NO CURSO DO PROJETO, O MODELO CENTRAL PRECISARA DE AJUSTES FUTURAMENTE",
-                fluxoItens: [
-                    { nome: "RGI", providenciado: true },
-                    { nome: "Viabilidades de Agua e Esgoto", providenciado: true },
-                    { nome: "Protocolo Bombeiros", providenciado: true },
-                    { nome: "ETA", providenciado: false },
-                    { nome: "EIV + Aprovação de Projetos", providenciado: false }
-                ]
-            },
-            {
-                id: "DEV-7",
-                equipamento: "HOSPITAL",
-                municipio: "RECIFE",
-                identificador: "HOSPITAL RECIFE (NOVO GETULIO VARGAS HGV IMBIRIBEIRA)",
-                endereco: "AV. MARECHAL MASCARENHAS DE MORAES, IMBIRIBEIRA, RECIFE PE",
-                processos: "REFORMA COM ACRESCIMO DE AREA",
-                etapaElaboracao: "Aguardando definições da gestão",
-                exigenciasIngresso: ["AINDA NÃO FOI INGRESSADO"],
-                prazoConclusao: "SEM PREVISÃO",
-                informacoesBim: "PROJETO AINDA NÃO ELABORADO",
-                fluxoItens: [
-                    { nome: "Viabilidades de Agua e Esgoto", providenciado: true },
-                    { nome: "Protocolo Bombeiros", providenciado: false },
-                    { nome: "ETA", providenciado: false },
-                    { nome: "MD/RRT/Projeto/Inventário Florestal", providenciado: false },
-                    { nome: "LP", providenciado: false },
-                    { nome: "EIV + Aprovação de Projetos", providenciado: false }
-                ]
-            },
-            {
-                id: "DEV-8",
-                equipamento: "HOSPITAL",
-                municipio: "RECIFE",
-                identificador: "HOSPITAL RECIFE (GETULIO VARGAS HGV - CORDEIRO)",
-                endereco: "AV GENERAL SAN MARTIN, CORDEIRO, RECIFE PE",
-                processos: "REFORMA COM ACRESCIMO DE AREA OU LEGALIZAÇÃO COM ACRESIMO DE AREA",
-                etapaElaboracao: "Aguardando envio de plantas digitalizadas pela Prefeitura do Recife (Patricia Lobo)",
-                exigenciasIngresso: ["AINDA NÃO FOI INGRESSADO"],
-                prazoConclusao: "SEM PREVISÃO",
-                informacoesBim: "PROJETO AINDA NÃO ELABORADO",
-                fluxoItens: [
-                    { nome: "RGI", providenciado: true },
-                    { nome: "Viabilidades de Agua e Esgoto", providenciado: false },
-                    { nome: "Protocolo Bombeiros", providenciado: false },
-                    { nome: "ETA", providenciado: false },
-                    { nome: "MD/RRT", providenciado: false },
-                    { nome: "Projeto/Inventário Florestal", providenciado: false },
-                    { nome: "LP", providenciado: false },
-                    { nome: "Aguardando definições da gestão", providenciado: false }
-                ]
-            }
-        ];
+        <div class="fluxo-section">
+          <h4>Fluxo — Para Licitar</h4>
+          <div class="canvas-fluxo-wrap">
+            <canvas id="${canvasId}"></canvas>
+          </div>
+          <div class="legenda">
+            <div class="legenda-item"><div class="dot verde"></div> Providenciado</div>
+            <div class="legenda-item"><div class="dot vermelho"></div> Pendente / Em andamento</div>
+          </div>
+        </div>
+      </div>
+    `;
+    grid.appendChild(cardEl);
+    setTimeout(() => drawFluxo(canvasId, p.fluxo), 30);
+  });
+}
 
-        const processosAprovados = [
-            {
-                id: "APR-1",
-                equipamento: "HOSPITAL",
-                municipio: "RECIFE",
-                identificador: "HOPITAL RECIFE (CISAM)",
-                endereco: "R. CASTRO ALVES, N 225, ENCRUZILHADA, RECIFE-PE",
-                processos: "PROJETO DE LEGALIZAÇÃO COM REFORMA",
-                protocoloAprovacao: "DEFERIDO SOB Nº 8061697225",
-                responsavel: "SEPES NUCLEO DE LEGALIZAÇÃO",
-                validade: "09/02/2027",
-                informacoesBim: "PROJETO ELABORADO EM CAD",
-                statusEmpreendimento: "EM OBRA"
-            },
-            {
-                id: "APR-2",
-                equipamento: "HOSPITAL",
-                municipio: "RECIFE",
-                identificador: "HOSPITAL RECIFE (POLICIA MILITAR HPMPE)",
-                endereco: "PRAÇA DO DERBY, SN DERBY, RECIFE PE",
-                processos: "LEGALIZAÇÃO COM ACRESCIMO DE AREA",
-                protocoloAprovacao: "DEFERIDO SOB Nº 8007094026",
-                responsavel: "SEPES NUCLEO DE LEGALIZAÇÃO",
-                validade: "02/09/2028",
-                informacoesBim: "PROJETO EM REVIT, POREM O PROJETO E ANTERIOR A ELABORAÇÃO DO MODELO BIM LEGA",
-                statusEmpreendimento: "OBRA LICITADA"
-            },
-            {
-                id: "APR-3",
-                equipamento: "HEMOPE",
-                municipio: "RECIFE",
-                identificador: "HEMOPE RECIFE (HEMOPE)",
-                endereco: "R. JOAQUIM NABUCO, GRAÇAS RECIFE PE",
-                processos: "LICENÇA PREVIA",
-                protocoloAprovacao: "DEFERIDO SOB Nº 8025826926",
-                responsavel: "SEPE VIABILIDADES",
-                validade: "14/07/2028",
-                informacoesBim: "PROJETO ELABORADO EM CAD - MODELO BIMLEGA JA IMPLANTADO NO CURSO DO PROJETO",
-                statusEmpreendimento: "PROJETOS EM DESENVOLVIMENTO"
-            }
-        ];
+function toggleCard(bodyId, arrowId) {
+  const body  = document.getElementById(bodyId);
+  const arrow = document.getElementById(arrowId);
+  body.classList.toggle('open');
+  arrow.classList.toggle('open');
+}
 
+function filtrar() {
+  const equip  = document.getElementById('f-equip').value;
+  const mun    = document.getElementById('f-mun').value;
+  const status = document.getElementById('f-status').value;
+  const prazo  = document.getElementById('f-prazo').value;
 
-        let activeTab = 'dev'; // 'dev', 'aprovados', 'todos'
+  projetosFiltrados = PROJETOS.filter(p => {
+    if (equip  && p.equip !== equip) return false;
+    if (mun    && p.mun   !== mun)   return false;
+    if (status && classifyLicitacao(p) !== status) return false;
+    if (prazo === 'urgente' && !p.prazoUrgente) return false;
+    if (prazo === 'sem' && !p.prazo.includes('SEM PREVISÃO')) return false;
+    return true;
+  });
+  renderProjetos(projetosFiltrados);
+  document.getElementById('cnt-dev').textContent = projetosFiltrados.length;
+}
 
-        function renderTables(devList = projetosDev, aprovadosList = processosAprovados) {
-            const tbodyDev = document.getElementById('tbody-dev');
-            const tbodyAprovados = document.getElementById('tbody-aprovados');
+function limparFiltros() {
+  ['f-equip','f-mun','f-status','f-prazo'].forEach(id => document.getElementById(id).value='');
+  projetosFiltrados = [...PROJETOS];
+  renderProjetos(projetosFiltrados);
+  document.getElementById('cnt-dev').textContent = PROJETOS.length;
+}
 
-            // Renderizar Projetos em Desenvolvimento
-            if (devList.length === 0) {
-                tbodyDev.innerHTML = `<tr><td colspan="8" class="p-8 text-center text-slate-400 font-medium">Nenhum projeto em desenvolvimento encontrado com os filtros aplicados.</td></tr>`;
-            } else {
-                tbodyDev.innerHTML = devList.map((item, idx) => {
-                    const exigenciasHtml = item.exigenciasIngresso.map(ex => `<li class="flex items-start gap-1.5"><span class="text-sepe-500 font-bold">•</span><span>${ex}</span></li>`).join('');
-                    
-                    // Itens Verde = Providenciados, Demais em solicitação
-                    const fluxoHtml = item.fluxoItens.map(fit => {
-                        if (fit.providenciado) {
-                            return `<span class="inline-flex items-center gap-1 px-2 py-1 rounded-md text-[11px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-300 shadow-2xs" title="Providenciado">
-                                <i data-lucide="check" class="w-3 h-3 text-emerald-600"></i> ${fit.nome}
-                            </span>`;
-                        } else {
-                            return `<span class="inline-flex items-center gap-1 px-2 py-1 rounded-md text-[11px] font-medium bg-slate-100 text-slate-600 border border-slate-200" title="Em Solicitação">
-                                <i data-lucide="clock" class="w-3 h-3 text-slate-400"></i> ${fit.nome}
-                            </span>`;
-                        }
-                    }).join(' ');
+function renderAprovados(lista) {
+  const tbody = document.getElementById('aprovadosTbody');
+  const sem   = document.getElementById('semResultadoApr');
+  tbody.innerHTML = '';
+  if (!lista.length) { sem.style.display='block'; return; }
+  sem.style.display = 'none';
 
-                    return `
-                        <tr class="hover:bg-slate-50/80 transition border-b border-slate-100 align-top">
-                            <td class="p-3.5">
-                                <span class="font-extrabold text-sepe-900 block">${item.equipamento}</span>
-                                <span class="text-xs font-semibold text-slate-500">${item.municipio}</span>
-                            </td>
-                            <td class="p-3.5">
-                                <button onclick="openModal('dev', '${item.id}')" class="font-bold text-sepe-700 hover:text-sepe-900 hover:underline text-left block">
-                                    ${item.identificador}
-                                </button>
-                                <p class="text-[11px] text-slate-500 mt-1 flex items-start gap-1">
-                                    <i data-lucide="map-pin" class="w-3.5 h-3.5 text-slate-400 shrink-0 mt-0.5"></i>
-                                    <span>${item.endereco}</span>
-                                </p>
-                            </td>
-                            <td class="p-3.5 font-semibold text-slate-800">
-                                ${item.processos}
-                            </td>
-                            <td class="p-3.5 text-slate-600 leading-relaxed">
-                                ${item.etapaElaboracao}
-                            </td>
-                            <td class="p-3.5 text-slate-600">
-                                <ul class="space-y-1 text-xs">
-                                    ${exigenciasHtml}
-                                </ul>
-                            </td>
-                            <td class="p-3.5">
-                                <span class="inline-block px-2.5 py-1 rounded-md text-xs font-bold ${item.prazoConclusao.includes('SEM PREVISÃO') ? 'bg-slate-100 text-slate-600' : 'bg-amber-100 text-amber-900 border border-amber-200'}">
-                                    ${item.prazoConclusao}
-                                </span>
-                            </td>
-                            <td class="p-3.5 text-xs text-slate-600 font-medium">
-                                ${item.informacoesBim}
-                            </td>
-                            <td class="p-3.5">
-                                <div class="flex flex-wrap gap-1.5 max-w-xs">
-                                    ${fluxoHtml}
-                                </div>
-                            </td>
-                        </tr>
-                    `;
-                }).join('');
-            }
+  lista.forEach(a => {
+    const stsClass = a.sts==='EM OBRA' ? 'obra' : (a.sts.includes('DEFERIDO') ? 'deferido' : 'dev');
+    const valClass = a.val==='SEM INFORMAÇÃO' ? 'sem-info' : 'ok';
+    tbody.innerHTML += `
+      <tr class="aprovado-row">
+        <td><strong>${a.equip}</strong></td>
+        <td><strong>${a.id}</strong><br><small style="color:var(--cinza)">${a.mun}</small></td>
+        <td style="font-size:.78rem">${a.end}</td>
+        <td><span class="badge-processo">${a.proc}</span></td>
+        <td style="font-size:.78rem;color:var(--verde);font-weight:600">${a.prot}</td>
+        <td style="font-size:.78rem">${a.resp}</td>
+        <td><span class="validade-chip ${valClass}">📅 ${a.val}</span></td>
+        <td style="font-size:.75rem">${a.bim}</td>
+        <td><span class="badge-status ${stsClass}">${a.sts}</span></td>
+      </tr>
+    `;
+  });
+}
 
-            // Renderizar Processos Já Aprovados (COM LINHA INTEIRA EM TOM DE VERDE - SOLICITADO)
-            if (aprovadosList.length === 0) {
-                tbodyAprovados.innerHTML = `<tr><td colspan="8" class="p-8 text-center text-slate-400 font-medium">Nenhum processo aprovado encontrado.</td></tr>`;
-            } else {
-                tbodyAprovados.innerHTML = aprovadosList.map((item) => {
-                    return `
-                        <!-- Linha Inteira em Tom de Verde Sinalizando Todos os Itens Prontos para Licitação -->
-                        <tr class="bg-emerald-50/90 hover:bg-emerald-100/90 transition border-b border-emerald-200 align-top text-emerald-950 font-medium">
-                            <td class="p-3.5 border-l-4 border-emerald-600">
-                                <span class="font-extrabold text-emerald-950 block">${item.equipamento}</span>
-                                <span class="text-xs font-semibold text-emerald-700">${item.municipio}</span>
-                            </td>
-                            <td class="p-3.5">
-                                <button onclick="openModal('aprovados', '${item.id}')" class="font-bold text-emerald-900 hover:text-emerald-950 hover:underline text-left block">
-                                    ${item.identificador}
-                                </button>
-                                <p class="text-[11px] text-emerald-700 mt-1 flex items-start gap-1">
-                                    <i data-lucide="map-pin" class="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5"></i>
-                                    <span>${item.endereco}</span>
-                                </p>
-                            </td>
-                            <td class="p-3.5 font-bold text-emerald-900">
-                                ${item.processos}
-                            </td>
-                            <td class="p-3.5">
-                                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-bold bg-emerald-200/80 text-emerald-900 border border-emerald-300">
-                                    <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-700"></i>
-                                    ${item.protocoloAprovacao}
-                                </span>
-                            </td>
-                            <td class="p-3.5 text-xs text-emerald-900 font-semibold">
-                                ${item.responsavel}
-                            </td>
-                            <td class="p-3.5">
-                                <span class="font-bold text-xs text-emerald-900">${item.validade}</span>
-                            </td>
-                            <td class="p-3.5 text-xs text-emerald-900 leading-snug">
-                                ${item.informacoesBim}
-                            </td>
-                            <td class="p-3.5">
-                                <span class="inline-block px-2.5 py-1 rounded-md text-xs font-extrabold uppercase bg-emerald-700 text-white shadow-2xs">
-                                    ${item.statusEmpreendimento}
-                                </span>
-                                <div class="mt-1 text-[10px] font-bold text-emerald-700 flex items-center gap-1">
-                                    <i data-lucide="check-circle" class="w-3 h-3"></i> Todos os itens p/ Licitação
-                                </div>
-                            </td>
-                        </tr>
-                    `;
-                }).join('');
-            }
+function filtrarAprovados() {
+  const equip = document.getElementById('fa-equip').value;
+  const mun   = document.getElementById('fa-mun').value;
+  const sts   = document.getElementById('fa-sts').value;
+  const lista = APROVADOS.filter(a => {
+    if (equip && a.equip !== equip) return false;
+    if (mun   && a.mun   !== mun)   return false;
+    if (sts   && a.sts   !== sts)   return false;
+    return true;
+  });
+  renderAprovados(lista);
+  document.getElementById('cnt-apr').textContent = lista.length;
+}
 
-            // Atualizar Lucide Icons
-            lucide.createIcons();
-        }
+function limparFiltrosApr() {
+  ['fa-equip','fa-mun','fa-sts'].forEach(id => document.getElementById(id).value='');
+  renderAprovados(APROVADOS);
+  document.getElementById('cnt-apr').textContent = APROVADOS.length;
+}
 
-        // Troca de Abas
-        function switchTab(tab) {
-            activeTab = tab;
-            
-            const btnDev = document.getElementById('tab-dev');
-            const btnAprovados = document.getElementById('tab-aprovados');
-            const btnTodos = document.getElementById('tab-todos');
+function desenharResumo() {
+  drawKPIs();
+  drawDocumentosFreq();
+  drawMunicipios();
+}
 
-            const secDev = document.getElementById('section-dev');
-            const secAprovados = document.getElementById('section-aprovados');
+function drawKPIs() {
+  const canvas = document.getElementById('canvasResumo');
+  const total  = PROJETOS.length;
+  const urgentes = PROJETOS.filter(p=>p.prazoUrgente).length;
+  const completos = PROJETOS.filter(p=>classifyLicitacao(p)==='completo').length;
+  const parciais  = PROJETOS.filter(p=>classifyLicitacao(p)==='parcial').length;
+  const iniciais  = PROJETOS.filter(p=>classifyLicitacao(p)==='inicial').length;
+  const aprovados = APROVADOS.length;
 
-            // Reset tab styles
-            [btnDev, btnAprovados, btnTodos].forEach(b => {
-                b.className = "tab-btn px-4 py-2.5 rounded-lg text-xs sm:text-sm font-medium text-slate-600 hover:text-sepe-800 hover:bg-slate-200/60 transition flex items-center gap-2";
-            });
+  const W = canvas.parentElement.clientWidth || 900;
+  canvas.width  = W;
+  canvas.height = 220;
+  const ctx = canvas.getContext('2d');
+  ctx.clearRect(0,0,W,220);
 
-            if (tab === 'dev') {
-                btnDev.className = "tab-btn px-4 py-2.5 rounded-lg text-xs sm:text-sm font-bold transition flex items-center gap-2 bg-sepe-800 text-white shadow-sm";
-                secDev.classList.remove('hidden');
-                secAprovados.classList.add('hidden');
-            } else if (tab === 'aprovados') {
-                btnAprovados.className = "tab-btn px-4 py-2.5 rounded-lg text-xs sm:text-sm font-bold transition flex items-center gap-2 bg-emerald-800 text-white shadow-sm";
-                secDev.classList.add('hidden');
-                secAprovados.classList.remove('hidden');
-            } else {
-                btnTodos.className = "tab-btn px-4 py-2.5 rounded-lg text-xs sm:text-sm font-bold transition flex items-center gap-2 bg-sepe-900 text-white shadow-sm";
-                secDev.classList.remove('hidden');
-                secAprovados.classList.remove('hidden');
-            }
-        }
+  ctx.fillStyle = '#1e5f9e';
+  ctx.beginPath();
+  if (ctx.roundRect) ctx.roundRect(0,0,W,220,10); else ctx.rect(0,0,W,220);
+  ctx.fill();
 
-        // Filtro Geral de Dados
-        function filterData() {
-            const query = document.getElementById('searchInput').value.toLowerCase();
-            const equip = document.getElementById('filterEquipamento').value;
-            const muni = document.getElementById('filterMunicipio').value;
+  ctx.fillStyle = 'rgba(255,255,255,0.9)';
+  ctx.font = 'bold 13px Segoe UI, Arial';
+  ctx.textAlign = 'left';
+  ctx.fillText('PAINEL GERAL DE LEGALIZAÇÃO — SEPES-PE', 24, 32);
 
-            const filteredDev = projetosDev.filter(item => {
-                const matchesQuery = item.identificador.toLowerCase().includes(query) ||
-                                     item.endereco.toLowerCase().includes(query) ||
-                                     item.processos.toLowerCase().includes(query) ||
-                                     item.etapaElaboracao.toLowerCase().includes(query);
-                const matchesEquip = !equip || item.equipamento === equip;
-                const matchesMuni = !muni || item.municipio === muni;
-                return matchesQuery && matchesEquip && matchesMuni;
-            });
+  const cards = [
+    {label:'Projetos em Desenvolvimento', value:total,    icon:'🏗',  bg:'rgba(255,255,255,0.15)'},
+    {label:'Processos Aprovados',          value:aprovados,icon:'✅',  bg:'rgba(46,125,50,0.55)'},
+    {label:'Com Prazo Urgente',            value:urgentes, icon:'⚠',  bg:'rgba(249,168,37,0.55)'},
+    {label:'Fluxo Completo',               value:completos,icon:'🟢', bg:'rgba(46,125,50,0.4)'},
+    {label:'Fluxo Parcial',                value:parciais, icon:'🟡', bg:'rgba(249,168,37,0.4)'},
+    {label:'Fluxo Inicial',                value:iniciais, icon:'🔴', bg:'rgba(198,40,40,0.4)'}
+  ];
+  const cardW = (W - 48 - (cards.length-1)*12) / cards.length;
+  cards.forEach((c, i) => {
+    const x = 24 + i * (cardW + 12);
+    const y = 52;
+    ctx.fillStyle = c.bg;
+    ctx.beginPath();
+    if (ctx.roundRect) ctx.roundRect(x,y,cardW,148,8); else ctx.rect(x,y,cardW,148);
+    ctx.fill();
 
-            const filteredAprovados = processosAprovados.filter(item => {
-                const matchesQuery = item.identificador.toLowerCase().includes(query) ||
-                                     item.endereco.toLowerCase().includes(query) ||
-                                     item.processos.toLowerCase().includes(query) ||
-                                     item.protocoloAprovacao.toLowerCase().includes(query);
-                const matchesEquip = !equip || item.equipamento === equip;
-                const matchesMuni = !muni || item.municipio === muni;
-                return matchesQuery && matchesEquip && matchesMuni;
-            });
+    ctx.font = '32px Segoe UI, Arial';
+    ctx.textAlign = 'center';
+    ctx.fillText(c.icon, x+cardW/2, y+50);
 
-            renderTables(filteredDev, filteredAprovados);
-        }
+    ctx.font = 'bold 34px Segoe UI, Arial';
+    ctx.fillStyle = '#ffffff';
+    ctx.fillText(c.value, x+cardW/2, y+98);
 
-        function resetFilters() {
-            document.getElementById('searchInput').value = '';
-            document.getElementById('filterEquipamento').value = '';
-            document.getElementById('filterMunicipio').value = '';
-            filterData();
-        }
+    ctx.font = '10px Segoe UI, Arial';
+    ctx.fillStyle = 'rgba(255,255,255,0.8)';
+    const words = c.label.split(' ');
+    let line = ''; let ly = y+118;
+    words.forEach(w => {
+      const test = line + w + ' ';
+      if (ctx.measureText(test).width > cardW - 10 && line) {
+        ctx.fillText(line.trim(), x+cardW/2, ly); ly+=14; line=w+' ';
+      } else { line=test; }
+    });
+    ctx.fillText(line.trim(), x+cardW/2, ly);
+  });
+}
 
+function drawDocumentosFreq() {
+  const canvas = document.getElementById('canvasFluxoGeral');
+  const W = canvas.parentElement.clientWidth || 900;
+  canvas.width  = W;
+  canvas.height = 220;
+  const ctx = canvas.getContext('2d');
+  ctx.clearRect(0,0,W,220);
 
-        function openModal(type, id) {
-            const modal = document.getElementById('modalDetalhes');
-            const title = document.getElementById('modalTitle');
-            const sub = document.getElementById('modalSub');
-            const body = document.getElementById('modalBody');
+  ctx.fillStyle = '#ffffff';
+  ctx.beginPath();
+  if (ctx.roundRect) ctx.roundRect(0,0,W,220,10); else ctx.rect(0,0,W,220);
+  ctx.fill();
+  ctx.fillStyle = '#1e5f9e';
+  ctx.font = 'bold 12px Segoe UI, Arial';
+  ctx.textAlign = 'left';
+  ctx.fillText('FREQUÊNCIA DE DOCUMENTOS NECESSÁRIOS (Para Licitar)', 20, 26);
 
-            let data;
-            if (type === 'dev') {
-                data = projetosDev.find(p => p.id === id);
-            } else {
-                data = processosAprovados.find(p => p.id === id);
-            }
+  const freq = {};
+  PROJETOS.forEach(p => p.fluxo.forEach(f => {
+    freq[f.item] = freq[f.item] || {prov:0,pend:0};
+    if (f.status==='providenciado') freq[f.item].prov++;
+    else freq[f.item].pend++;
+  }));
 
-            if (!data) return;
+  const docs = Object.keys(freq).sort((a,b)=> (freq[b].prov+freq[b].pend) - (freq[a].prov+freq[a].pend)).slice(0,8);
+  const maxV = Math.max(...docs.map(d=>freq[d].prov+freq[d].pend));
+  const barH = 22, gap = 6, startY = 44, labelW = 200;
+  const barMaxW = W - labelW - 90;
 
-            title.innerText = data.identificador;
-            sub.innerText = `${data.equipamento} • ${data.municipio}`;
+  docs.forEach((d, i) => {
+    const y = startY + i*(barH+gap);
+    const provW = (freq[d].prov/maxV) * barMaxW;
+    const pendW = (freq[d].pend/maxV) * barMaxW;
 
-            if (type === 'dev') {
-                const fluxoHtml = data.fluxoItens.map(f => `
-                    <div class="p-2.5 rounded-lg border ${f.providenciado ? 'bg-emerald-50 border-emerald-200 text-emerald-900' : 'bg-slate-50 border-slate-200 text-slate-700'} flex items-center justify-between">
-                        <span class="font-medium">${f.nome}</span>
-                        <span class="text-xs font-bold ${f.providenciado ? 'text-emerald-700' : 'text-slate-500'}">
-                            ${f.providenciado ? '✓ Providenciado' : '⏳ Em Solicitação'}
-                        </span>
-                    </div>
-                `).join('');
+    ctx.fillStyle = '#1a3a5c';
+    ctx.font = '10px Segoe UI, Arial';
+    ctx.textAlign = 'right';
+    const label = d.length>28 ? d.substring(0,27)+'…' : d;
+    ctx.fillText(label, labelW-6, y+barH/2+4);
 
-                body.innerHTML = `
-                    <div class="space-y-3">
-                        <div>
-                            <label class="text-xs font-bold text-slate-400 uppercase">Endereço Completo</label>
-                            <p class="font-semibold text-slate-800">${data.endereco}</p>
-                        </div>
-                        <div class="grid grid-cols-2 gap-3">
-                            <div>
-                                <label class="text-xs font-bold text-slate-400 uppercase">Processos</label>
-                                <p class="font-semibold text-sepe-800">${data.processos}</p>
-                            </div>
-                            <div>
-                                <label class="text-xs font-bold text-slate-400 uppercase">Prazo de Conclusão</label>
-                                <p class="font-semibold text-amber-700">${data.prazoConclusao}</p>
-                            </div>
-                        </div>
-                        <div>
-                            <label class="text-xs font-bold text-slate-400 uppercase">Etapa de Elaboração</label>
-                            <p class="text-slate-700 bg-slate-50 p-2.5 rounded-lg border border-slate-200">${data.etapaElaboracao}</p>
-                        </div>
-                        <div>
-                            <label class="text-xs font-bold text-slate-400 uppercase">Informações BIM</label>
-                            <p class="text-slate-700 bg-slate-50 p-2.5 rounded-lg border border-slate-200">${data.informacoesBim}</p>
-                        </div>
-                        <div>
-                            <label class="text-xs font-bold text-slate-400 uppercase mb-2 block">Fluxo de Requisitos (Status dos Documentos)</label>
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                                ${fluxoHtml}
-                            </div>
-                        </div>
-                    </div>
-                `;
-            } else {
-                body.innerHTML = `
-                    <div class="space-y-4">
-                        <div class="p-3 bg-emerald-50 border border-emerald-200 rounded-xl flex items-center gap-2 text-emerald-900 font-bold text-xs">
-                            <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-600"></i>
-                            PROCESSO APROVADO — TODOS OS ITENS GARANTIDOS PARA LICITAÇÃO
-                        </div>
-                        <div>
-                            <label class="text-xs font-bold text-slate-400 uppercase">Endereço Completo</label>
-                            <p class="font-semibold text-slate-800">${data.endereco}</p>
-                        </div>
-                        <div class="grid grid-cols-2 gap-3">
-                            <div>
-                                <label class="text-xs font-bold text-slate-400 uppercase">Protocolo de Aprovação</label>
-                                <p class="font-extrabold text-emerald-800">${data.protocoloAprovacao}</p>
-                            </div>
-                            <div>
-                                <label class="text-xs font-bold text-slate-400 uppercase">Validade</label>
-                                <p class="font-bold text-slate-800">${data.validade}</p>
-                            </div>
-                        </div>
-                        <div class="grid grid-cols-2 gap-3">
-                            <div>
-                                <label class="text-xs font-bold text-slate-400 uppercase">Responsável</label>
-                                <p class="font-semibold text-slate-700">${data.responsavel}</p>
-                            </div>
-                            <div>
-                                <label class="text-xs font-bold text-slate-400 uppercase">Status do Empreendimento</label>
-                                <p class="font-extrabold text-emerald-700">${data.statusEmpreendimento}</p>
-                            </div>
-                        </div>
-                        <div>
-                            <label class="text-xs font-bold text-slate-400 uppercase">Informações BIM</label>
-                            <p class="text-slate-700 bg-slate-50 p-2.5 rounded-lg border border-slate-200">${data.informacoesBim}</p>
-                        </div>
-                    </div>
-                `;
-            }
+    if (provW > 0) {
+      ctx.fillStyle = '#2e7d32';
+      ctx.beginPath();
+      if (ctx.roundRect) ctx.roundRect(labelW, y, provW, barH, 4); else ctx.rect(labelW, y, provW, barH);
+      ctx.fill();
+    }
+    if (pendW > 0) {
+      ctx.fillStyle = '#c62828';
+      ctx.beginPath();
+      if (ctx.roundRect) ctx.roundRect(labelW+provW, y, pendW, barH, 4); else ctx.rect(labelW+provW, y, pendW, barH);
+      ctx.fill();
+    }
+    if (provW+pendW < barMaxW) {
+      ctx.fillStyle = '#e8f2fb';
+      ctx.beginPath();
+      if (ctx.roundRect) ctx.roundRect(labelW+provW+pendW, y, barMaxW-provW-pendW, barH, 4); else ctx.rect(labelW+provW+pendW, y, barMaxW-provW-pendW, barH);
+      ctx.fill();
+    }
 
-            modal.classList.remove('hidden');
-            lucide.createIcons();
-        }
+    ctx.fillStyle = '#546e7a';
+    ctx.font = 'bold 10px Segoe UI, Arial';
+    ctx.textAlign = 'left';
+    ctx.fillText(`${freq[d].prov}✓ / ${freq[d].pend}○`, labelW+barMaxW+8, y+barH/2+4);
+  });
 
-        function closeModal() {
-            document.getElementById('modalDetalhes').classList.add('hidden');
-        }
+  const ly = startY + docs.length*(barH+gap) + 10;
+  ctx.fillStyle = '#2e7d32'; ctx.fillRect(20, ly, 14, 10);
+  ctx.fillStyle = '#546e7a'; ctx.font='10px Segoe UI'; ctx.textAlign='left'; ctx.fillText('Providenciado', 38, ly+9);
+  ctx.fillStyle = '#c62828'; ctx.fillRect(130, ly, 14, 10);
+  ctx.fillText('Pendente', 148, ly+9);
+}
 
-        // Exportar para CSV
-        function exportToCSV() {
-            let csvContent = "data:text/csv;charset=utf-8,";
-            csvContent += "CATEGORIA;EQUIPAMENTO;MUNICIPIO;IDENTIFICADOR;ENDERECO;PROCESSOS;DETALHES_ETAPA;BIM;STATUS\n";
+function drawMunicipios() {
+  const canvas = document.getElementById('canvasMunicipios');
+  const W = canvas.parentElement.clientWidth || 900;
+  canvas.width  = W;
+  canvas.height = 200;
+  const ctx = canvas.getContext('2d');
+  ctx.clearRect(0,0,W,200);
 
-            projetosDev.forEach(p => {
-                const line = `PROJETOS EM DESENVOLVIMENTO;${p.equipamento};${p.municipio};"${p.identificador}";"${p.endereco}";"${p.processos}";"${p.etapaElaboracao}";"${p.informacoesBim}";"${p.prazoConclusao}"`;
-                csvContent += line + "\n";
-            });
+  ctx.fillStyle = '#ffffff';
+  ctx.beginPath();
+  if (ctx.roundRect) ctx.roundRect(0,0,W,200,10); else ctx.rect(0,0,W,200);
+  ctx.fill();
+  ctx.fillStyle = '#1e5f9e';
+  ctx.font = 'bold 12px Segoe UI, Arial';
+  ctx.textAlign = 'left';
+  ctx.fillText('PROJETOS POR MUNICÍPIO E EQUIPAMENTO', 20, 26);
 
-            processosAprovados.forEach(p => {
-                const line = `PROCESSOS JA APROVADOS;${p.equipamento};${p.municipio};"${p.identificador}";"${p.endereco}";"${p.processos}";"${p.protocoloAprovacao}";"${p.informacoesBim}";"${p.statusEmpreendimento}"`;
-                csvContent += line + "\n";
-            });
+  const muns = {};
+  PROJETOS.forEach(p => {
+    muns[p.mun] = muns[p.mun] || {};
+    muns[p.mun][p.equip] = (muns[p.mun][p.equip]||0) + 1;
+  });
 
-            const encodedUri = encodeURI(csvContent);
-            const link = document.createElement("a");
-            link.setAttribute("href", encodedUri);
-            link.setAttribute("download", "Relatorio_Legalizacao_SEPE_04_09_2026.csv");
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        }
+  const munKeys = Object.keys(muns);
+  const equipKeys = [...new Set(PROJETOS.map(p=>p.equip))];
+  const COLORS = {'HOSPITAL':'#1e5f9e','HEMOPE':'#2d82cc','FARMÁCIA':'#6fa8dc'};
+  const barW = Math.min(120, (W-80)/munKeys.length - 20);
+  const maxV = Math.max(...munKeys.map(m=>Object.values(muns[m]).reduce((a,b)=>a+b,0)));
+  const chartH = 120, startY = 50;
 
-        // Inicialização ao carregar a página
-        window.onload = function() {
-            renderTables();
-        };
-    </script>
+  munKeys.forEach((m, mi) => {
+    const cx = 60 + mi*(barW+40);
+    let stackY = startY + chartH;
+    equipKeys.forEach(eq => {
+      const v = muns[m][eq]||0;
+      if (!v) return;
+      const bh = (v/maxV)*chartH;
+      stackY -= bh;
+      ctx.fillStyle = COLORS[eq]||'#90a4ae';
+      ctx.beginPath();
+      if (ctx.roundRect) ctx.roundRect(cx, stackY, barW, bh, 3); else ctx.rect(cx, stackY, barW, bh);
+      ctx.fill();
+      if (bh > 18) {
+        ctx.fillStyle = '#fff'; ctx.font='bold 11px Segoe UI'; ctx.textAlign='center';
+        ctx.fillText(v, cx+barW/2, stackY+bh/2+4);
+      }
+    });
+    ctx.fillStyle='#1a3a5c'; ctx.font='bold 10px Segoe UI'; ctx.textAlign='center';
+    ctx.fillText(m, cx+barW/2, startY+chartH+16);
+  });
+
+  let lx = 20;
+  equipKeys.forEach(eq => {
+    ctx.fillStyle=COLORS[eq]||'#90a4ae'; ctx.fillRect(lx, 32, 12, 12);
+    ctx.fillStyle='#546e7a'; ctx.font='10px Segoe UI'; ctx.textAlign='left';
+    ctx.fillText(eq, lx+16, 42);
+    lx += ctx.measureText(eq).width + 36;
+  });
+}
+
+renderProjetos(PROJETOS);
+renderAprovados(APROVADOS);
+</script>
 </body>
 </html>
