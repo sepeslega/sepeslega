@@ -36,11 +36,19 @@
   header {
     background: linear-gradient(135deg, var(--azul-escuro) 0%, var(--azul-medio) 100%);
     color: var(--branco);
-    padding: 18px 32px 14px;
+    padding: 16px 32px 14px;
     display: flex;
     align-items: center;
     gap: 20px;
     box-shadow: 0 3px 12px rgba(0,0,0,0.25);
+    flex-wrap: wrap;
+  }
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex: 1;
+    min-width: 280px;
   }
   .logo-circle {
     width: 52px; height: 52px;
@@ -52,8 +60,37 @@
   .logo-circle svg { width: 34px; height: 34px; }
   header h1 { font-size: 1.35rem; font-weight: 700; letter-spacing: .5px; line-height: 1.25; }
   header p  { font-size: .82rem; opacity: .85; margin-top: 2px; }
-  .badge-data {
+
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
     margin-left: auto;
+  }
+  .legenda-cabecalho {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 248, 225, 0.18);
+    border: 1px solid rgba(249, 168, 37, 0.7);
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-size: .78rem;
+    color: #fff9c4;
+    font-weight: 600;
+    letter-spacing: .2px;
+  }
+  .legenda-tag-amarela {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    background: #fbc02d;
+    border: 1px solid #fff59d;
+    box-shadow: 0 0 4px rgba(251, 192, 45, 0.6);
+  }
+  .badge-data {
     background: rgba(255,255,255,.15);
     border: 1px solid rgba(255,255,255,.3);
     border-radius: 20px;
@@ -149,8 +186,9 @@
     border-radius: 12px;
     box-shadow: var(--sombra);
     overflow: hidden;
-    border-left: 5px solid var(--azul-claro);
+    border-left: 6px solid var(--azul-claro);
     transition: box-shadow .2s;
+    position: relative;
   }
   .card-projeto:hover { box-shadow: 0 4px 18px rgba(26,58,92,.18); }
   .card-projeto.prazo-urgente { border-left-color: var(--amarelo); }
@@ -243,7 +281,7 @@
     max-width: 100%;
   }
 
-  /* ── LEGENDA ── */
+  /* ── LEGENDA DO FLUXO ── */
   .legenda {
     display: flex;
     gap: 20px;
@@ -254,7 +292,6 @@
   .dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
   .dot.verde   { background: #2e7d32; }
   .dot.vermelho{ background: #c62828; }
-  .dot.parcial { background: linear-gradient(135deg,#2e7d32 50%,#c62828 50%); }
 
   /* ── PROCESSOS APROVADOS ── */
   .aprovados-table-wrap {
@@ -295,9 +332,9 @@
   .sem-resultado { text-align: center; padding: 48px 20px; color: var(--cinza); font-size: .9rem; }
   .sem-resultado span { font-size: 2.5rem; display: block; margin-bottom: 10px; }
 
-  /* ── RESPONSIVE ── */
-  @media (max-width: 600px) {
-    header { flex-wrap: wrap; padding: 14px 16px; }
+  @media (max-width: 768px) {
+    header { padding: 14px 16px; }
+    .header-right { width: 100%; justify-content: space-between; margin-top: 6px; }
     .tabs-wrap { padding: 0 10px; }
     .tab-content { padding: 16px 12px 30px; }
     .filter-bar { gap: 10px; }
@@ -306,21 +343,31 @@
 </head>
 <body>
 
-<!-- TOPO -->
+<!-- TOPO COM LEGENDA DA TAG AMARELA -->
 <header>
-  <div class="logo-circle">
-    <svg viewBox="0 0 36 36" fill="none">
-      <circle cx="18" cy="18" r="17" fill="#1e5f9e"/>
-      <path d="M10 26 L18 10 L26 26" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-      <path d="M13.5 21 L22.5 21" stroke="white" stroke-width="2" stroke-linecap="round"/>
-      <rect x="16" y="23" width="4" height="4" rx="1" fill="white"/>
-    </svg>
+  <div class="header-left">
+    <div class="logo-circle">
+      <svg viewBox="0 0 36 36" fill="none">
+        <circle cx="18" cy="18" r="17" fill="#1e5f9e"/>
+        <path d="M10 26 L18 10 L26 26" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <path d="M13.5 21 L22.5 21" stroke="white" stroke-width="2" stroke-linecap="round"/>
+        <rect x="16" y="23" width="4" height="4" rx="1" fill="white"/>
+      </svg>
+    </div>
+    <div>
+      <h1>SEPES-PE — Núcleo de Legalização</h1>
+      <p>Secretaria Executiva de Projetos para Equipamentos de Saúde · Controles de Acompanhamento</p>
+    </div>
   </div>
-  <div>
-    <h1>SEPES-PE — Núcleo de Legalização</h1>
-    <p>Secretaria Executiva de Projetos para Equipamentos de Saúde · Controles de Acompanhamento</p>
+
+  <div class="header-right">
+    <!-- LEGENDA DA TAG AMARELA -->
+    <div class="legenda-cabecalho" title="Projetos priorizados na semana atual">
+      <span class="legenda-tag-amarela"></span>
+      <span>Borda amarela: <strong>Trabalhados na semana em curso</strong></span>
+    </div>
+    <div class="badge-data" id="badgeData"></div>
   </div>
-  <div class="badge-data" id="badgeData"></div>
 </header>
 
 <!-- ABAS -->
@@ -367,10 +414,10 @@
       </select>
     </div>
     <div class="filter-group">
-      <label>Prazo</label>
+      <label>Semana em Curso / Prazo</label>
       <select id="f-prazo" onchange="filtrar()">
         <option value="">Todos</option>
-        <option value="urgente">Com prazo urgente ⚠</option>
+        <option value="urgente">Em andamento na semana (borda amarela)</option>
         <option value="sem">Sem previsão</option>
       </select>
     </div>
@@ -742,11 +789,7 @@ function drawFluxo(canvasId, fluxo) {
 
   ctx.fillStyle = '#f0f6fc';
   ctx.beginPath();
-  if (ctx.roundRect) {
-    ctx.roundRect(0,0,W,H,8);
-  } else {
-    ctx.rect(0,0,W,H);
-  }
+  if (ctx.roundRect) ctx.roundRect(0,0,W,H,8); else ctx.rect(0,0,W,H);
   ctx.fill();
 
   fluxo.forEach((f, i) => {
@@ -762,11 +805,7 @@ function drawFluxo(canvasId, fluxo) {
 
     ctx.fillStyle = bgC;
     ctx.beginPath();
-    if (ctx.roundRect) {
-      ctx.roundRect(x, y, PILL_W, PILL_H, RADIUS);
-    } else {
-      ctx.rect(x, y, PILL_W, PILL_H);
-    }
+    if (ctx.roundRect) ctx.roundRect(x, y, PILL_W, PILL_H, RADIUS); else ctx.rect(x, y, PILL_W, PILL_H);
     ctx.fill();
     ctx.strokeStyle = bdC;
     ctx.lineWidth = 1.5;
@@ -852,7 +891,7 @@ function renderProjetos(lista) {
             <div class="value">${p.exig}</div>
           </div>
           <div class="info-item ${p.prazoUrgente ? 'urgente' : ''}">
-            <div class="label">${p.prazoUrgente ? '⚠ ' : ''}Prazo para Conclusão</div>
+            <div class="label">${p.prazoUrgente ? '⚡ ' : ''}Prazo para Conclusão</div>
             <div class="value">${p.prazo}</div>
           </div>
           <div class="info-item" style="grid-column:1/-1">
@@ -990,7 +1029,7 @@ function drawKPIs() {
   const cards = [
     {label:'Projetos em Desenvolvimento', value:total,    icon:'🏗',  bg:'rgba(255,255,255,0.15)'},
     {label:'Processos Aprovados',          value:aprovados,icon:'✅',  bg:'rgba(46,125,50,0.55)'},
-    {label:'Com Prazo Urgente',            value:urgentes, icon:'⚠',  bg:'rgba(249,168,37,0.55)'},
+    {label:'Semana em Curso (Prioritários)',value:urgentes, icon:'⚡',  bg:'rgba(249,168,37,0.55)'},
     {label:'Fluxo Completo',               value:completos,icon:'🟢', bg:'rgba(46,125,50,0.4)'},
     {label:'Fluxo Parcial',                value:parciais, icon:'🟡', bg:'rgba(249,168,37,0.4)'},
     {label:'Fluxo Inicial',                value:iniciais, icon:'🔴', bg:'rgba(198,40,40,0.4)'}
@@ -1004,7 +1043,7 @@ function drawKPIs() {
     if (ctx.roundRect) ctx.roundRect(x,y,cardW,148,8); else ctx.rect(x,y,cardW,148);
     ctx.fill();
 
-    ctx.font = '32px Segoe UI, Arial';
+    ctx.font = '30px Segoe UI, Arial';
     ctx.textAlign = 'center';
     ctx.fillText(c.icon, x+cardW/2, y+50);
 
@@ -1013,7 +1052,7 @@ function drawKPIs() {
     ctx.fillText(c.value, x+cardW/2, y+98);
 
     ctx.font = '10px Segoe UI, Arial';
-    ctx.fillStyle = 'rgba(255,255,255,0.8)';
+    ctx.fillStyle = 'rgba(255,255,255,0.85)';
     const words = c.label.split(' ');
     let line = ''; let ly = y+118;
     words.forEach(w => {
