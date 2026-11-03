@@ -1,1205 +1,180 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SEPES-PE — Controles de Legalização</title>
-<style>
-  :root {
-    --azul-escuro: #1a3a5c;
-    --azul-medio: #1e5f9e;
-    --azul-claro: #2d82cc;
-    --azul-bg: #e8f2fb;
-    --azul-borda: #a4c2f4;
-    --azul-header: #6fa8dc;
-    --verde: #2e7d32;
-    --verde-bg: #e8f5e9;
-    --vermelho: #c62828;
-    --vermelho-bg: #ffebee;
-    --amarelo: #f59e0b;
-    --amarelo-bg: #fffbeb;
-    --cinza: #546e7a;
-    --branco: #ffffff;
-    --sombra: 0 2px 8px rgba(26,58,92,0.13);
-  }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nome do Seu Site</title>
+    <meta
+      name="description"
+      content="Landing page moderna e responsiva para site pessoal ou empresa."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="container nav">
+        <a href="#" class="logo">SeuLogo</a>
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+        <button class="menu-toggle" aria-label="Abrir menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
 
-  body {
-    font-family: 'Segoe UI', Arial, sans-serif;
-    background: #dce8f5;
-    color: #1a3a5c;
-    min-height: 100vh;
-  }
+        <nav class="nav-menu">
+          <a href="#inicio">Início</a>
+          <a href="#sobre">Sobre</a>
+          <a href="#servicos">Serviços</a>
+          <a href="#contato">Contato</a>
+          <a href="#contato" class="btn btn-primary">Fale conosco</a>
+        </nav>
+      </div>
+    </header>
 
-  /* ── TOPO ── */
-  header {
-    background: linear-gradient(135deg, var(--azul-escuro) 0%, var(--azul-medio) 100%);
-    color: var(--branco);
-    padding: 16px 28px;
-    display: flex;
-    align-items: center;
-    gap: 18px;
-    box-shadow: 0 3px 12px rgba(0,0,0,0.25);
-  }
-  .logo-circle {
-    width: 48px; height: 48px;
-    background: var(--branco);
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-  }
-  .logo-circle svg { width: 30px; height: 30px; }
-  header h1 { font-size: 1.25rem; font-weight: 700; letter-spacing: .5px; line-height: 1.2; }
-  header p  { font-size: .8rem; opacity: .85; margin-top: 2px; }
+    <main>
+      <section id="inicio" class="hero">
+        <div class="container hero-content">
+          <div class="hero-text">
+            <span class="eyebrow">Sua marca, em destaque</span>
+            <h1>Crie uma presença digital que converte.</h1>
+            <p>
+              Soluções modernas para quem quer atrair clientes, transmitir
+              confiança e vender melhor na internet.
+            </p>
 
-  .header-badges {
-    margin-left: auto;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
-    justify-content: flex-end;
-  }
-  .header-legend-tag {
-    background: rgba(245, 158, 11, 0.2);
-    border: 1px solid #f59e0b;
-    border-radius: 20px;
-    padding: 6px 14px;
-    font-size: .75rem;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    font-weight: 600;
-  }
-  .header-legend-tag .square-tag {
-    width: 10px;
-    height: 10px;
-    background: #f59e0b;
-    border-radius: 2px;
-    display: inline-block;
-  }
-  .badge-data {
-    background: rgba(255,255,255,.15);
-    border: 1px solid rgba(255,255,255,.3);
-    border-radius: 20px;
-    padding: 6px 14px;
-    font-size: .75rem;
-    white-space: nowrap;
-  }
-
-  /* ── ABAS ── */
-  .tabs-wrap {
-    background: var(--azul-escuro);
-    display: flex;
-    gap: 4px;
-    padding: 0 28px;
-    overflow-x: auto;
-  }
-  .tab-btn {
-    background: transparent;
-    border: none;
-    color: rgba(255,255,255,.65);
-    font-size: .86rem;
-    font-weight: 600;
-    padding: 12px 20px 10px;
-    cursor: pointer;
-    border-bottom: 3px solid transparent;
-    transition: all .2s;
-    white-space: nowrap;
-    letter-spacing: .3px;
-  }
-  .tab-btn:hover { color: var(--branco); border-bottom-color: rgba(255,255,255,.4); }
-  .tab-btn.active {
-    color: var(--branco);
-    border-bottom-color: #5bc8f5;
-    background: rgba(255,255,255,.08);
-  }
-  .tab-count {
-    display: inline-block;
-    background: rgba(255,255,255,.2);
-    border-radius: 12px;
-    font-size: .72rem;
-    padding: 1px 8px;
-    margin-left: 6px;
-    font-weight: 700;
-  }
-
-  /* ── CONTEÚDO ── */
-  .tab-content { display: none; padding: 22px 28px 40px; }
-  .tab-content.active { display: block; }
-
-  /* ── FILTROS ── */
-  .filter-bar {
-    background: var(--branco);
-    border-radius: 10px;
-    padding: 14px 18px;
-    margin-bottom: 18px;
-    box-shadow: var(--sombra);
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    align-items: flex-end;
-  }
-  .filter-group { display: flex; flex-direction: column; gap: 4px; min-width: 160px; }
-  .filter-group label { font-size: .7rem; font-weight: 700; color: var(--azul-medio); text-transform: uppercase; letter-spacing: .5px; }
-  .filter-group select, .filter-group input {
-    border: 1.5px solid var(--azul-borda);
-    border-radius: 6px;
-    padding: 7px 10px;
-    font-size: .82rem;
-    color: var(--azul-escuro);
-    background: var(--azul-bg);
-    outline: none;
-    transition: border-color .2s;
-  }
-  .filter-group select:focus, .filter-group input:focus { border-color: var(--azul-medio); }
-  .btn-limpar {
-    background: var(--azul-bg);
-    border: 1.5px solid var(--azul-borda);
-    border-radius: 6px;
-    padding: 7px 14px;
-    font-size: .8rem;
-    color: var(--azul-medio);
-    cursor: pointer;
-    font-weight: 600;
-    transition: all .2s;
-    align-self: flex-end;
-  }
-  .btn-limpar:hover { background: var(--azul-medio); color: var(--branco); }
-
-  /* ── CARDS PROJETOS ── */
-  .projetos-grid { display: flex; flex-direction: column; gap: 14px; }
-  .card-projeto {
-    background: var(--branco);
-    border-radius: 10px;
-    box-shadow: var(--sombra);
-    overflow: hidden;
-    border-left: 5px solid var(--azul-claro);
-    transition: box-shadow .2s;
-  }
-  .card-projeto:hover { box-shadow: 0 4px 16px rgba(26,58,92,.16); }
-  .card-projeto.prazo-urgente { border-left-color: var(--amarelo); }
-
-  .card-header {
-    background: linear-gradient(135deg, var(--azul-bg) 0%, #d6e8f8 100%);
-    padding: 13px 18px;
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    cursor: pointer;
-    user-select: none;
-  }
-  .card-header:hover { background: #cde2f5; }
-  .equip-badge {
-    background: var(--azul-medio);
-    color: var(--branco);
-    border-radius: 6px;
-    padding: 4px 10px;
-    font-size: .7rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: .5px;
-    white-space: nowrap;
-    flex-shrink: 0;
-  }
-  .card-titulo { flex: 1; }
-  .card-titulo h3 { font-size: .92rem; font-weight: 700; color: var(--azul-escuro); line-height: 1.25; }
-  .card-titulo .municipio { font-size: .76rem; color: var(--cinza); margin-top: 2px; }
-  .card-titulo .endereco { font-size: .73rem; color: var(--cinza); margin-top: 1px; font-style: italic; }
-  .card-arrow {
-    margin-left: auto;
-    color: var(--azul-medio);
-    font-size: 1rem;
-    transition: transform .25s ease;
-    flex-shrink: 0;
-  }
-  .card-arrow.open { transform: rotate(180deg); }
-
-  .card-body {
-    padding: 0 18px;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height .3s ease, padding .3s ease;
-  }
-  .card-body.open {
-    max-height: 900px;
-    padding: 16px 18px 20px;
-  }
-
-  /* ── GRID INFO ── */
-  .info-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-    gap: 10px;
-    margin-bottom: 16px;
-  }
-  .info-item { background: var(--azul-bg); border-radius: 6px; padding: 9px 12px; }
-  .info-item .label { font-size: .66rem; text-transform: uppercase; letter-spacing: .5px; color: var(--azul-medio); font-weight: 700; margin-bottom: 2px; }
-  .info-item .value { font-size: .82rem; color: var(--azul-escuro); font-weight: 600; line-height: 1.3; }
-  .info-item.urgente { background: var(--amarelo-bg); border: 1px solid #fde68a; }
-  .info-item.urgente .label { color: #b45309; }
-  .info-item.urgente .value { color: #92400e; }
-
-  /* ── FLUXO PARA LICITAR ── */
-  .fluxo-section { margin-top: 4px; }
-  .fluxo-section h4 {
-    font-size: .76rem;
-    text-transform: uppercase;
-    letter-spacing: .6px;
-    color: var(--azul-medio);
-    font-weight: 700;
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .fluxo-section h4::after {
-    content: '';
-    flex: 1;
-    height: 1.5px;
-    background: var(--azul-borda);
-  }
-
-  .canvas-fluxo-wrap {
-    overflow-x: auto;
-    padding-bottom: 6px;
-  }
-  canvas.fluxo-canvas {
-    display: block;
-    border-radius: 6px;
-    max-width: 100%;
-  }
-
-  /* ── LEGENDA ── */
-  .legenda {
-    display: flex;
-    gap: 18px;
-    margin-top: 8px;
-    flex-wrap: wrap;
-  }
-  .legenda-item { display: flex; align-items: center; gap: 6px; font-size: .74rem; color: var(--cinza); }
-  .dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
-  .dot.verde    { background: #2e7d32; }
-  .dot.vermelho { background: #c62828; }
-
-  /* ── PROCESSOS APROVADOS ── */
-  .aprovados-table-wrap {
-    background: var(--branco);
-    border-radius: 10px;
-    box-shadow: var(--sombra);
-    overflow: hidden;
-  }
-  table { width: 100%; border-collapse: collapse; font-size: .82rem; }
-  thead tr { background: linear-gradient(135deg, var(--azul-medio), var(--azul-header)); color: var(--branco); }
-  thead th { padding: 12px 14px; text-align: left; font-weight: 700; font-size: .73rem; text-transform: uppercase; letter-spacing: .4px; white-space: nowrap; }
-  tbody tr { border-bottom: 1px solid #e3eef8; transition: background .15s; }
-  tbody tr:hover { background: var(--azul-bg); }
-  tbody tr.aprovado-row td { background: #f0faf0; }
-  tbody td { padding: 10px 14px; color: var(--azul-escuro); vertical-align: top; line-height: 1.35; }
-  .badge-status {
-    display: inline-block;
-    padding: 3px 9px;
-    border-radius: 16px;
-    font-size: .7rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: .3px;
-  }
-  .badge-status.obra       { background: #e3f2fd; color: #0d47a1; }
-  .badge-status.deferido   { background: var(--verde-bg); color: var(--verde); }
-  .badge-status.dev        { background: var(--amarelo-bg); color: #92400e; }
-  .badge-processo          { background: #e8eaf6; color: #283593; border-radius: 4px; padding: 2px 7px; font-size: .72rem; font-weight: 600; }
-  .validade-chip           { font-size: .75rem; font-weight: 600; }
-  .validade-chip.ok        { color: var(--verde); }
-  .validade-chip.sem-info  { color: var(--cinza); font-style: italic; }
-
-  /* ── RESUMO CANVAS ── */
-  .resumo-wrap { margin-bottom: 20px; }
-  canvas.resumo-canvas { display: block; border-radius: 8px; box-shadow: var(--sombra); }
-
-  /* ── SEM RESULTADO ── */
-  .sem-resultado { text-align: center; padding: 40px 20px; color: var(--cinza); font-size: .88rem; }
-  .sem-resultado span { font-size: 2.2rem; display: block; margin-bottom: 8px; }
-
-  @media (max-width: 768px) {
-    header { flex-direction: column; align-items: flex-start; gap: 12px; }
-    .header-badges { margin-left: 0; width: 100%; justify-content: flex-start; }
-    .tabs-wrap { padding: 0 12px; }
-    .tab-content { padding: 16px 12px 30px; }
-    .filter-bar { gap: 10px; }
-  }
-</style>
-</head>
-<body>
-
-<!-- TOPO -->
-<header>
-  <div class="logo-circle">
-    <svg viewBox="0 0 36 36" fill="none">
-      <circle cx="18" cy="18" r="17" fill="#1e5f9e"/>
-      <path d="M10 26 L18 10 L26 26" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-      <path d="M13.5 21 L22.5 21" stroke="white" stroke-width="2" stroke-linecap="round"/>
-      <rect x="16" y="23" width="4" height="4" rx="1" fill="white"/>
-    </svg>
-  </div>
-  <div>
-    <h1>SEPES-PE — Núcleo de Legalização</h1>
-    <p>Secretaria Executiva de Projetos para Equipamentos de Saúde · Controles de Acompanhamento</p>
-  </div>
-  <div class="header-badges">
-    <div class="header-legend-tag">
-      <span class="square-tag"></span> Borda amarela: Trabalhados na semana em curso
-    </div>
-    <div class="badge-data" id="badgeData"></div>
-  </div>
-</header>
-
-<!-- ABAS -->
-<div class="tabs-wrap">
-  <button class="tab-btn active" onclick="showTab('desenvolvimento')">
-    Projetos em Desenvolvimento <span class="tab-count" id="cnt-dev">10</span>
-  </button>
-  <button class="tab-btn" onclick="showTab('aprovados')">
-    Processos Já Aprovados <span class="tab-count" id="cnt-apr">4</span>
-  </button>
-  <button class="tab-btn" onclick="showTab('resumo')">
-    Painel Geral
-  </button>
-</div>
-
-<!-- ════ ABA 1 – DESENVOLVIMENTO ════ -->
-<div class="tab-content active" id="tab-desenvolvimento">
-
-  <div class="filter-bar">
-    <div class="filter-group">
-      <label>Equipamento</label>
-      <select id="f-equip" onchange="filtrar()">
-        <option value="">Todos</option>
-        <option>HOSPITAL</option>
-        <option>HEMOPE</option>
-        <option>FARMÁCIA</option>
-      </select>
-    </div>
-    <div class="filter-group">
-      <label>Município</label>
-      <select id="f-mun" onchange="filtrar()">
-        <option value="">Todos</option>
-        <option>RECIFE</option>
-        <option>FERNANDO DE NORONHA</option>
-      </select>
-    </div>
-    <div class="filter-group">
-      <label>Status Licitação</label>
-      <select id="f-status" onchange="filtrar()">
-        <option value="">Todos</option>
-        <option value="completo">Completo (todos providenciados)</option>
-        <option value="parcial">Parcial (em andamento)</option>
-        <option value="inicial">Iniciando (poucos providenciados)</option>
-      </select>
-    </div>
-    <div class="filter-group">
-      <label>Semana em Curso / Prazo</label>
-      <select id="f-prazo" onchange="filtrar()">
-        <option value="">Todos</option>
-        <option value="urgente">Em andamento na semana (borda amarela)</option>
-        <option value="sem">Sem previsão</option>
-      </select>
-    </div>
-    <button class="btn-limpar" onclick="limparFiltros()">✕ Limpar</button>
-  </div>
-
-  <div class="projetos-grid" id="projetosGrid"></div>
-  <div class="sem-resultado" id="semResultadoDev" style="display:none">
-    <span>🔍</span>Nenhum projeto encontrado com os filtros selecionados.
-  </div>
-</div>
-
-<!-- ════ ABA 2 – APROVADOS ════ -->
-<div class="tab-content" id="tab-aprovados">
-  <div class="filter-bar">
-    <div class="filter-group">
-      <label>Equipamento</label>
-      <select id="fa-equip" onchange="filtrarAprovados()">
-        <option value="">Todos</option>
-        <option>HOSPITAL</option>
-        <option>HEMOPE</option>
-      </select>
-    </div>
-    <div class="filter-group">
-      <label>Município</label>
-      <select id="fa-mun" onchange="filtrarAprovados()">
-        <option value="">Todos</option>
-        <option>RECIFE</option>
-        <option>CARUARU</option>
-      </select>
-    </div>
-    <div class="filter-group">
-      <label>Status</label>
-      <select id="fa-sts" onchange="filtrarAprovados()">
-        <option value="">Todos</option>
-        <option>EM OBRA</option>
-        <option>PROJETOS EM DESENVOLVIMENTO</option>
-      </select>
-    </div>
-    <button class="btn-limpar" onclick="limparFiltrosApr()">✕ Limpar</button>
-  </div>
-
-  <div class="aprovados-table-wrap">
-    <table>
-      <thead>
-        <tr>
-          <th>Equipamento</th>
-          <th>Identificador / Município</th>
-          <th>Endereço</th>
-          <th>Processo</th>
-          <th>Protocolo</th>
-          <th>Responsável</th>
-          <th>Validade</th>
-          <th>BIM</th>
-          <th>Status</th>
-        </tr>
-      </thead>
-      <tbody id="aprovadosTbody"></tbody>
-    </table>
-    <div class="sem-resultado" id="semResultadoApr" style="display:none">
-      <span>🔍</span>Nenhum processo encontrado.
-    </div>
-  </div>
-</div>
-
-<!-- ════ ABA 3 – PAINEL GERAL ════ -->
-<div class="tab-content" id="tab-resumo">
-  <div class="resumo-wrap">
-    <canvas class="resumo-canvas" id="canvasResumo" height="220"></canvas>
-  </div>
-  <div class="resumo-wrap">
-    <canvas class="resumo-canvas" id="canvasFluxoGeral" height="220"></canvas>
-  </div>
-  <div class="resumo-wrap">
-    <canvas class="resumo-canvas" id="canvasMunicipios" height="200"></canvas>
-  </div>
-</div>
-
-<!-- ════ DADOS ════ -->
-<script>
-const PROJETOS = [
-  {
-    equip: "HOSPITAL", mun: "RECIFE",
-    id: "HOSPITAL - RECIFE (BARÃO DE LUCENA - HBL)",
-    end: "AV. CAXANGÁ, 3860 - IPUTINGA, RECIFE-PE",
-    proc: "PROJETO DE LEGALIZAÇÃO/REFORMA",
-    etapa: "EM STAND BY",
-    exig: "SEM EXIGÊNCIA",
-    prazo: "PROJETO INDEFERIDO, AGUARDANDO LIBERAÇÃO DA LP",
-    prazoUrgente: false,
-    bim: "PROJETO ELABORADO EM CAD",
-    fluxo: [
-      {item:"RGI", status:"providenciado"},
-      {item:"Viabilidades de Água e Esgoto", status:"providenciado"},
-      {item:"Protocolo Bombeiros", status:"providenciado"},
-      {item:"ETA", status:"providenciado"},
-      {item:"MD/RRT", status:"providenciado"},
-      {item:"Projeto", status:"pendente"},
-      {item:"Inventário Florestal", status:"providenciado"}
-    ]
-  },
-  {
-    equip: "HOSPITAL", mun: "RECIFE",
-    id: "HOPITAL - RECIFE (BARÃO DE LUCENA - HBL)",
-    end: "AV. CAXANGÁ, 3860 - IPUTINGA, RECIFE-PE",
-    proc: "LICENÇA PRÉVIA AMBIENTAL",
-    etapa: "Aguardando análise das documentações pela Prefeitura do Recife",
-    exig: "EM ANÁLISE PELA PREFEITURA DO RECIFE",
-    prazo: "SEM PREVISÃO (INGRESSO EM 04.09.26)",
-    prazoUrgente: false,
-    bim: "NÃO SE APLICA",
-    fluxo: [
-      {item:"LP", status:"pendente"}
-    ]
-  },
-  {
-    equip: "HEMOPE", mun: "RECIFE",
-    id: "GLEBA TOTAL - RECIFE",
-    end: "R. JOAQUIM NABUCO, 171 - GRAÇAS - RECIFE-PE",
-    proc: "REFORMA COM ACRÉSCIMO DE ÁREA",
-    etapa: "Elaborando projetos para ingresso",
-    exig: "AINDA NÃO FOI INGRESSADO",
-    prazo: "CONCLUSÃO PREVISTA PARA ATÉ 20/10/2026",
-    prazoUrgente: true,
-    bim: "MODELO BIMLEGA JÁ IMPLANTADO NO CURSO DO PROJETO",
-    fluxo: [
-      {item:"RGI", status:"providenciado"},
-      {item:"Viabilidades de Água e Esgoto", status:"providenciado"},
-      {item:"Protocolo Bombeiros", status:"providenciado"},
-      {item:"ETA", status:"providenciado"},
-      {item:"MD/RRT/Projeto", status:"pendente"},
-      {item:"Inventário Florestal", status:"providenciado"},
-      {item:"LP", status:"providenciado"}
-    ]
-  },
-  {
-    equip: "HEMOPE", mun: "RECIFE",
-    id: "BLOCO A - RECIFE",
-    end: "R. JOAQUIM NABUCO, 171 - GRAÇAS - RECIFE-PE",
-    proc: "APEVISA",
-    etapa: "Enviado para análise em 19/10/2026",
-    exig: "EM ANÁLISE PELA APEVISA",
-    prazo: "SEM PREVISÃO",
-    prazoUrgente: false,
-    bim: "MODELO BIMLEGA JÁ IMPLANTADO NO CURSO DO PROJETO",
-    fluxo: [
-      {item:"RGI", status:"providenciado"},
-      {item:"Viabilidades de Água e Esgoto", status:"providenciado"},
-      {item:"Protocolo Bombeiros", status:"providenciado"},
-      {item:"ETA", status:"providenciado"},
-      {item:"MD/RRT/Projeto", status:"providenciado"},
-      {item:"Inventário Florestal", status:"providenciado"},
-      {item:"LP", status:"providenciado"}
-    ]
-  },
-  {
-    equip: "FARMÁCIA", mun: "RECIFE",
-    id: "FARMÁCIA POPULAR DO ESTADO - RECIFE (IMBIRIBEIRA)",
-    end: "AV. MARECHAL MASCARENHAS DE MORAES, IMBIRIBEIRA, RECIFE-PE",
-    proc: "REFORMA COM ACRÉSCIMO DE ÁREA",
-    etapa: "Preparando plantas de implantação após a definição da poligonal pela SEDUH",
-    exig: "AINDA NÃO FOI INGRESSADO",
-    prazo: "CONCLUSÃO PREVISTA PARA ATÉ 20/10/2026",
-    prazoUrgente: true,
-    bim: "MODELO BIMLEGA NÃO FOI IMPLANTADO NO CURSO DO PROJETO, O MODELO CENTRAL PRECISARÁ DE AJUSTES AGORA PARA IMPLANTAÇÃO",
-    fluxo: [
-      {item:"RGI", status:"providenciado"},
-      {item:"Viabilidades de Água e Esgoto", status:"providenciado"},
-      {item:"Protocolo Bombeiros", status:"providenciado"},
-      {item:"ETA", status:"providenciado"},
-      {item:"MD/RRT", status:"providenciado"},
-      {item:"Projeto", status:"pendente"},
-      {item:"Inventário Florestal", status:"providenciado"},
-      {item:"LP", status:"pendente"}
-    ]
-  },
-  {
-    equip: "FARMÁCIA", mun: "RECIFE",
-    id: "FARMÁCIA POPULAR DO ESTADO - RECIFE (IMBIRIBEIRA)",
-    end: "AV. MARECHAL MASCARENHAS DE MORAES, IMBIRIBEIRA, RECIFE-PE",
-    proc: "LICENÇA PRÉVIA AMBIENTAL",
-    etapa: "Preparando plantas de implantação após a definição da poligonal pela SEDUH",
-    exig: "AINDA NÃO FOI INGRESSADO",
-    prazo: "CONCLUSÃO PREVISTA PARA ATÉ 19/10/2026",
-    prazoUrgente: true,
-    bim: "MODELO BIMLEGA NÃO FOI IMPLANTADO NO CURSO DO PROJETO, O MODELO CENTRAL PRECISARÁ DE AJUSTES AGORA PARA IMPLANTAÇÃO",
-    fluxo: [
-      {item:"RGI", status:"providenciado"},
-      {item:"Viabilidades de Água e Esgoto", status:"providenciado"},
-      {item:"Protocolo Bombeiros", status:"providenciado"},
-      {item:"ETA", status:"pendente"},
-      {item:"MD/RRT", status:"pendente"},
-      {item:"Projeto/Inventário Florestal", status:"pendente"},
-      {item:"LP", status:"pendente"}
-    ]
-  },
-  {
-    equip: "HOSPITAL", mun: "FERNANDO DE NORONHA",
-    id: "HOSPITAL - FERNANDO DE NORONHA (SÃO LUCAS)",
-    end: "ILHA DE FERNANDO DE NORONHA",
-    proc: "REFORMA COM ACRÉSCIMO DE ÁREA OU LEGALIZAÇÃO COM ACRÉSCIMO DE ÁREA",
-    etapa: "Aguardando conclusão do projeto pela equipe",
-    exig: "AINDA NÃO FOI INGRESSADO",
-    prazo: "10 DIAS ÚTEIS APÓS O RECEBIMENTO",
-    prazoUrgente: false,
-    bim: "MODELO BIMLEGA NÃO FOI IMPLANTADO NO CURSO DO PROJETO, O MODELO CENTRAL PRECISARÁ DE AJUSTES",
-    fluxo: [
-      {item:"Doc. Propriedade", status:"providenciado"},
-      {item:"Viabilidades de Água e Esgoto", status:"providenciado"},
-      {item:"Protocolo Bombeiros", status:"providenciado"},
-      {item:"ETA", status:"pendente"},
-      {item:"MD/RRT/Projeto", status:"pendente"},
-      {item:"Inventário Florestal", status:"pendente"},
-      {item:"ICMBio", status:"pendente"},
-      {item:"LP", status:"pendente"}
-    ]
-  },
-  {
-    equip: "HOSPITAL", mun: "RECIFE",
-    id: "HOSPITAL - RECIFE (RESTAURAÇÃO - HR)",
-    end: "AV. GOVERNADOR AGAMENON MAGALHÃES, SN - DERBY, RECIFE-PE",
-    proc: "REFORMA COM ACRÉSCIMO DE ÁREA",
-    etapa: "Aguardando análise do EIV pela Prefeitura do Recife",
-    exig: "EM ANÁLISE PELA PREFEITURA DO RECIFE",
-    prazo: "PREVISÃO PARA 1ª QUINZENA DE NOVEMBRO",
-    prazoUrgente: false,
-    bim: "NÃO SE APLICA NESSA ETAPA. PORÉM MODELO BIMLEGA NÃO FOI IMPLANTADO NO CURSO DO PROJETO, O MODELO CENTRAL PRECISARÁ DE AJUSTES FUTURAMENTE",
-    fluxo: [
-      {item:"RGI", status:"providenciado"},
-      {item:"Viabilidades de Água e Esgoto", status:"providenciado"},
-      {item:"Protocolo Bombeiros", status:"providenciado"},
-      {item:"ETA", status:"providenciado"},
-      {item:"MD/RRT/Projeto/Inventário Florestal", status:"providenciado"},
-      {item:"LP", status:"providenciado"},
-      {item:"EIV + Aprovação de Projetos", status:"pendente"}
-    ]
-  },
-  {
-    equip: "HOSPITAL", mun: "RECIFE",
-    id: "HOSPITAL - RECIFE (NOVO GETÚLIO VARGAS - HGV - IMBIRIBEIRA)",
-    end: "AV. MARECHAL MASCARENHAS DE MORAES, IMBIRIBEIRA, RECIFE-PE",
-    proc: "REFORMA COM ACRÉSCIMO DE ÁREA",
-    etapa: "Aguardando definições da gestão",
-    exig: "AINDA NÃO FOI INGRESSADO",
-    prazo: "SEM PREVISÃO",
-    prazoUrgente: false,
-    bim: "PROJETO AINDA NÃO ELABORADO",
-    fluxo: [
-      {item:"RGI", status:"providenciado"},
-      {item:"Viabilidades de Água e Esgoto", status:"pendente"},
-      {item:"Protocolo Bombeiros", status:"pendente"},
-      {item:"ETA", status:"pendente"},
-      {item:"MD/RRT/Projeto/Inventário Florestal", status:"pendente"},
-      {item:"LP", status:"pendente"},
-      {item:"EIV + Aprovação de Projetos", status:"pendente"}
-    ]
-  },
-  {
-    equip: "HOSPITAL", mun: "RECIFE",
-    id: "HOSPITAL - RECIFE (GETÚLIO VARGAS - HGV - CORDEIRO)",
-    end: "AV. GENERAL SAN MARTIN, CORDEIRO, RECIFE-PE",
-    proc: "REFORMA COM ACRÉSCIMO DE ÁREA OU LEGALIZAÇÃO COM ACRÉSCIMO DE ÁREA",
-    etapa: "Plantas digitalizadas já fornecidas pela Prefeitura do Recife e implantadas no DOCS / Aguardando definições da gestão",
-    exig: "AINDA NÃO FOI INGRESSADO",
-    prazo: "SEM PREVISÃO",
-    prazoUrgente: false,
-    bim: "PROJETO AINDA NÃO ELABORADO",
-    fluxo: [
-      {item:"RGI", status:"pendente"},
-      {item:"Viabilidades de Água e Esgoto", status:"pendente"},
-      {item:"Protocolo Bombeiros", status:"pendente"},
-      {item:"ETA", status:"pendente"},
-      {item:"MD/RRT", status:"pendente"},
-      {item:"Projeto/Inventário Florestal", status:"pendente"},
-      {item:"LP", status:"pendente"}
-    ]
-  }
-];
-
-const APROVADOS = [
-  {
-    equip:"HOSPITAL", mun:"RECIFE",
-    id:"HOPITAL - RECIFE (CISAM)",
-    end:"R. CASTRO ALVES, N 225, ENCRUZILHADA, RECIFE-PE",
-    proc:"PROJETO DE LEGALIZAÇÃO COM REFORMA",
-    prot:"DEFERIDO SOB O Nº 8061697225",
-    resp:"SEPES - NÚCLEO DE LEGALIZAÇÃO",
-    val:"09/02/2027",
-    bim:"PROJETO ELABORADO EM CAD",
-    sts:"EM OBRA"
-  },
-  {
-    equip:"HOSPITAL", mun:"RECIFE",
-    id:"HOSPITAL - RECIFE (POLÍCIA MILITAR - HPMPE)",
-    end:"PRAÇA DO DERBY, SN - DERBY, RECIFE-PE",
-    proc:"LEGALIZAÇÃO COM ACRÉSCIMO DE ÁREA",
-    prot:"DEFERIDO SOB O Nº 8007094026",
-    resp:"SEPES - NUCLEO DE LEGALIZAÇÃO",
-    val:"02/09/2028",
-    bim:"PROJETO EM REVIT, PORÉM O PROJETO É ANTERIOR À ELABORAÇÃO DO MODELO BIM LEGA",
-    sts:"EM OBRA"
-  },
-  {
-    equip:"HOSPITAL", mun:"CARUARU",
-    id:"HOSPITAL SÃO SEBASTIÃO - CARUARU",
-    end:"AV. AGAMENOM MAGALHÃES, S/N - MAURÍCIO DE NASSAU - CARUARU - PE",
-    proc:"REURB",
-    prot:"DEFERIDO",
-    resp:"SEPE - NÚCLEO DE LEGALIZAÇÃO | CEHAB",
-    val:"SEM INFORMAÇÃO",
-    bim:"PROJETO ELABORADO EM CAD",
-    sts:"EM OBRA"
-  },
-  {
-    equip:"HEMOPE", mun:"RECIFE",
-    id:"HEMOPE - RECIFE (HEMOPE)",
-    end:"R. JOAQUIM NABUCO, 171 - GRAÇAS - RECIFE-PE",
-    proc:"LICENÇA PRÉVIA",
-    prot:"DEFERIDO SOB O Nº 8025826926",
-    resp:"SEPE- VIABILIDADES",
-    val:"14/07/2028",
-    bim:"PROJETO ELABORADO EM CAD + MODELO BIMLEGA JÁ IMPLANTADO NO CURSO DO PROJETO",
-    sts:"PROJETOS EM DESENVOLVIMENTO"
-  }
-];
-
-function statusCount(p) {
-  const total = p.fluxo.length;
-  const ok    = p.fluxo.filter(f=>f.status==='providenciado').length;
-  return {ok, total, pct: total ? Math.round(ok/total*100) : 0};
-}
-
-function classifyLicitacao(p) {
-  const {ok,total} = statusCount(p);
-  if (ok===total) return 'completo';
-  if (ok===0)     return 'inicial';
-  const pct = ok/total;
-  return pct < 0.4 ? 'inicial' : 'parcial';
-}
-
-(function(){
-  const d = new Date();
-  const opts = {day:'2-digit', month:'long', year:'numeric'};
-  document.getElementById('badgeData').textContent = '📅 ' + d.toLocaleDateString('pt-BR', opts);
-})();
-
-function showTab(id) {
-  document.querySelectorAll('.tab-content').forEach(el=>el.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(el=>el.classList.remove('active'));
-  document.getElementById('tab-'+id).classList.add('active');
-  const btns = document.querySelectorAll('.tab-btn');
-  const tabMap = {desenvolvimento:0, aprovados:1, resumo:2};
-  btns[tabMap[id]].classList.add('active');
-  if (id==='resumo') setTimeout(desenharResumo, 50);
-}
-
-function drawFluxo(canvasId, fluxo) {
-  const canvas = document.getElementById(canvasId);
-  if (!canvas) return;
-  const PILL_W = 130, PILL_H = 38, GAP = 8, ARROW = 18, RADIUS = 10;
-  const cols = Math.min(fluxo.length, 5);
-  const rows = Math.ceil(fluxo.length / cols);
-  const W = cols * (PILL_W + GAP + ARROW) + 20;
-  const H = rows * (PILL_H + 16) + 30;
-  canvas.width  = W;
-  canvas.height = H;
-  const ctx = canvas.getContext('2d');
-  ctx.clearRect(0,0,W,H);
-
-  ctx.fillStyle = '#f0f6fc';
-  ctx.beginPath();
-  if (ctx.roundRect) {
-    ctx.roundRect(0,0,W,H,8);
-  } else {
-    ctx.rect(0,0,W,H);
-  }
-  ctx.fill();
-
-  fluxo.forEach((f, i) => {
-    const col  = i % cols;
-    const row  = Math.floor(i / cols);
-    const x    = 10 + col * (PILL_W + GAP + ARROW);
-    const y    = 14 + row * (PILL_H + 16);
-
-    const prov = f.status === 'providenciado';
-    const bgC  = prov ? '#2e7d32' : '#c62828';
-    const bdC  = prov ? '#1b5e20' : '#b71c1c';
-    const txtC = '#ffffff';
-
-    ctx.fillStyle = bgC;
-    ctx.beginPath();
-    if (ctx.roundRect) {
-      ctx.roundRect(x, y, PILL_W, PILL_H, RADIUS);
-    } else {
-      ctx.rect(x, y, PILL_W, PILL_H);
-    }
-    ctx.fill();
-    ctx.strokeStyle = bdC;
-    ctx.lineWidth = 1.5;
-    ctx.stroke();
-
-    ctx.font = '14px Segoe UI, Arial, sans-serif';
-    ctx.fillStyle = txtC;
-    ctx.textAlign = 'left';
-    ctx.fillText(prov ? '✓' : '○', x+9, y+PILL_H/2+5);
-
-    ctx.font = 'bold 10px Segoe UI, Arial, sans-serif';
-    ctx.fillStyle = txtC;
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    const label = f.item.length > 18 ? f.item.substring(0,17)+'…' : f.item;
-    ctx.fillText(label, x + PILL_W/2 + 10, y + PILL_H/2);
-
-    if (col < cols - 1 && i < fluxo.length - 1) {
-      const ax = x + PILL_W + 2;
-      const ay = y + PILL_H/2;
-      ctx.strokeStyle = '#90a4ae';
-      ctx.lineWidth = 1.8;
-      ctx.beginPath();
-      ctx.moveTo(ax, ay);
-      ctx.lineTo(ax + ARROW - 4, ay);
-      ctx.stroke();
-      ctx.fillStyle = '#90a4ae';
-      ctx.beginPath();
-      ctx.moveTo(ax + ARROW - 2, ay);
-      ctx.lineTo(ax + ARROW - 8, ay - 4);
-      ctx.lineTo(ax + ARROW - 8, ay + 4);
-      ctx.fill();
-    }
-  });
-}
-
-let projetosFiltrados = [...PROJETOS];
-
-function renderProjetos(lista) {
-  const grid = document.getElementById('projetosGrid');
-  const sem  = document.getElementById('semResultadoDev');
-  grid.innerHTML = '';
-  if (!lista.length) { sem.style.display='block'; return; }
-  sem.style.display = 'none';
-
-  lista.forEach((p, i) => {
-    const {ok, total, pct} = statusCount(p);
-    const canvasId = 'fluxo-'+i+'-'+Date.now();
-    const cardEl = document.createElement('div');
-    cardEl.className = 'card-projeto' + (p.prazoUrgente ? ' prazo-urgente' : '');
-    cardEl.innerHTML = `
-      <div class="card-header" onclick="toggleCard('body-${i}','arrow-${i}','${canvasId}',${i})">
-        <span class="equip-badge">${p.equip}</span>
-        <div class="card-titulo">
-          <h3>${p.id}</h3>
-          <div class="municipio">📍 ${p.mun}</div>
-          <div class="endereco">${p.end}</div>
-        </div>
-        <div style="text-align:right;flex-shrink:0;margin-left:12px">
-          <div style="font-size:.7rem;color:var(--azul-medio);font-weight:700;margin-bottom:4px">PARA LICITAR</div>
-          <div style="display:flex;align-items:center;gap:8px">
-            <div style="background:#e3eef8;border-radius:20px;width:76px;height:7px;overflow:hidden">
-              <div style="background:${pct>=80?'#2e7d32':pct>=40?'#f59e0b':'#c62828'};width:${pct}%;height:100%;border-radius:20px;transition:width .4s"></div>
+            <div class="hero-actions">
+              <a href="#contato" class="btn btn-primary">Solicitar orçamento</a>
+              <a href="#servicos" class="btn btn-secondary">Ver serviços</a>
             </div>
-            <span style="font-size:.78rem;font-weight:700;color:${pct>=80?'#2e7d32':pct>=40?'#92400e':'#c62828'}">${ok}/${total}</span>
+
+            <ul class="hero-list">
+              <li>Design profissional</li>
+              <li>Site responsivo</li>
+              <li>Foco em conversão</li>
+            </ul>
+          </div>
+
+          <div class="hero-card">
+            <div class="card-box">
+              <span class="label">Resultado</span>
+              <h3>+180%</h3>
+              <p>Em engajamento e leads com estratégia digital.</p>
+            </div>
           </div>
         </div>
-        <div class="card-arrow" id="arrow-${i}">▼</div>
+      </section>
+
+      <section id="sobre" class="section">
+        <div class="container">
+          <div class="section-heading">
+            <span class="eyebrow">Sobre</span>
+            <h2>Seu site precisa vender e gerar confiança.</h2>
+          </div>
+
+          <div class="about-grid">
+            <div class="about-text">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
+                facilisis, nisl et feugiat tristique, est sapien lobortis augue,
+                eget volutpat mi erat id enim.
+              </p>
+              <p>
+                Ajudamos negócios a se destacarem com comunicação clara, design
+                moderno e experiência de usuário eficiente.
+              </p>
+            </div>
+
+            <div class="about-stats">
+              <div class="stat">
+                <strong>5+</strong>
+                <span>Anos de experiência</span>
+              </div>
+              <div class="stat">
+                <strong>120+</strong>
+                <span>Projetos entregues</span>
+              </div>
+              <div class="stat">
+                <strong>98%</strong>
+                <span>Satisfação dos clientes</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="servicos" class="section section-alt">
+        <div class="container">
+          <div class="section-heading">
+            <span class="eyebrow">Serviços</span>
+            <h2>O que você pode ter no seu site</h2>
+          </div>
+
+          <div class="cards">
+            <article class="card">
+              <div class="icon">✦</div>
+              <h3>Landing Page</h3>
+              <p>Estrutura focada em conversão e captação de clientes.</p>
+            </article>
+
+            <article class="card">
+              <div class="icon">⚡</div>
+              <h3>Performance</h3>
+              <p>Layout rápido, leve e otimizado para celular e desktop.</p>
+            </article>
+
+            <article class="card">
+              <div class="icon">◎</div>
+              <h3>Branding</h3>
+              <p>Visual profissional com identidade que comunica valor.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section cta-section">
+        <div class="container cta">
+          <div>
+            <span class="eyebrow">Pronto para crescer?</span>
+            <h2>Vamos transformar sua ideia em um site profissional.</h2>
+          </div>
+          <a href="#contato" class="btn btn-primary">Quero um orçamento</a>
+        </div>
+      </section>
+
+      <section id="contato" class="section">
+        <div class="container">
+          <div class="section-heading">
+            <span class="eyebrow">Contato</span>
+            <h2>Fale com a gente</h2>
+          </div>
+
+          <form class="contact-form">
+            <input type="text" placeholder="Seu nome" />
+            <input type="email" placeholder="Seu e-mail" />
+            <textarea placeholder="Sua mensagem"></textarea>
+            <button type="submit" class="btn btn-primary">Enviar mensagem</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-content">
+        <p>© <span id="year"></span> SeuNome. Todos os direitos reservados.</p>
+        <div class="socials">
+          <a href="#">Instagram</a>
+          <a href="#">LinkedIn</a>
+          <a href="#">GitHub</a>
+        </div>
       </div>
-      <div class="card-body" id="body-${i}">
-        <div class="info-grid">
-          <div class="info-item">
-            <div class="label">Processo</div>
-            <div class="value">${p.proc}</div>
-          </div>
-          <div class="info-item">
-            <div class="label">Etapa de Elaboração</div>
-            <div class="value">${p.etapa}</div>
-          </div>
-          <div class="info-item">
-            <div class="label">Exigências do Ingresso</div>
-            <div class="value">${p.exig}</div>
-          </div>
-          <div class="info-item ${p.prazoUrgente ? 'urgente' : ''}">
-            <div class="label">${p.prazoUrgente ? '⚠ ' : ''}Prazo para Conclusão</div>
-            <div class="value">${p.prazo}</div>
-          </div>
-          <div class="info-item" style="grid-column:1/-1">
-            <div class="label">Informações BIM</div>
-            <div class="value">${p.bim}</div>
-          </div>
-        </div>
+    </footer>
 
-        <div class="fluxo-section">
-          <h4>Fluxo — Para Licitar</h4>
-          <div class="canvas-fluxo-wrap">
-            <canvas id="${canvasId}"></canvas>
-          </div>
-          <div class="legenda">
-            <div class="legenda-item"><div class="dot verde"></div> Providenciado</div>
-            <div class="legenda-item"><div class="dot vermelho"></div> Pendente / Em andamento</div>
-          </div>
-        </div>
-      </div>
-    `;
-    grid.appendChild(cardEl);
-  });
-}
-
-function toggleCard(bodyId, arrowId, canvasId, index) {
-  const body  = document.getElementById(bodyId);
-  const arrow = document.getElementById(arrowId);
-  const isOpening = !body.classList.contains('open');
-
-  body.classList.toggle('open');
-  arrow.classList.toggle('open');
-
-  if (isOpening && canvasId) {
-    const proj = projetosFiltrados[index];
-    if (proj) {
-      setTimeout(() => drawFluxo(canvasId, proj.fluxo), 20);
-    }
-  }
-}
-
-function filtrar() {
-  const equip  = document.getElementById('f-equip').value;
-  const mun    = document.getElementById('f-mun').value;
-  const status = document.getElementById('f-status').value;
-  const prazo  = document.getElementById('f-prazo').value;
-
-  projetosFiltrados = PROJETOS.filter(p => {
-    if (equip  && p.equip !== equip) return false;
-    if (mun    && p.mun   !== mun)   return false;
-    if (status && classifyLicitacao(p) !== status) return false;
-    if (prazo === 'urgente' && !p.prazoUrgente) return false;
-    if (prazo === 'sem' && !p.prazo.includes('SEM PREVISÃO')) return false;
-    return true;
-  });
-  renderProjetos(projetosFiltrados);
-  document.getElementById('cnt-dev').textContent = projetosFiltrados.length;
-}
-
-function limparFiltros() {
-  ['f-equip','f-mun','f-status','f-prazo'].forEach(id => document.getElementById(id).value='');
-  projetosFiltrados = [...PROJETOS];
-  renderProjetos(projetosFiltrados);
-  document.getElementById('cnt-dev').textContent = PROJETOS.length;
-}
-
-function renderAprovados(lista) {
-  const tbody = document.getElementById('aprovadosTbody');
-  const sem   = document.getElementById('semResultadoApr');
-  tbody.innerHTML = '';
-  if (!lista.length) { sem.style.display='block'; return; }
-  sem.style.display = 'none';
-
-  lista.forEach(a => {
-    const stsClass = a.sts==='EM OBRA' ? 'obra' : (a.sts.includes('DEFERIDO') ? 'deferido' : 'dev');
-    const valClass = a.val==='SEM INFORMAÇÃO' ? 'sem-info' : 'ok';
-    tbody.innerHTML += `
-      <tr class="aprovado-row">
-        <td><strong>${a.equip}</strong></td>
-        <td><strong>${a.id}</strong><br><small style="color:var(--cinza)">${a.mun}</small></td>
-        <td style="font-size:.78rem">${a.end}</td>
-        <td><span class="badge-processo">${a.proc}</span></td>
-        <td style="font-size:.78rem;color:var(--verde);font-weight:600">${a.prot}</td>
-        <td style="font-size:.78rem">${a.resp}</td>
-        <td><span class="validade-chip ${valClass}">📅 ${a.val}</span></td>
-        <td style="font-size:.75rem">${a.bim}</td>
-        <td><span class="badge-status ${stsClass}">${a.sts}</span></td>
-      </tr>
-    `;
-  });
-}
-
-function filtrarAprovados() {
-  const equip = document.getElementById('fa-equip').value;
-  const mun   = document.getElementById('fa-mun').value;
-  const sts   = document.getElementById('fa-sts').value;
-  const lista = APROVADOS.filter(a => {
-    if (equip && a.equip !== equip) return false;
-    if (mun   && a.mun   !== mun)   return false;
-    if (sts   && a.sts   !== sts)   return false;
-    return true;
-  });
-  renderAprovados(lista);
-  document.getElementById('cnt-apr').textContent = lista.length;
-}
-
-function limparFiltrosApr() {
-  ['fa-equip','fa-mun','fa-sts'].forEach(id => document.getElementById(id).value='');
-  renderAprovados(APROVADOS);
-  document.getElementById('cnt-apr').textContent = APROVADOS.length;
-}
-
-function desenharResumo() {
-  drawKPIs();
-  drawDocumentosFreq();
-  drawMunicipios();
-}
-
-function drawKPIs() {
-  const canvas = document.getElementById('canvasResumo');
-  const total  = PROJETOS.length;
-  const urgentes = PROJETOS.filter(p=>p.prazoUrgente).length;
-  const completos = PROJETOS.filter(p=>classifyLicitacao(p)==='completo').length;
-  const parciais  = PROJETOS.filter(p=>classifyLicitacao(p)==='parcial').length;
-  const iniciais  = PROJETOS.filter(p=>classifyLicitacao(p)==='inicial').length;
-  const aprovados = APROVADOS.length;
-
-  const W = canvas.parentElement.clientWidth || 900;
-  canvas.width  = W;
-  canvas.height = 220;
-  const ctx = canvas.getContext('2d');
-  ctx.clearRect(0,0,W,220);
-
-  ctx.fillStyle = '#1e5f9e';
-  ctx.beginPath();
-  if (ctx.roundRect) ctx.roundRect(0,0,W,220,10); else ctx.rect(0,0,W,220);
-  ctx.fill();
-
-  ctx.fillStyle = 'rgba(255,255,255,0.9)';
-  ctx.font = 'bold 13px Segoe UI, Arial';
-  ctx.textAlign = 'left';
-  ctx.fillText('PAINEL GERAL DE LEGALIZAÇÃO — SEPES-PE', 24, 30);
-
-  const cards = [
-    {label:'Projetos em Desenvolvimento', value:total,    icon:'🏗',  bg:'rgba(255,255,255,0.15)'},
-    {label:'Processos Aprovados',          value:aprovados,icon:'✅',  bg:'rgba(46,125,50,0.55)'},
-    {label:'Semana em Curso (Prioritários)', value:urgentes, icon:'🟨', bg:'rgba(245,158,11,0.55)'},
-    {label:'Fluxo Completo',               value:completos,icon:'🟢', bg:'rgba(46,125,50,0.4)'},
-    {label:'Fluxo Parcial',                value:parciais, icon:'🟡', bg:'rgba(245,158,11,0.4)'},
-    {label:'Fluxo Inicial',                value:iniciais, icon:'🔴', bg:'rgba(198,40,40,0.4)'}
-  ];
-  const cardW = (W - 48 - (cards.length-1)*12) / cards.length;
-  cards.forEach((c, i) => {
-    const x = 24 + i * (cardW + 12);
-    const y = 50;
-    ctx.fillStyle = c.bg;
-    ctx.beginPath();
-    if (ctx.roundRect) ctx.roundRect(x,y,cardW,148,8); else ctx.rect(x,y,cardW,148);
-    ctx.fill();
-
-    ctx.font = '30px Segoe UI, Arial';
-    ctx.textAlign = 'center';
-    ctx.fillText(c.icon, x+cardW/2, y+48);
-
-    ctx.font = 'bold 32px Segoe UI, Arial';
-    ctx.fillStyle = '#ffffff';
-    ctx.fillText(c.value, x+cardW/2, y+94);
-
-    ctx.font = '10px Segoe UI, Arial';
-    ctx.fillStyle = 'rgba(255,255,255,0.85)';
-    const words = c.label.split(' ');
-    let line = ''; let ly = y+116;
-    words.forEach(w => {
-      const test = line + w + ' ';
-      if (ctx.measureText(test).width > cardW - 10 && line) {
-        ctx.fillText(line.trim(), x+cardW/2, ly); ly+=13; line=w+' ';
-      } else { line=test; }
-    });
-    ctx.fillText(line.trim(), x+cardW/2, ly);
-  });
-}
-
-function drawDocumentosFreq() {
-  const canvas = document.getElementById('canvasFluxoGeral');
-  const W = canvas.parentElement.clientWidth || 900;
-  canvas.width  = W;
-  canvas.height = 220;
-  const ctx = canvas.getContext('2d');
-  ctx.clearRect(0,0,W,220);
-
-  ctx.fillStyle = '#ffffff';
-  ctx.beginPath();
-  if (ctx.roundRect) ctx.roundRect(0,0,W,220,10); else ctx.rect(0,0,W,220);
-  ctx.fill();
-  ctx.fillStyle = '#1e5f9e';
-  ctx.font = 'bold 12px Segoe UI, Arial';
-  ctx.textAlign = 'left';
-  ctx.fillText('FREQUÊNCIA DE DOCUMENTOS NECESSÁRIOS (Para Licitar)', 20, 26);
-
-  const freq = {};
-  PROJETOS.forEach(p => p.fluxo.forEach(f => {
-    freq[f.item] = freq[f.item] || {prov:0,pend:0};
-    if (f.status==='providenciado') freq[f.item].prov++;
-    else freq[f.item].pend++;
-  }));
-
-  const docs = Object.keys(freq).sort((a,b)=> (freq[b].prov+freq[b].pend) - (freq[a].prov+freq[a].pend)).slice(0,8);
-  const maxV = Math.max(...docs.map(d=>freq[d].prov+freq[d].pend));
-  const barH = 22, gap = 6, startY = 44, labelW = 200;
-  const barMaxW = W - labelW - 90;
-
-  docs.forEach((d, i) => {
-    const y = startY + i*(barH+gap);
-    const provW = (freq[d].prov/maxV) * barMaxW;
-    const pendW = (freq[d].pend/maxV) * barMaxW;
-
-    ctx.fillStyle = '#1a3a5c';
-    ctx.font = '10px Segoe UI, Arial';
-    ctx.textAlign = 'right';
-    const label = d.length>28 ? d.substring(0,27)+'…' : d;
-    ctx.fillText(label, labelW-6, y+barH/2+4);
-
-    if (provW > 0) {
-      ctx.fillStyle = '#2e7d32';
-      ctx.beginPath();
-      if (ctx.roundRect) ctx.roundRect(labelW, y, provW, barH, 4); else ctx.rect(labelW, y, provW, barH);
-      ctx.fill();
-    }
-    if (pendW > 0) {
-      ctx.fillStyle = '#c62828';
-      ctx.beginPath();
-      if (ctx.roundRect) ctx.roundRect(labelW+provW, y, pendW, barH, 4); else ctx.rect(labelW+provW, y, pendW, barH);
-      ctx.fill();
-    }
-    if (provW+pendW < barMaxW) {
-      ctx.fillStyle = '#e8f2fb';
-      ctx.beginPath();
-      if (ctx.roundRect) ctx.roundRect(labelW+provW+pendW, y, barMaxW-provW-pendW, barH, 4); else ctx.rect(labelW+provW+pendW, y, barMaxW-provW-pendW, barH);
-      ctx.fill();
-    }
-
-    ctx.fillStyle = '#546e7a';
-    ctx.font = 'bold 10px Segoe UI, Arial';
-    ctx.textAlign = 'left';
-    ctx.fillText(`${freq[d].prov}✓ / ${freq[d].pend}○`, labelW+barMaxW+8, y+barH/2+4);
-  });
-
-  const ly = startY + docs.length*(barH+gap) + 10;
-  ctx.fillStyle = '#2e7d32'; ctx.fillRect(20, ly, 14, 10);
-  ctx.fillStyle = '#546e7a'; ctx.font='10px Segoe UI'; ctx.textAlign='left'; ctx.fillText('Providenciado', 38, ly+9);
-  ctx.fillStyle = '#c62828'; ctx.fillRect(130, ly, 14, 10);
-  ctx.fillText('Pendente', 148, ly+9);
-}
-
-function drawMunicipios() {
-  const canvas = document.getElementById('canvasMunicipios');
-  const W = canvas.parentElement.clientWidth || 900;
-  canvas.width  = W;
-  canvas.height = 200;
-  const ctx = canvas.getContext('2d');
-  ctx.clearRect(0,0,W,200);
-
-  ctx.fillStyle = '#ffffff';
-  ctx.beginPath();
-  if (ctx.roundRect) ctx.roundRect(0,0,W,200,10); else ctx.rect(0,0,W,200);
-  ctx.fill();
-  ctx.fillStyle = '#1e5f9e';
-  ctx.font = 'bold 12px Segoe UI, Arial';
-  ctx.textAlign = 'left';
-  ctx.fillText('PROJETOS POR MUNICÍPIO E EQUIPAMENTO', 20, 26);
-
-  const muns = {};
-  PROJETOS.forEach(p => {
-    muns[p.mun] = muns[p.mun] || {};
-    muns[p.mun][p.equip] = (muns[p.mun][p.equip]||0) + 1;
-  });
-
-  const munKeys = Object.keys(muns);
-  const equipKeys = [...new Set(PROJETOS.map(p=>p.equip))];
-  const COLORS = {'HOSPITAL':'#1e5f9e','HEMOPE':'#2d82cc','FARMÁCIA':'#6fa8dc'};
-  const barW = Math.min(120, (W-80)/munKeys.length - 20);
-  const maxV = Math.max(...munKeys.map(m=>Object.values(muns[m]).reduce((a,b)=>a+b,0)));
-  const chartH = 120, startY = 50;
-
-  munKeys.forEach((m, mi) => {
-    const cx = 60 + mi*(barW+40);
-    let stackY = startY + chartH;
-    equipKeys.forEach(eq => {
-      const v = muns[m][eq]||0;
-      if (!v) return;
-      const bh = (v/maxV)*chartH;
-      stackY -= bh;
-      ctx.fillStyle = COLORS[eq]||'#90a4ae';
-      ctx.beginPath();
-      if (ctx.roundRect) ctx.roundRect(cx, stackY, barW, bh, 3); else ctx.rect(cx, stackY, barW, bh);
-      ctx.fill();
-      if (bh > 18) {
-        ctx.fillStyle = '#fff'; ctx.font='bold 11px Segoe UI'; ctx.textAlign='center';
-        ctx.fillText(v, cx+barW/2, stackY+bh/2+4);
-      }
-    });
-    ctx.fillStyle='#1a3a5c'; ctx.font='bold 10px Segoe UI'; ctx.textAlign='center';
-    ctx.fillText(m, cx+barW/2, startY+chartH+16);
-  });
-
-  let lx = 20;
-  equipKeys.forEach(eq => {
-    ctx.fillStyle=COLORS[eq]||'#90a4ae'; ctx.fillRect(lx, 32, 12, 12);
-    ctx.fillStyle='#546e7a'; ctx.font='10px Segoe UI'; ctx.textAlign='left';
-    ctx.fillText(eq, lx+16, 42);
-    lx += ctx.measureText(eq).width + 36;
-  });
-}
-
-renderProjetos(PROJETOS);
-renderAprovados(APROVADOS);
-</script>
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>
