@@ -1,180 +1,190 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Nome do Seu Site</title>
-    <meta
-      name="description"
-      content="Landing page moderna e responsiva para site pessoal ou empresa."
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <header class="header">
-      <div class="container nav">
-        <a href="#" class="logo">SeuLogo</a>
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light"><title>PROJETOS EM DESENVOLVIMENTO</title>
+<style>
+:root{color-scheme:light;--navy:#123b60;--deep:#174b76;--blue:#226b9b;--sky:#63b5e5;--pale:#e5f1fb;--paper:#eaf2f8;--line:#c8d9e8;--ink:#183247;--muted:#667c8e;--shadow:0 3px 12px rgba(20,65,101,.12)}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:linear-gradient(180deg,#dceaf5 0,#eaf2f8 210px,#eaf2f8 100%);color:var(--ink);font:14px/1.45 "Segoe UI",Arial,sans-serif}.topbar{display:flex;align-items:center;gap:14px;padding:12px 24px;background:linear-gradient(105deg,#123b60,#246c9d);color:white;box-shadow:0 3px 12px #163c5d40}.mark{width:48px;height:48px;flex:0 0 48px;border:3px solid rgba(255,255,255,.9);border-radius:50%;position:relative}.mark:before,.mark:after{content:"";position:absolute;border:1px solid rgba(255,255,255,.75);border-radius:50%;inset:8px}.mark:after{inset:15px}.brand{min-width:0;flex:1}.brand h1{margin:0;font-size:20px;line-height:1.2;font-weight:750;letter-spacing:.01em}.date{margin-top:4px;color:#e3eff8;font-size:13px}.tabs{display:flex;gap:0;align-items:stretch;min-height:40px;padding:0 28px;background:#193d60;color:#d4dfeb;overflow-x:auto;scrollbar-width:thin}.tab{padding:10px 20px 9px;border:0;border-bottom:3px solid transparent;background:transparent;color:inherit;font:600 14px "Segoe UI",Arial,sans-serif;white-space:nowrap;cursor:pointer}.tab:hover{background:#ffffff12;color:white}.tab[aria-selected=true]{border-bottom-color:#55b9eb;background:#ffffff0b;color:white;font-weight:750}.tab:focus-visible,select:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid #7dd3fc;outline-offset:2px}.wrap{max-width:1500px;margin:0 auto;padding:22px 24px 48px}.filters{display:grid;grid-template-columns:minmax(170px,1fr) minmax(190px,1fr) minmax(220px,1.35fr);gap:14px;margin-bottom:17px;padding:15px 18px;background:white;border:1px solid #d5e1ec;border-radius:12px;box-shadow:var(--shadow)}.filter select,.filter input{width:100%;height:38px;padding:8px 11px;border:1px solid #aec4d7;border-radius:7px;background:#eef5fb;color:#23455f;font:13px "Segoe UI",Arial,sans-serif}.panels{display:block}.panel{display:none}.panel.active{display:block}.cards{display:grid;gap:12px}.equip-card{overflow:hidden;border:1px solid #d2e0eb;border-left:5px solid #3985b9;border-radius:10px;background:linear-gradient(110deg,#dfedf8,#d6e8f6);box-shadow:0 3px 8px rgba(31,83,124,.10)}.equip-card.historical{border-left-color:#9aa7b4;background:linear-gradient(110deg,#eef1f4,#e4e9ee)}.equip-card.deadline{border-left-color:#f0a000}.equip-card[hidden]{display:none}summary{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:12px;min-height:76px;padding:13px 16px;cursor:pointer;list-style:none}summary::-webkit-details-marker{display:none}.kind{display:inline-flex;align-items:center;justify-content:center;min-width:78px;padding:6px 10px;border-radius:6px;background:#246b99;color:#fff;text-align:center;font-size:11px;font-weight:750;letter-spacing:.025em}.historical .kind{background:#68798a}.card-title{margin:0;color:#163d5b;font-size:14px;line-height:1.3;font-weight:750}.meta{margin-top:2px;color:#536d81;font-size:12px}.address{margin-top:2px;color:#586e7f;font-size:11px;font-style:italic}.chevron{width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-top:8px solid #28658e;transition:transform .15s}.equip-card[open] .chevron{transform:rotate(180deg)}.card-body{padding:3px 16px 16px 18px;border-top:1px solid #bfd2e2;background:rgba(255,255,255,.66)}.processes{display:grid;gap:10px;padding-top:12px}.process-card{overflow:hidden;border:1px solid #d9e3ec;border-radius:8px;background:#fff}.process-card summary{min-height:48px;grid-template-columns:auto minmax(0,1fr) auto;padding:9px 12px;background:#f5f9fc}.process-number{display:flex;align-items:center;gap:7px;padding:5px 8px;border-radius:5px;background:#e6f1f8;color:#1b5883}.process-number .field-label{margin:0;color:#1b5883}.process-number strong{font-size:12px}.process-name{margin:0;color:#20435f;font-size:13px;font-weight:700}.process-card .chevron{width:0;height:0}.process-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;padding:12px}.data-field{min-width:0}.field-label{display:block;margin:0 0 4px;color:#44647e;font-size:10px;line-height:1.3;font-weight:750;letter-spacing:.055em;text-transform:uppercase}.field-value{min-height:35px;padding:8px 9px;border:1px solid #e1e8ef;border-radius:6px;color:#273e51;font-size:12px;line-height:1.5;white-space:pre-wrap;overflow-wrap:anywhere}.group-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:12px;padding-top:12px;border-top:1px solid #d4e0ea}.empty{display:none}.panel:not(.active){display:none}
+.process-quick{grid-column:1/-1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;width:100%;padding-top:9px;border-top:1px solid #d5e1ec}.process-quick .data-field{min-width:0}.process-quick .field-value{background-color:#fff!important}.process-card.historical-process>summary{background:#e5e9ef;color:#566273}.process-card.historical-process .process-number{background:#d6dde4;color:#566273}.process-card.historical-process .process-number .field-label{color:#566273}.process-quick .field-value,.process-quick .field-value span{font-weight:400!important}@media(max-width:700px){.topbar{padding:11px 14px}.mark{width:40px;height:40px;flex-basis:40px}.brand h1{font-size:16px}.date{font-size:11px}.tabs{padding:0 8px}.tab{padding:10px 13px;font-size:12px}.wrap{padding:14px 11px 30px}.filters{grid-template-columns:1fr;gap:9px;padding:12px}.filters .filter:first-child,.filters .filter:nth-child(2){min-width:0}summary{grid-template-columns:auto minmax(0,1fr) auto;gap:9px;padding:11px 9px}.kind{min-width:67px;padding:5px 7px;font-size:10px}.card-title{font-size:12px}.meta,.address{font-size:10px}.card-body{padding:3px 8px 10px}.process-card summary{padding:8px}.process-quick{grid-template-columns:1fr;gap:7px}.process-fields,.group-fields{grid-template-columns:1fr;gap:8px;padding:9px}}
+@media print{@page{size:A4 portrait;margin:10mm}body{background:#fff!important}.topbar{padding:8px 0;background:#174b76!important;print-color-adjust:exact;-webkit-print-color-adjust:exact}.mark{display:none}.tabs,.filters{display:none}.wrap{max-width:none;padding:8mm 0}.panel{display:block!important;page-break-after:always}.equip-card{break-inside:avoid;box-shadow:none;background:#eef5fb!important;print-color-adjust:exact;-webkit-print-color-adjust:exact}.equip-card:not([open]) .card-body{display:block}.equip-card summary{padding:7px 10px;min-height:0}.process-card{break-inside:avoid}.process-card:not([open]) .process-fields{display:grid}.process-card summary{padding:6px 9px}.field-value{print-color-adjust:exact;-webkit-print-color-adjust:exact}}
+</style></head><body>
+<header class="topbar"><div class="mark" aria-hidden="true"></div><div class="brand"><h1>PROJETOS EM DESENVOLVIMENTO</h1><div class="date">Data de gera&#231;&#227;o: 03/11/2026</div></div></header><nav class="tabs" role="tablist">
+<button class="tab" type="button" role="tab" id="tab-1" aria-controls="panel-1" aria-selected="true" onclick="showSheet(1)">PROJETOS EM DESENVOLVIMENTO</button>
+<button class="tab" type="button" role="tab" id="tab-2" aria-controls="panel-2" aria-selected="false" onclick="showSheet(2)">PROCESSOS J&#193; APROVADOS</button>
+</nav><main class="wrap"><div class="filters"><div class="filter"><select id="filter-equipment" aria-label="EQUIPAMENTO"><option value="">EQUIPAMENTO</option>
+<option value="HOSPITAL">HOSPITAL</option>
+<option value="HEMOPE">HEMOPE</option>
+<option value="FARM&#193;CIA">FARM&#193;CIA</option>
+</select></div><div class="filter"><select id="filter-municipality" aria-label="MUNIC&#205;PIO"><option value="">MUNIC&#205;PIO</option>
+<option value="RECIFE">RECIFE</option>
+<option value="FERNANDO DE NORONHA">FERNANDO DE NORONHA</option>
+</select></div><div class="filter"><input id="filter-search" type="search" aria-label="IDENTIFICADOR" placeholder="IDENTIFICADOR"></div></div>
+<section class="panel active" id="panel-1" role="tabpanel" aria-labelledby="tab-1"><div class="cards">
+<details class="equip-card" open data-equipment="HOSPITAL" data-municipality="RECIFE" data-search="HOSPITAL RECIFE AV. CAXANG&#193;, 3860 - IPUTINGA, RECIFE-PE BAR&#195;O DE LUCENA - HBL AV. CAXANG&#193;, 3860 - IPUTINGA, RECIFE-PE 1 PROJETO DE LEGALIZA&#199;&#195;O/REFORMA Reingressar ap&#243;s LP EM STAND BY Sem exig&#234;ncia PROJETO INDEFERIDO, AGUARDANDO LIBERA&#199;&#195;O DA LP RGI -&gt; Viabilidades de &#193;gua e Esgoto -&gt; Protocolo Bombeiros -&gt; ETA -&gt; MD/RRT -&gt; Projeto/Invent&#225;rio Florestal  Projeto elaborado em CAD BAR&#195;O DE LUCENA - HBL AV. CAXANG&#193;, 3860 - IPUTINGA, RECIFE-PE 2 LICEN&#199;A PR&#201;VIA AMBIENTAL 8042813926 Preparando documenta&#231;&#227;o para exig&#234;ncia Projeto arquitet&#244;nico completo + Viabilidade de &#225;gua e esgoto + Memorial justificativo do que &#233; o processo 10.11.2026 LP N&#227;o se aplica"><summary><span class="kind">HOSPITAL</span><div class="identity"><h2 class="card-title">BAR&#195;O DE LUCENA - HBL</h2><div class="meta">RECIFE</div><div class="address">AV. CAXANG&#193;, 3860 - IPUTINGA, RECIFE-PE</div></div><span class="chevron" aria-hidden="true"></span></summary><div class="card-body"><div class="processes">
+<details class="process-card historical-process"><summary><span class="process-number"><span class="field-label">PROCESSOS</span><strong>1</strong></span><h3 class="process-name">PROJETO DE LEGALIZA&#199;&#195;O/REFORMA</h3><span class="chevron" aria-hidden="true"></span><div class="process-quick"><div class="data-field"><span class="field-label">PARA LICITAR</span><div class="field-value" style="background-color:#FFFFFF"><span style="color:#70AD47">RGI -&gt; Viabilidades de &#193;gua e Esgoto -&gt; Protocolo Bombeiros -&gt; ETA -&gt; MD/RRT -&gt;</span><span style="color:#000000"> </span><span style="color:#FF0000">Projeto</span><span style="color:#70AD47">/Invent&#225;rio Florestal </span></div></div><div class="data-field"><span class="field-label">INFORMA&#199;&#213;ES BIM</span><div class="field-value" style="background-color:#FFFFFF"><span style="color:#000000">Projeto elaborado em CAD</span></div></div></div></summary><div class="process-fields">
+<div class="data-field"><span class="field-label">PROTOCOLO</span><div class="field-value" style="background-color:#CCCCCC"><span style="color:#000000">Reingressar ap&#243;s LP</span></div></div>
+<div class="data-field"><span class="field-label">ETAPA DE ELABORA&#199;&#195;O</span><div class="field-value" style="background-color:#CCCCCC"><span style="color:#000000">EM STAND BY</span></div></div>
+<div class="data-field"><span class="field-label">EXIG&#202;NCIAS DO INGRESSO</span><div class="field-value" style="background-color:#CCCCCC"><span style="color:#000000">Sem exig&#234;ncia</span></div></div>
+<div class="data-field"><span class="field-label">PRAZO PARA CONCLUS&#195;O</span><div class="field-value" style="background-color:#CCCCCC"><span style="color:#000000">PROJETO INDEFERIDO, AGUARDANDO LIBERA&#199;&#195;O DA LP</span></div></div>
 
-        <button class="menu-toggle" aria-label="Abrir menu">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
 
-        <nav class="nav-menu">
-          <a href="#inicio">Início</a>
-          <a href="#sobre">Sobre</a>
-          <a href="#servicos">Serviços</a>
-          <a href="#contato">Contato</a>
-          <a href="#contato" class="btn btn-primary">Fale conosco</a>
-        </nav>
-      </div>
-    </header>
+</div></details>
+<details class="process-card"><summary><span class="process-number"><span class="field-label">PROCESSOS</span><strong>2</strong></span><h3 class="process-name">LICEN&#199;A PR&#201;VIA AMBIENTAL</h3><span class="chevron" aria-hidden="true"></span><div class="process-quick"><div class="data-field"><span class="field-label">PARA LICITAR</span><div class="field-value" style="background-color:#FFFFFF"><span style="font-weight:700;color:#FF0000">LP</span></div></div><div class="data-field"><span class="field-label">INFORMA&#199;&#213;ES BIM</span><div class="field-value" style="background-color:#FFFFFF"><span style="color:#000000">N&#227;o se aplica</span></div></div></div></summary><div class="process-fields">
+<div class="data-field"><span class="field-label">PROTOCOLO</span><div class="field-value" style="background-color:#FFFFFF"><span style="color:#000000">8042813926</span></div></div>
+<div class="data-field"><span class="field-label">ETAPA DE ELABORA&#199;&#195;O</span><div class="field-value" style="background-color:#FFFFFF"><span style="color:#000000">Preparando documenta&#231;&#227;o para exig&#234;ncia</span></div></div>
+<div class="data-field"><span class="field-label">EXIG&#202;NCIAS DO INGRESSO</span><div class="field-value" style="background-color:#FFFFFF"><span style="color:#000000">Projeto arquitet&#244;nico completo + Viabilidade de &#225;gua e esgoto + Memorial justificativo do que &#233; o processo</span></div></div>
+<div class="data-field"><span class="field-label">PRAZO PARA CONCLUS&#195;O</span><div class="field-value" style="background-color:#FBBC04"><span style="color:#000000">10.11.2026</span></div></div>
 
-    <main>
-      <section id="inicio" class="hero">
-        <div class="container hero-content">
-          <div class="hero-text">
-            <span class="eyebrow">Sua marca, em destaque</span>
-            <h1>Crie uma presença digital que converte.</h1>
-            <p>
-              Soluções modernas para quem quer atrair clientes, transmitir
-              confiança e vender melhor na internet.
-            </p>
 
-            <div class="hero-actions">
-              <a href="#contato" class="btn btn-primary">Solicitar orçamento</a>
-              <a href="#servicos" class="btn btn-secondary">Ver serviços</a>
-            </div>
+</div></details>
+</div></details>
+<details class="equip-card" open data-equipment="HEMOPE" data-municipality="RECIFE" data-search="HEMOPE RECIFE R. JOAQUIM NABUCO, 171 - GRA&#199;AS - RECIFE-PE GLEBA TOTAL - RECIFE R. JOAQUIM NABUCO, 171 - GRA&#199;AS - RECIFE-PE 1 REFORMA COM ACR&#201;SCIMO DE &#193;REA 8043533026 Indeferido por decurso de prazo ----- ----- RGI -&gt; Viabilidades de &#193;gua e Esgoto -&gt; Protocolo Bombeiros -&gt; ETA -&gt; MD/RRT/Projeto -&gt; Invent&#225;rio Florestal -&gt; LP BIMLega implantado em curso GLEBA TOTAL - RECIFE 
+ R. JOAQUIM NABUCO, 171 - GRA&#199;AS - RECIFE-PE 2 REFORMA COM ACR&#201;SCIMO DE &#193;REA 8051800326 Elaborando projetos para ingresso Em an&#225;lise pela Prefeitura do Recife ----- RGI -&gt; Viabilidades de &#193;gua e Esgoto -&gt; Protocolo Bombeiros -&gt; ETA -&gt; MD/RRT/Projeto -&gt; Invent&#225;rio Florestal -&gt; LP BIMLega implantado em curso BLOCO A - RECIFE R. JOAQUIM NABUCO, 171 - GRA&#199;AS - RECIFE-PE 3 APEVISA ------- Enviado para an&#225;lise em 19/10/2026 EM AN&#193;LISE PELA APEVISA SEM PREVIS&#195;O RGI -&gt; Viabilidades de &#193;gua e Esgoto -&gt; Protocolo Bombeiros -&gt; ETA -&gt; MD/RRT/Projeto -&gt; Invent&#225;rio Florestal -&gt; LP BIMLega implantado em curso"><summary><span class="kind">HEMOPE</span><div class="identity"><h2 class="card-title">GLEBA TOTAL - RECIFE</h2><div class="meta">RECIFE</div><div class="address">R. JOAQUIM NABUCO, 171 - GRA&#199;AS - RECIFE-PE</div></div><span class="chevron" aria-hidden="true"></span></summary><div class="card-body"><div class="processes">
+<details class="process-card historical-process"><summary><span class="process-number"><span class="field-label">PROCESSOS</span><strong>1</strong></span><h3 class="process-name">REFORMA COM ACR&#201;SCIMO DE &#193;REA</h3><span class="chevron" aria-hidden="true"></span></summary><div class="process-fields">
+<div class="data-field"><span class="field-label">IDENTIFICADOR</span><div class="field-value" style="background-color:#CCCCCC"><span style="color:#000000">GLEBA TOTAL - RECIFE</span></div></div>
+<div class="data-field"><span class="field-label">PROTOCOLO</span><div class="field-value" style="background-color:#CCCCCC"><span style="color:#000000">8043533026</span></div></div>
+<div class="data-field"><span class="field-label">ETAPA DE ELABORA&#199;&#195;O</span><div class="field-value" style="background-color:#CCCCCC"><span style="color:#000000">Indeferido por decurso de prazo</span></div></div>
+<div class="data-field"><span class="field-label">EXIG&#202;NCIAS DO INGRESSO</span><div class="field-value" style="background-color:#CCCCCC"><span style="color:#000000">-----</span></div></div>
+<div class="data-field"><span class="field-label">PRAZO PARA CONCLUS&#195;O</span><div class="field-value" style="background-color:#CCCCCC"><span style="color:#000000">-----</span></div></div>
+</div></details>
+<details class="process-card"><summary><span class="process-number"><span class="field-label">PROCESSOS</span><strong>2</strong></span><h3 class="process-name">REFORMA COM ACR&#201;SCIMO DE &#193;REA</h3><span class="chevron" aria-hidden="true"></span></summary><div class="process-fields">
+<div class="data-field"><span class="field-label">IDENTIFICADOR</span><div class="field-value" style="background-color:#FFFFFF"><span style="color:#000000">GLEBA TOTAL - RECIFE 
+</span></div></div>
+<div class="data-field"><span class="field-label">PROTOCOLO</span><div class="field-value" style="background-color:#FFFFFF"><span style="color:#000000">8051800326</span></div></div>
+<div class="data-field"><span class="field-label">ETAPA DE ELABORA&#199;&#195;O</span><div class="field-value" style="background-color:#FFFFFF"><span style="color:#000000">Elaborando projetos para ingresso</span></div></div>
+<div class="data-field"><span class="field-label">EXIG&#202;NCIAS DO INGRESSO</span><div class="field-value" style="background-color:#FFFFFF"><span style="color:#000000">Em an&#225;lise pela Prefeitura do Recife</span></div></div>
+<div class="data-field"><span class="field-label">PRAZO PARA CONCLUS&#195;O</span><div class="field-value" style="background-color:#FFFFFF"><span style="color:#000000">-----</span></div></div>
+</div></details>
+<details class="process-card"><summary><span class="process-number"><span class="field-label">PROCESSOS</span><strong>3</strong></span><h3 class="process-name">APEVISA</h3><span class="chevron" aria-hidden="true"></span></summary><div class="process-fields">
+<div class="data-field"><span class="field-label">IDENTIFICADOR</span><div class="field-value" style="background-color:#FFFFFF"><span style="color:#000000">BLOCO A - RECIFE</span></div></div>
+<div class="data-field"><span class="field-label">PROTOCOLO</span><div class="field-value" style="background-color:#FFFFFF"><span style="color:#000000">-------</span></div></div>
+<div class="data-field"><span class="field-label">ETAPA DE ELABORA&#199;&#195;O</span><div class="field-value" style="background-color:#FFFFFF"><span style="color:#000000">Enviado para an&#225;lise em 19/10/2026</span></div></div>
+<div class="data-field"><span class="field-label">EXIG&#202;NCIAS DO INGRESSO</span><div class="field-value" style="background-color:#FFFFFF"><span style="color:#000000">EM AN&#193;LISE PELA APEVISA</span></div></div>
+<div class="data-field"><span class="field-label">PRAZO PARA CONCLUS&#195;O</span><div class="field-value" style="background-color:#FFFFFF"><span style="color:#000000">SEM PREVIS&#195;O</span></div></div>
+</div></details>
+<div class="group-fields">
+<div class="data-field"><span class="field-label">PARA LICITAR</span><div class="field-value" style="background-color:#FFFFFF"><span style="color:#70AD47">RGI -&gt; Viabilidades de &#193;gua e Esgoto -&gt; Protocolo Bombeiros -&gt; ETA -&gt; MD/RRT</span><span style="color:#000000">/</span><span style="color:#FF0000">Projeto</span><span style="color:#000000"> </span><span style="color:#70AD47">-&gt; Invent&#225;rio Florestal -&gt; LP</span></div></div>
+<div class="data-field"><span class="field-label">INFORMA&#199;&#213;ES BIM</span><div class="field-value" style="background-color:#FFFFFF"><span style="color:#000000">BIMLega implantado em curso</span></div></div>
+</div>
+</div></details>
+<details class="equip-card deadline" open data-equipment="FARM&#193;CIA" data-municipality="RECIFE" data-search="FARM&#193;CIA RECIFE AVENIDA MARECHAL MASCARENHAS DE MORAES, IMBIRIBEIRA, RECIFE-PE FARM&#193;CIA CENTRAL AVENIDA MARECHAL MASCARENHAS DE MORAES, IMBIRIBEIRA, RECIFE-PE 1 REFORMA COM ACR&#201;SCIMO DE &#193;REA ------- Preparando plantas de implanta&#231;&#227;o ap&#243;s a defini&#231;&#227;o da poligonal pela SEDUH ----- 04/11/2026 RGI -&gt; Viabilidades de &#193;gua e Esgoto -&gt; Protocolo Bombeiros -&gt; ETA -&gt; MD/RRT -&gt; Projeto/Invent&#225;rio Florestal -&gt; LP MODELO BIMLEGA N&#195;O FOI IMPLANTADO NO CURSO DO PROJETO, O MODELO CENTRAL PRECISAR&#193; DE AJUSTES AGORA PARA IMPLANTA&#199;&#195;O FARM&#193;CIA CENTRAL AVENIDA MARECHAL MASCARENHAS DE MORAES, IMBIRIBEIRA, RECIFE-PE 2 LICEN&#199;A PR&#201;VIA AMBIENTAL 8051690326 Aguardando an&#225;lise pela Prefeitura do Recife Em an&#225;lise pela Prefeitura do Recife ----- RGI -&gt; Viabilidades de &#193;gua e Esgoto -&gt; Protocolo Bombeiros -&gt; ETA -&gt; MD/RRT -&gt; Projeto/Invent&#225;rio Florestal -&gt; LP MODELO BIMLEGA N&#195;O FOI IMPLANTADO NO CURSO DO PROJETO, O MODELO CENTRAL PRECISAR&#193; DE AJUSTES AGORA PARA IMPLANTA&#199;&#195;O"><summary><span class="kind">FARM&#193;CIA</span><div class="identity"><h2 class="card-title">FARM&#193;CIA CENTRAL</h2><div class="meta">RECIFE</div><div class="address">AVENIDA MARECHAL MASCARENHAS DE MORAES, IMBIRIBEIRA, RECIFE-PE</div></div><span class="chevron" aria-hidden="true"></span></summary><div class="card-body"><div class="processes">
+<details class="process-card"><summary><span class="process-number"><span class="field-label">PROCESSOS</span><strong>1</strong></span><h3 class="process-name">REFORMA COM ACR&#201;SCIMO DE &#193;REA</h3><span class="chevron" aria-hidden="true"></span></summary><div class="process-fields">
+<div class="data-field"><span class="field-label">PROTOCOLO</span><div class="field-value" style="background-color:#FFFFFF"><span style="color:#000000">-------</span></div></div>
+<div class="data-field"><span class="field-label">ETAPA DE ELABORA&#199;&#195;O</span><div class="field-value" style="background-color:#FFFFFF"><span style="color:#000000">Preparando plantas de implanta&#231;&#227;o ap&#243;s a defini&#231;&#227;o da poligonal pela SEDUH</span></div></div>
+<div class="data-field"><span class="field-label">EXIG&#202;NCIAS DO INGRESSO</span><div class="field-value" style="background-color:#FFFFFF"><span style="color:#000000">-----</span></div></div>
+<div class="data-field"><span class="field-label">PRAZO PARA CONCLUS&#195;O</span><div class="field-value" style="background-color:#FBBC04"><span style="color:#000000">04/11/2026</span></div></div>
+</div></details>
+<details class="process-card"><summary><span class="process-number"><span class="field-label">PROCESSOS</span><strong>2</strong></span><h3 class="process-name">LICEN&#199;A PR&#201;VIA AMBIENTAL</h3><span class="chevron" aria-hidden="true"></span></summary><div class="process-fields">
+<div class="data-field"><span class="field-label">PROTOCOLO</span><div class="field-value" style="background-color:#FFFFFF"><span style="color:#000000">8051690326</span></div></div>
+<div class="data-field"><span class="field-label">ETAPA DE ELABORA&#199;&#195;O</span><div class="field-value" style="background-color:#FFFFFF"><span style="color:#000000">Aguardando an&#225;lise pela Prefeitura do Recife</span></div></div>
+<div class="data-field"><span class="field-label">EXIG&#202;NCIAS DO INGRESSO</span><div class="field-value" style="background-color:#FFFFFF"><span style="color:#000000">Em an&#225;lise pela Prefeitura do Recife</span></div></div>
+<div class="data-field"><span class="field-label">PRAZO PARA CONCLUS&#195;O</span><div class="field-value" style="background-color:#FFFFFF"><span style="color:#000000">-----</span></div></div>
+</div></details>
+<div class="group-fields">
+<div class="data-field"><span class="field-label">PARA LICITAR</span><div class="field-value" style="background-color:#FFFFFF"><span style="color:#70AD47">RGI -&gt; Viabilidades de &#193;gua e Esgoto -&gt; Protocolo Bombeiros -&gt; ETA -&gt; MD/RRT -&gt; </span><span style="color:#FF0000">Projeto</span><span style="color:#70AD47">/Invent&#225;rio Florestal -&gt;</span><span style="color:#000000"> </span><span style="color:#FF0000">LP</span></div></div>
+<div class="data-field"><span class="field-label">INFORMA&#199;&#213;ES BIM</span><div class="field-value" style="background-color:#FFFFFF"><span style="color:#000000">MODELO BIMLEGA N&#195;O FOI IMPLANTADO NO CURSO DO PROJETO, O MODELO CENTRAL PRECISAR&#193; DE AJUSTES AGORA PARA IMPLANTA&#199;&#195;O</span></div></div>
+</div>
+</div></details>
+<details class="equip-card" open data-equipment="HOSPITAL" data-municipality="FERNANDO DE NORONHA" data-search="HOSPITAL FERNANDO DE NORONHA AV. MARECHAL MASCARENHAS DE MORAES, IMBIRIBEIRA, RECIFE-PE HOSPITAL - FERNANDO DE NORONHA (S&#195;O LUCAS) AV. MARECHAL MASCARENHAS DE MORAES, IMBIRIBEIRA, RECIFE-PE 1 REFORMA COM ACR&#201;SCIMO DE &#193;REA OU LEGALIZA&#199;&#195;O COM ACR&#201;SIMO DE &#193;REA ------- Aguardando conclus&#227;o do projeto pela equipe ----- 10 DIAS &#218;TEIS AP&#211;S O RECEBIMENTO Doc. Propriedade -&gt; Viabilidades de &#193;gua e Esgoto -&gt; Protocolo Bombeiros -&gt; ETA -&gt; MD/RRT/Projeto -&gt; Invent&#225;rio Florestal -&gt; ICMBio -&gt; LP MODELO BIMLEGA N&#195;O FOI IMPLANTADO NO CURSO DO PROJETO, O MODELO CENTRAL PRECISAR&#193; DE AJUSTES"><summary><span class="kind">HOSPITAL</span><div class="identity"><h2 class="card-title">HOSPITAL - FERNANDO DE NORONHA (S&#195;O LUCAS)</h2><div class="meta">FERNANDO DE NORONHA</div><div class="address">AV. MARECHAL MASCARENHAS DE MORAES, IMBIRIBEIRA, RECIFE-PE</div></div><span class="chevron" aria-hidden="true"></span></summary><div class="card-body"><div class="processes">
+<details class="process-card"><summary><span class="process-number"><span class="field-label">PROCESSOS</span><strong>1</strong></span><h3 class="process-name">REFORMA COM ACR&#201;SCIMO DE &#193;REA OU LEGALIZA&#199;&#195;O COM ACR&#201;SIMO DE &#193;REA</h3><span class="chevron" aria-hidden="true"></span><div class="process-quick"><div class="data-field"><span class="field-label">PARA LICITAR</span><div class="field-value" style="background-color:#FFFFFF"><span style="color:#70AD47">Doc. Propriedade -&gt; Viabilidades de &#193;gua e Esgoto -&gt; Protocolo Bombeiros -&gt;</span><span style="color:#000000"> </span><span style="color:#FF0000">ETA -&gt; MD/RRT/Projeto -&gt; Invent&#225;rio Florestal -&gt; ICMBio -&gt; LP</span></div></div><div class="data-field"><span class="field-label">INFORMA&#199;&#213;ES BIM</span><div class="field-value" style="background-color:#FFFFFF"><span style="color:#000000">MODELO BIMLEGA N&#195;O FOI IMPLANTADO NO CURSO DO PROJETO, O MODELO CENTRAL PRECISAR&#193; DE AJUSTES</span></div></div></div></summary><div class="process-fields">
+<div class="data-field"><span class="field-label">IDENTIFICADOR</span><div class="field-value" style="background-color:#FFFFFF"><span style="color:#000000">HOSPITAL - FERNANDO DE NORONHA (S&#195;O LUCAS)</span></div></div>
+<div class="data-field"><span class="field-label">PROTOCOLO</span><div class="field-value" style="background-color:#FFFFFF"><span style="color:#000000">-------</span></div></div>
+<div class="data-field"><span class="field-label">ETAPA DE ELABORA&#199;&#195;O</span><div class="field-value" style="background-color:#FFFFFF"><span style="color:#000000">Aguardando conclus&#227;o do projeto pela equipe</span></div></div>
+<div class="data-field"><span class="field-label">EXIG&#202;NCIAS DO INGRESSO</span><div class="field-value" style="background-color:#FFFFFF"><span style="color:#000000">-----</span></div></div>
+<div class="data-field"><span class="field-label">PRAZO PARA CONCLUS&#195;O</span><div class="field-value" style="background-color:#FFFFFF"><span style="color:#000000">10 DIAS &#218;TEIS AP&#211;S O RECEBIMENTO</span></div></div>
 
-            <ul class="hero-list">
-              <li>Design profissional</li>
-              <li>Site responsivo</li>
-              <li>Foco em conversão</li>
-            </ul>
-          </div>
 
-          <div class="hero-card">
-            <div class="card-box">
-              <span class="label">Resultado</span>
-              <h3>+180%</h3>
-              <p>Em engajamento e leads com estratégia digital.</p>
-            </div>
-          </div>
-        </div>
-      </section>
+</div></details>
+</div></details>
+<details class="equip-card historical" open data-equipment="HOSPITAL" data-municipality="RECIFE" data-search="HOSPITAL RECIFE AV. GOVERNADOR AGAMENON MAGALH&#195;ES, SN - DERBY, RECIFE-PE HOSPITAL - RECIFE (RESTAURA&#199;&#195;O - HR) AV. GOVERNADOR AGAMENON MAGALH&#195;ES, SN - DERBY, RECIFE-PE 1 REFORMA COM ACR&#201;SCIMO DE &#193;REA Reingressar ap&#243;s EIV EM STAND BY Sem exig&#234;ncia PROJETO INDEFERIDO AGUARDANDO APROVA&#199;&#195;O DO EIV RGI -&gt; Viabilidades de &#193;gua e Esgoto -&gt; Protocolo Bombeiros -&gt; ETA -&gt; MD/RRT/Projeto/Invent&#225;rio Florestal -&gt; LP -&gt; EIV + Aprova&#231;&#227;o de Projetos N&#195;O SE APLICA NESSA ETAPA. POR&#201;M MODELO BIMLEGA N&#195;O FOI IMPLANTADO NO CURSO DO PROJETO, O MODELO CENTRAL PRECISAR&#193; DE AJUSTES FUTURAMENTE HOSPITAL - RECIFE (RESTAURA&#199;&#195;O - HR) AV. GOVERNADOR AGAMENON MAGALH&#195;ES, SN - DERBY, RECIFE-PE 2 EIV 8020054826 Aguardando an&#225;lise pela Prefeitura do Recife Em an&#225;lise pela Prefeitura do Recife PREVIS&#195;O PARA 1&#170; QUINZENA DE NOVEMBRO RGI -&gt; Viabilidades de &#193;gua e Esgoto -&gt; Protocolo Bombeiros -&gt; ETA -&gt; MD/RRT/Projeto/Invent&#225;rio Florestal -&gt; LP -&gt; EIV + Aprova&#231;&#227;o de Projetos N&#195;O SE APLICA NESSA ETAPA. POR&#201;M MODELO BIMLEGA N&#195;O FOI IMPLANTADO NO CURSO DO PROJETO, O MODELO CENTRAL PRECISAR&#193; DE AJUSTES FUTURAMENTE"><summary><span class="kind">HOSPITAL</span><div class="identity"><h2 class="card-title">HOSPITAL - RECIFE (RESTAURA&#199;&#195;O - HR)</h2><div class="meta">RECIFE</div><div class="address">AV. GOVERNADOR AGAMENON MAGALH&#195;ES, SN - DERBY, RECIFE-PE</div></div><span class="chevron" aria-hidden="true"></span></summary><div class="card-body"><div class="processes">
+<details class="process-card"><summary><span class="process-number"><span class="field-label">PROCESSOS</span><strong>1</strong></span><h3 class="process-name">REFORMA COM ACR&#201;SCIMO DE &#193;REA</h3><span class="chevron" aria-hidden="true"></span></summary><div class="process-fields">
+<div class="data-field"><span class="field-label">PROTOCOLO</span><div class="field-value" style="background-color:#CCCCCC"><span style="color:#000000">Reingressar ap&#243;s EIV</span></div></div>
+<div class="data-field"><span class="field-label">ETAPA DE ELABORA&#199;&#195;O</span><div class="field-value" style="background-color:#CCCCCC"><span style="color:#000000">EM STAND BY</span></div></div>
+<div class="data-field"><span class="field-label">EXIG&#202;NCIAS DO INGRESSO</span><div class="field-value" style="background-color:#CCCCCC"><span style="color:#000000">Sem exig&#234;ncia</span></div></div>
+<div class="data-field"><span class="field-label">PRAZO PARA CONCLUS&#195;O</span><div class="field-value" style="background-color:#CCCCCC"><span style="color:#000000">PROJETO INDEFERIDO AGUARDANDO APROVA&#199;&#195;O DO EIV</span></div></div>
+</div></details>
+<details class="process-card"><summary><span class="process-number"><span class="field-label">PROCESSOS</span><strong>2</strong></span><h3 class="process-name">EIV</h3><span class="chevron" aria-hidden="true"></span></summary><div class="process-fields">
+<div class="data-field"><span class="field-label">PROTOCOLO</span><div class="field-value" style="background-color:#FFFFFF"><span style="color:#000000">8020054826</span></div></div>
+<div class="data-field"><span class="field-label">ETAPA DE ELABORA&#199;&#195;O</span><div class="field-value" style="background-color:#FFFFFF"><span style="color:#000000">Aguardando an&#225;lise pela Prefeitura do Recife</span></div></div>
+<div class="data-field"><span class="field-label">EXIG&#202;NCIAS DO INGRESSO</span><div class="field-value" style="background-color:#FFFFFF"><span style="color:#000000">Em an&#225;lise pela Prefeitura do Recife</span></div></div>
+<div class="data-field"><span class="field-label">PRAZO PARA CONCLUS&#195;O</span><div class="field-value" style="background-color:#FFFFFF"><span style="color:#000000">PREVIS&#195;O PARA 1&#170; QUINZENA DE NOVEMBRO</span></div></div>
+</div></details>
+<div class="group-fields">
+<div class="data-field"><span class="field-label">PARA LICITAR</span><div class="field-value" style="background-color:#FFFFFF"><span style="color:#70AD47">RGI -&gt; Viabilidades de &#193;gua e Esgoto -&gt; Protocolo Bombeiros -&gt; ETA -&gt; MD/RRT/Projeto/Invent&#225;rio Florestal -&gt; LP -&gt; </span><span style="color:#FF0000">EIV + Aprova&#231;&#227;o de Projetos</span></div></div>
+<div class="data-field"><span class="field-label">INFORMA&#199;&#213;ES BIM</span><div class="field-value" style="background-color:#FFFFFF"><span style="color:#000000">N&#195;O SE APLICA NESSA ETAPA. POR&#201;M MODELO BIMLEGA N&#195;O FOI IMPLANTADO NO CURSO DO PROJETO, O MODELO CENTRAL PRECISAR&#193; DE AJUSTES FUTURAMENTE</span></div></div>
+</div>
+</div></details>
+<details class="equip-card" open data-equipment="HOSPITAL" data-municipality="RECIFE" data-search="HOSPITAL RECIFE AV. MARECHAL MASCARENHAS DE MORAES, IMBIRIBEIRA, RECIFE-PE HOSPITAL - RECIFE (NOVO GET&#218;LIO VARGAS - HGV - IMBIRIBEIRA) AV. MARECHAL MASCARENHAS DE MORAES, IMBIRIBEIRA, RECIFE-PE 1 REFORMA COM ACR&#201;SCIMO DE &#193;REA ------- Aguardando defini&#231;&#245;es da gest&#227;o ----- Sem previs&#227;o RGI -&gt; Viabilidades de &#193;gua e Esgoto -&gt; Protocolo Bombeiros -&gt; ETA -&gt; MD/RRT/Projeto/Invent&#225;rio Florestal -&gt; LP -&gt; EIV + Aprova&#231;&#227;o de Projetos Projeto ainda n&#227;o elaborado"><summary><span class="kind">HOSPITAL</span><div class="identity"><h2 class="card-title">HOSPITAL - RECIFE (NOVO GET&#218;LIO VARGAS - HGV - IMBIRIBEIRA)</h2><div class="meta">RECIFE</div><div class="address">AV. MARECHAL MASCARENHAS DE MORAES, IMBIRIBEIRA, RECIFE-PE</div></div><span class="chevron" aria-hidden="true"></span></summary><div class="card-body"><div class="processes">
+<details class="process-card"><summary><span class="process-number"><span class="field-label">PROCESSOS</span><strong>1</strong></span><h3 class="process-name">REFORMA COM ACR&#201;SCIMO DE &#193;REA</h3><span class="chevron" aria-hidden="true"></span><div class="process-quick"><div class="data-field"><span class="field-label">PARA LICITAR</span><div class="field-value" style="background-color:#FFFFFF"><span style="color:#70AD47">RGI -&gt; Viabilidades de &#193;gua e Esgoto -&gt; </span><span style="color:#FF0000">Protocolo Bombeiros -&gt; ETA -&gt; MD/RRT/Projeto/</span><span style="color:#70AD47">Invent&#225;rio Florestal </span><span style="color:#FF0000">-&gt; LP -&gt; EIV + Aprova&#231;&#227;o de Projetos</span></div></div><div class="data-field"><span class="field-label">INFORMA&#199;&#213;ES BIM</span><div class="field-value" style="background-color:#FFFFFF"><span style="color:#000000">Projeto ainda n&#227;o elaborado</span></div></div></div></summary><div class="process-fields">
+<div class="data-field"><span class="field-label">IDENTIFICADOR</span><div class="field-value" style="background-color:#FFFFFF"><span style="color:#000000">HOSPITAL - RECIFE (NOVO GET&#218;LIO VARGAS - HGV - IMBIRIBEIRA)</span></div></div>
+<div class="data-field"><span class="field-label">PROTOCOLO</span><div class="field-value" style="background-color:#FFFFFF"><span style="color:#000000">-------</span></div></div>
+<div class="data-field"><span class="field-label">ETAPA DE ELABORA&#199;&#195;O</span><div class="field-value" style="background-color:#FFFFFF"><span style="color:#000000">Aguardando defini&#231;&#245;es da gest&#227;o</span></div></div>
+<div class="data-field"><span class="field-label">EXIG&#202;NCIAS DO INGRESSO</span><div class="field-value" style="background-color:#FFFFFF"><span style="color:#000000">-----</span></div></div>
+<div class="data-field"><span class="field-label">PRAZO PARA CONCLUS&#195;O</span><div class="field-value" style="background-color:#FFFFFF"><span style="color:#000000">Sem previs&#227;o</span></div></div>
 
-      <section id="sobre" class="section">
-        <div class="container">
-          <div class="section-heading">
-            <span class="eyebrow">Sobre</span>
-            <h2>Seu site precisa vender e gerar confiança.</h2>
-          </div>
 
-          <div class="about-grid">
-            <div class="about-text">
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-                facilisis, nisl et feugiat tristique, est sapien lobortis augue,
-                eget volutpat mi erat id enim.
-              </p>
-              <p>
-                Ajudamos negócios a se destacarem com comunicação clara, design
-                moderno e experiência de usuário eficiente.
-              </p>
-            </div>
+</div></details>
+</div></details>
+<details class="equip-card" open data-equipment="HOSPITAL" data-municipality="RECIFE" data-search="HOSPITAL RECIFE AV. GENERAL SAN MARTIN, CORDEIRO, RECIFE-PE HOSPITAL - RECIFE (GET&#218;LIO VARGAS - HGV - CORDEIRO) AV. GENERAL SAN MARTIN, CORDEIRO, RECIFE-PE 1 REFORMA COM ACR&#201;SCIMO DE &#193;REA OU LEGALIZA&#199;&#195;O COM ACR&#201;SIMO DE &#193;REA ------- Plantas digitalizadas j&#225; fornecidas pela Prefeitura do Recife e implantadas no DOCS. Aguardando defini&#231;&#245;es da gest&#227;o. ----- Sem previs&#227;o RGI -&gt; Viabilidades de &#193;gua e Esgoto -&gt; Protocolo Bombeiros -&gt; ETA -&gt; MD/RRT -&gt; Projeto/Invent&#225;rio Florestal -&gt; LP Projeto ainda n&#227;o elaborado"><summary><span class="kind">HOSPITAL</span><div class="identity"><h2 class="card-title">HOSPITAL - RECIFE (GET&#218;LIO VARGAS - HGV - CORDEIRO)</h2><div class="meta">RECIFE</div><div class="address">AV. GENERAL SAN MARTIN, CORDEIRO, RECIFE-PE</div></div><span class="chevron" aria-hidden="true"></span></summary><div class="card-body"><div class="processes">
+<details class="process-card"><summary><span class="process-number"><span class="field-label">PROCESSOS</span><strong>1</strong></span><h3 class="process-name">REFORMA COM ACR&#201;SCIMO DE &#193;REA OU LEGALIZA&#199;&#195;O COM ACR&#201;SIMO DE &#193;REA</h3><span class="chevron" aria-hidden="true"></span><div class="process-quick"><div class="data-field"><span class="field-label">PARA LICITAR</span><div class="field-value" style="background-color:#FFFFFF"><span style="font-weight:700;color:#FF0000">RGI -&gt; Viabilidades de &#193;gua e Esgoto -&gt; Protocolo Bombeiros -&gt; ETA -&gt; MD/RRT -&gt; Projeto/Invent&#225;rio Florestal -&gt; LP</span></div></div><div class="data-field"><span class="field-label">INFORMA&#199;&#213;ES BIM</span><div class="field-value" style="background-color:#FFFFFF"><span style="color:#000000">Projeto ainda n&#227;o elaborado</span></div></div></div></summary><div class="process-fields">
+<div class="data-field"><span class="field-label">IDENTIFICADOR</span><div class="field-value" style="background-color:#FFFFFF"><span style="color:#000000">HOSPITAL - RECIFE (GET&#218;LIO VARGAS - HGV - CORDEIRO)</span></div></div>
+<div class="data-field"><span class="field-label">PROTOCOLO</span><div class="field-value" style="background-color:#FFFFFF"><span style="color:#000000">-------</span></div></div>
+<div class="data-field"><span class="field-label">ETAPA DE ELABORA&#199;&#195;O</span><div class="field-value" style="background-color:#FFFFFF"><span style="color:#000000">Plantas digitalizadas j&#225; fornecidas pela Prefeitura do Recife e implantadas no DOCS. Aguardando defini&#231;&#245;es da gest&#227;o.</span></div></div>
+<div class="data-field"><span class="field-label">EXIG&#202;NCIAS DO INGRESSO</span><div class="field-value" style="background-color:#FFFFFF"><span style="color:#000000">-----</span></div></div>
+<div class="data-field"><span class="field-label">PRAZO PARA CONCLUS&#195;O</span><div class="field-value" style="background-color:#FFFFFF"><span style="color:#000000">Sem previs&#227;o</span></div></div>
 
-            <div class="about-stats">
-              <div class="stat">
-                <strong>5+</strong>
-                <span>Anos de experiência</span>
-              </div>
-              <div class="stat">
-                <strong>120+</strong>
-                <span>Projetos entregues</span>
-              </div>
-              <div class="stat">
-                <strong>98%</strong>
-                <span>Satisfação dos clientes</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      <section id="servicos" class="section section-alt">
-        <div class="container">
-          <div class="section-heading">
-            <span class="eyebrow">Serviços</span>
-            <h2>O que você pode ter no seu site</h2>
-          </div>
+</div></details>
+</div></details>
+<details class="equip-card" open data-equipment="HOSPITAL" data-municipality="RECIFE" data-search="HOSPITAL RECIFE RUA ARN&#211;BIO MARQUES, N&#186; 310, SANTO AMARO, RECIFE-PE HOSPITAL - RECIFE (OSWALDO CRUZ - HUOC - SANTO AMARO) RUA ARN&#211;BIO MARQUES, N&#186; 310, SANTO AMARO, RECIFE-PE 1 VIABILIDADE VI&#193;RIA 8049328926 Aguardando an&#225;lise do EIV pela Prefeitura do Recife EM AN&#193;LISE PELA PREFEITURA DO RECIFE Sem previs&#227;o RGI -&gt; Viabilidades -&gt; Aprova&#231;&#227;o de Projetos N&#227;o se aplica"><summary><span class="kind">HOSPITAL</span><div class="identity"><h2 class="card-title">HOSPITAL - RECIFE (OSWALDO CRUZ - HUOC - SANTO AMARO)</h2><div class="meta">RECIFE</div><div class="address">RUA ARN&#211;BIO MARQUES, N&#186; 310, SANTO AMARO, RECIFE-PE</div></div><span class="chevron" aria-hidden="true"></span></summary><div class="card-body"><div class="processes">
+<details class="process-card"><summary><span class="process-number"><span class="field-label">PROCESSOS</span><strong>1</strong></span><h3 class="process-name">VIABILIDADE VI&#193;RIA</h3><span class="chevron" aria-hidden="true"></span><div class="process-quick"><div class="data-field"><span class="field-label">PARA LICITAR</span><div class="field-value" style="background-color:#FFFFFF"><span style="font-weight:700;color:#FF0000">RGI -&gt; Viabilidades -&gt; Aprova&#231;&#227;o de Projetos</span></div></div><div class="data-field"><span class="field-label">INFORMA&#199;&#213;ES BIM</span><div class="field-value" style="background-color:#FFFFFF"><span style="color:#000000">N&#227;o se aplica</span></div></div></div></summary><div class="process-fields">
+<div class="data-field"><span class="field-label">IDENTIFICADOR</span><div class="field-value" style="background-color:#FFFFFF"><span style="color:#000000">HOSPITAL - RECIFE (OSWALDO CRUZ - HUOC - SANTO AMARO)</span></div></div>
+<div class="data-field"><span class="field-label">PROTOCOLO</span><div class="field-value" style="background-color:#FFFFFF"><span style="color:#000000">8049328926</span></div></div>
+<div class="data-field"><span class="field-label">ETAPA DE ELABORA&#199;&#195;O</span><div class="field-value" style="background-color:#FFFFFF"><span style="color:#000000">Aguardando an&#225;lise do EIV pela Prefeitura do Recife</span></div></div>
+<div class="data-field"><span class="field-label">EXIG&#202;NCIAS DO INGRESSO</span><div class="field-value" style="background-color:#FFFFFF"><span style="color:#000000">EM AN&#193;LISE PELA PREFEITURA DO RECIFE</span></div></div>
+<div class="data-field"><span class="field-label">PRAZO PARA CONCLUS&#195;O</span><div class="field-value" style="background-color:#FFFFFF"><span style="color:#000000">Sem previs&#227;o</span></div></div>
 
-          <div class="cards">
-            <article class="card">
-              <div class="icon">✦</div>
-              <h3>Landing Page</h3>
-              <p>Estrutura focada em conversão e captação de clientes.</p>
-            </article>
 
-            <article class="card">
-              <div class="icon">⚡</div>
-              <h3>Performance</h3>
-              <p>Layout rápido, leve e otimizado para celular e desktop.</p>
-            </article>
+</div></details>
+</div></details>
+</div></section>
+<section class="panel" id="panel-2" role="tabpanel" aria-labelledby="tab-2"><div class="cards">
+<details class="equip-card" open data-equipment="HOSPITAL" data-municipality="RECIFE" data-search="HOSPITAL RECIFE R. CASTRO ALVES, N 225, ENCRUZILHADA, RECIFE-PE HOPITAL - RECIFE (CISAM) R. CASTRO ALVES, N 225, ENCRUZILHADA, RECIFE-PE 1 PROJETO DE LEGALIZA&#199;&#195;O COM REFORMA DEFERIDO SOB O N&#186; 8061697225 SEPES - N&#218;CLEO DE LEGALIZA&#199;&#195;O 09/02/2027 EM OBRA EM OBRA PROJETO ELABORADO EM CAD"><summary><span class="kind">HOSPITAL</span><div class="identity"><h2 class="card-title">HOPITAL - RECIFE (CISAM)</h2><div class="meta">RECIFE</div><div class="address">R. CASTRO ALVES, N 225, ENCRUZILHADA, RECIFE-PE</div></div><span class="chevron" aria-hidden="true"></span></summary><div class="card-body"><div class="processes">
+<details class="process-card"><summary><span class="process-number"><span class="field-label">PROCESSOS</span><strong>1</strong></span><h3 class="process-name">PROJETO DE LEGALIZA&#199;&#195;O COM REFORMA</h3><span class="chevron" aria-hidden="true"></span><div class="process-quick"><div class="data-field"><span class="field-label">INFORMA&#199;&#213;ES BIM</span><div class="field-value" style="background-color:#B6D7A8"><span style="color:#000000">PROJETO ELABORADO EM CAD</span></div></div></div></summary><div class="process-fields">
+<div class="data-field"><span class="field-label">IDENTIFICADOR</span><div class="field-value" style="background-color:#B6D7A8"><span style="color:#000000">HOPITAL - RECIFE (CISAM)</span></div></div>
+<div class="data-field"><span class="field-label">PROTOCOLO DE APROVA&#199;&#195;O DO PROCESSO</span><div class="field-value" style="background-color:#B6D7A8"><span style="color:#000000">DEFERIDO SOB O N&#186; 8061697225</span></div></div>
+<div class="data-field"><span class="field-label">RESPONS&#193;VEL</span><div class="field-value" style="background-color:#B6D7A8"><span style="color:#000000">SEPES - N&#218;CLEO DE LEGALIZA&#199;&#195;O</span></div></div>
+<div class="data-field"><span class="field-label">VALIDADE</span><div class="field-value" style="background-color:#B6D7A8"><span style="color:#000000">09/02/2027</span></div></div>
+<div class="data-field"><span class="field-label">STATUS DO EMPREENDIMENTO</span><div class="field-value" style="background-color:#B6D7A8"><span style="color:#000000">EM OBRA</span></div></div>
 
-            <article class="card">
-              <div class="icon">◎</div>
-              <h3>Branding</h3>
-              <p>Visual profissional com identidade que comunica valor.</p>
-            </article>
-          </div>
-        </div>
-      </section>
+</div></details>
+</div></details>
+<details class="equip-card" open data-equipment="HOSPITAL" data-municipality="RECIFE" data-search="HOSPITAL RECIFE PRA&#199;A DO DERBY, SN - DERBY, RECIFE-PE HOSPITAL - RECIFE (POL&#205;CIA MILITAR - HPMPE) PRA&#199;A DO DERBY, SN - DERBY, RECIFE-PE 2 LEGALIZA&#199;&#195;O COM ACR&#201;SCIMO DE &#193;REA DEFERIDO SOB O N&#186; 8007094026 SEPES - NUCLEO DE LEGALIZA&#199;&#195;O 02/09/2028 EM OBRA EM OBRA PROJETO EM REVIT, POR&#201;M O PROJETO &#201; ANTERIOR &#192; ELABORA&#199;&#195;O DO MODELO BIM LEGA"><summary><span class="kind">HOSPITAL</span><div class="identity"><h2 class="card-title">HOSPITAL - RECIFE (POL&#205;CIA MILITAR - HPMPE)</h2><div class="meta">RECIFE</div><div class="address">PRA&#199;A DO DERBY, SN - DERBY, RECIFE-PE</div></div><span class="chevron" aria-hidden="true"></span></summary><div class="card-body"><div class="processes">
+<details class="process-card"><summary><span class="process-number"><span class="field-label">PROCESSOS</span><strong>2</strong></span><h3 class="process-name">LEGALIZA&#199;&#195;O COM ACR&#201;SCIMO DE &#193;REA</h3><span class="chevron" aria-hidden="true"></span><div class="process-quick"><div class="data-field"><span class="field-label">INFORMA&#199;&#213;ES BIM</span><div class="field-value" style="background-color:#B6D7A8"><span style="color:#000000">PROJETO EM REVIT, POR&#201;M O PROJETO &#201; ANTERIOR &#192; ELABORA&#199;&#195;O DO MODELO BIM LEGA</span></div></div></div></summary><div class="process-fields">
+<div class="data-field"><span class="field-label">IDENTIFICADOR</span><div class="field-value" style="background-color:#B6D7A8"><span style="color:#000000">HOSPITAL - RECIFE (POL&#205;CIA MILITAR - HPMPE)</span></div></div>
+<div class="data-field"><span class="field-label">PROTOCOLO DE APROVA&#199;&#195;O DO PROCESSO</span><div class="field-value" style="background-color:#B6D7A8"><span style="color:#000000">DEFERIDO SOB O N&#186; 8007094026</span></div></div>
+<div class="data-field"><span class="field-label">RESPONS&#193;VEL</span><div class="field-value" style="background-color:#B6D7A8"><span style="color:#000000">SEPES - NUCLEO DE LEGALIZA&#199;&#195;O</span></div></div>
+<div class="data-field"><span class="field-label">VALIDADE</span><div class="field-value" style="background-color:#B6D7A8"><span style="color:#000000">02/09/2028</span></div></div>
+<div class="data-field"><span class="field-label">STATUS DO EMPREENDIMENTO</span><div class="field-value" style="background-color:#B6D7A8"><span style="color:#000000">EM OBRA</span></div></div>
 
-      <section class="section cta-section">
-        <div class="container cta">
-          <div>
-            <span class="eyebrow">Pronto para crescer?</span>
-            <h2>Vamos transformar sua ideia em um site profissional.</h2>
-          </div>
-          <a href="#contato" class="btn btn-primary">Quero um orçamento</a>
-        </div>
-      </section>
+</div></details>
+</div></details>
+<details class="equip-card" open data-equipment="HOSPITAL" data-municipality="CARUARU" data-search="HOSPITAL CARUARU AV. AGAMENOM MAGALH&#195;ES, S/N - MAUR&#205;CIO DE NASSAU - CARUARU - PE HOSPITAL S&#195;O SEBASTI&#195;O - CARUARU AV. AGAMENOM MAGALH&#195;ES, S/N - MAUR&#205;CIO DE NASSAU - CARUARU - PE 3 REURB DEFERIDO SEPE - N&#218;CLEO DE LEGALIZA&#199;&#195;O | CEHAB SEM INFORMA&#199;&#195;O EM OBRA EM OBRA PROJETO ELABORADO EM CAD"><summary><span class="kind">HOSPITAL</span><div class="identity"><h2 class="card-title">HOSPITAL S&#195;O SEBASTI&#195;O - CARUARU</h2><div class="meta">CARUARU</div><div class="address">AV. AGAMENOM MAGALH&#195;ES, S/N - MAUR&#205;CIO DE NASSAU - CARUARU - PE</div></div><span class="chevron" aria-hidden="true"></span></summary><div class="card-body"><div class="processes">
+<details class="process-card"><summary><span class="process-number"><span class="field-label">PROCESSOS</span><strong>3</strong></span><h3 class="process-name">REURB</h3><span class="chevron" aria-hidden="true"></span><div class="process-quick"><div class="data-field"><span class="field-label">INFORMA&#199;&#213;ES BIM</span><div class="field-value" style="background-color:#B6D7A8"><span style="color:#000000">PROJETO ELABORADO EM CAD</span></div></div></div></summary><div class="process-fields">
+<div class="data-field"><span class="field-label">IDENTIFICADOR</span><div class="field-value" style="background-color:#B6D7A8"><span style="color:#000000">HOSPITAL S&#195;O SEBASTI&#195;O - CARUARU</span></div></div>
+<div class="data-field"><span class="field-label">PROTOCOLO DE APROVA&#199;&#195;O DO PROCESSO</span><div class="field-value" style="background-color:#B6D7A8"><span style="color:#000000">DEFERIDO</span></div></div>
+<div class="data-field"><span class="field-label">RESPONS&#193;VEL</span><div class="field-value" style="background-color:#B6D7A8"><span style="color:#000000">SEPE - N&#218;CLEO DE LEGALIZA&#199;&#195;O | CEHAB</span></div></div>
+<div class="data-field"><span class="field-label">VALIDADE</span><div class="field-value" style="background-color:#B6D7A8"><span style="color:#000000">SEM INFORMA&#199;&#195;O</span></div></div>
+<div class="data-field"><span class="field-label">STATUS DO EMPREENDIMENTO</span><div class="field-value" style="background-color:#B6D7A8"><span style="color:#000000">EM OBRA</span></div></div>
 
-      <section id="contato" class="section">
-        <div class="container">
-          <div class="section-heading">
-            <span class="eyebrow">Contato</span>
-            <h2>Fale com a gente</h2>
-          </div>
+</div></details>
+</div></details>
+<details class="equip-card" open data-equipment="HEMOPE" data-municipality="RECIFE" data-search="HEMOPE RECIFE R. JOAQUIM NABUCO, 171 - GRA&#199;AS - RECIFE-PE HEMOPE - RECIFE (HEMOPE) R. JOAQUIM NABUCO, 171 - GRA&#199;AS - RECIFE-PE 4 LICEN&#199;A PR&#201;VIA DEFERIDO SOB O N&#186; 8025826926 SEPE- VIABILIDADES 14/07/2028 PROJETOS EM DESENVOLVIMENTO PROJETOS EM DESENVOLVIMENTO PROJETO ELABORADO EM CAD + MODELO BIMLEGA J&#193; IMPLANTADO NO CURSO DO PROJETO"><summary><span class="kind">HEMOPE</span><div class="identity"><h2 class="card-title">HEMOPE - RECIFE (HEMOPE)</h2><div class="meta">RECIFE</div><div class="address">R. JOAQUIM NABUCO, 171 - GRA&#199;AS - RECIFE-PE</div></div><span class="chevron" aria-hidden="true"></span></summary><div class="card-body"><div class="processes">
+<details class="process-card"><summary><span class="process-number"><span class="field-label">PROCESSOS</span><strong>4</strong></span><h3 class="process-name">LICEN&#199;A PR&#201;VIA</h3><span class="chevron" aria-hidden="true"></span><div class="process-quick"><div class="data-field"><span class="field-label">INFORMA&#199;&#213;ES BIM</span><div class="field-value" style="background-color:#B6D7A8"><span style="color:#000000">PROJETO ELABORADO EM CAD + MODELO BIMLEGA J&#193; IMPLANTADO NO CURSO DO PROJETO</span></div></div></div></summary><div class="process-fields">
+<div class="data-field"><span class="field-label">IDENTIFICADOR</span><div class="field-value" style="background-color:#B6D7A8"><span style="color:#000000">HEMOPE - RECIFE (HEMOPE)</span></div></div>
+<div class="data-field"><span class="field-label">PROTOCOLO DE APROVA&#199;&#195;O DO PROCESSO</span><div class="field-value" style="background-color:#B6D7A8"><span style="color:#000000">DEFERIDO SOB O N&#186; 8025826926</span></div></div>
+<div class="data-field"><span class="field-label">RESPONS&#193;VEL</span><div class="field-value" style="background-color:#B6D7A8"><span style="color:#000000">SEPE- VIABILIDADES</span></div></div>
+<div class="data-field"><span class="field-label">VALIDADE</span><div class="field-value" style="background-color:#B6D7A8"><span style="color:#000000">14/07/2028</span></div></div>
+<div class="data-field"><span class="field-label">STATUS DO EMPREENDIMENTO</span><div class="field-value" style="background-color:#B6D7A8"><span style="color:#000000">PROJETOS EM DESENVOLVIMENTO</span></div></div>
 
-          <form class="contact-form">
-            <input type="text" placeholder="Seu nome" />
-            <input type="email" placeholder="Seu e-mail" />
-            <textarea placeholder="Sua mensagem"></textarea>
-            <button type="submit" class="btn btn-primary">Enviar mensagem</button>
-          </form>
-        </div>
-      </section>
-    </main>
-
-    <footer class="footer">
-      <div class="container footer-content">
-        <p>© <span id="year"></span> SeuNome. Todos os direitos reservados.</p>
-        <div class="socials">
-          <a href="#">Instagram</a>
-          <a href="#">LinkedIn</a>
-          <a href="#">GitHub</a>
-        </div>
-      </div>
-    </footer>
-
-    <script src="script.js"></script>
-  </body>
-</html>
+</div></details>
+</div></details>
+</div></section>
+</main><script>function showSheet(n){document.querySelectorAll(".panel").forEach((el,i)=>el.classList.toggle("active",i===n-1));document.querySelectorAll("[role=tab]").forEach((el,i)=>el.setAttribute("aria-selected",i===n-1?"true":"false"));applyFilters()}function applyFilters(){const e=document.getElementById("filter-equipment").value,m=document.getElementById("filter-municipality").value,q=document.getElementById("filter-search").value.trim().toLocaleLowerCase();document.querySelectorAll(".panel.active .equip-card").forEach(card=>{const show=(!e||card.dataset.equipment===e)&&(!m||card.dataset.municipality===m)&&(!q||card.dataset.search.toLocaleLowerCase().includes(q));card.hidden=!show})}document.getElementById("filter-equipment").addEventListener("change",applyFilters);document.getElementById("filter-municipality").addEventListener("change",applyFilters);document.getElementById("filter-search").addEventListener("input",applyFilters)</script></body></html>
